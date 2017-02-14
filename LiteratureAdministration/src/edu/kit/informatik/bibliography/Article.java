@@ -8,12 +8,12 @@ import java.util.ArrayList;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Article {
+public class Article implements Comparable<Article> {
     private final String id;
     private final String title;
     private final int year;
     private final ArticleType type;
-    private ArrayList<Article> citations;
+    private ArrayList<Article> citatedBy;
     private ArrayList<Author> authors;
     private ArrayList<String> keywords;
     
@@ -47,8 +47,8 @@ public class Article {
      * @param article the publication that cites this article
      */
     public void addCitation(Article article) {
-        if (!citations.contains(article)) {
-            citations.add(article);
+        if (!citatedBy.contains(article)) {
+            citatedBy.add(article);
         }     
     }
     
@@ -57,7 +57,7 @@ public class Article {
      * 
      * @param words the new keywords
      */
-    public void addKeyword(ArrayList<String> words) {
+    public void addKeywords(ArrayList<String> words) {
         keywords.addAll(words);
     }
     
@@ -68,6 +68,61 @@ public class Article {
      */
     public String getId() {
         return id;
+    }
+    
+    /**
+     * Returns the article's title
+     * 
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+    
+    /**
+     * Returns the article's publishing year.
+     * 
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
+    
+    /**
+     * Returns the ArrayList of authors of this article.
+     * 
+     * @return the list
+     */
+    public ArrayList<Author> getAuthors() {
+        return authors;
+    }
+    
+    @Override
+    public int compareTo(Article other) {
+        int result;
+        
+        //compare the authors
+        int counter = 0;
+        int size = authors.size();
+        while (counter < size) {
+            if (!other.getAuthors().isEmpty()) {
+                result = authors.get(counter).compareTo(other.getAuthors().get(counter));
+                if (result != 0) return result;
+                counter++;
+            } else return 1;
+        }
+        if (other.getAuthors().size() > counter) return -1;
+        
+        //compare the title
+        result = title.compareTo(other.getTitle());
+        if (result != 0) return result;
+        
+        //compare the publishing year
+        result = ((Integer) year).compareTo(other.getYear());
+        if (result != 0) return result;
+        
+        //compare the id
+        return id.compareTo(other.getId());
     }
     
     @Override

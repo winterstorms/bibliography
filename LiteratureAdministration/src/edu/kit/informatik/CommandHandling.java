@@ -4,6 +4,7 @@ import edu.kit.informatik.bibliography.*;
 
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Handles commands for the bibliography.
@@ -43,11 +44,13 @@ public class CommandHandling<T, C extends CommandHandling.Command<T>> {
                 }
             }
             if (!string.equals("")) throw new NoSuchElementException("this command doesn't exist.");
+        } catch (NoSuchElementException e) {
+            Terminal.printError(e.getMessage());
         } catch (FalseNumberOfParametersException e) {
             Terminal.printError("the number of parameters for this command is wrong.");
-        } catch (IllegalArgumentException e) {
+        } catch (PatternSyntaxException e) {
             Terminal.printError(e.getMessage());
-        } catch (NoSuchElementException e) {
+        } catch (IllegalArgumentException e) {
             Terminal.printError(e.getMessage());
         }
         

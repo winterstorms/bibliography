@@ -23,6 +23,39 @@ public class Conference {
         this.year = year;
         this.location = location;
     }
+
+    /**
+     * Adds a new article to this conference's publications.
+     * 
+     * @param newArticle the article
+     */
+    public void addArticle(Article newArticle) {
+        publications.add(newArticle);
+    }
     
+    /**
+     * Adds the keywords to every article in this conference.
+     * 
+     * @param words the keywords
+     */
+    public void addKeywords(ArrayList<String> words) {
+        for (Article pub : publications) {
+            pub.addKeywords(words);
+        }
+    }
+    
+    /**
+     * Returns the year this conference held place.
+     * 
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return (other instanceof Conference) && (year == ((Conference) other).getYear());
+    }
     
 }

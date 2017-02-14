@@ -25,6 +25,26 @@ public class Journal {
     }
     
     /**
+     * Adds a new article to this journal's publications.
+     * 
+     * @param newArticle the article
+     */
+    public void addArticle(Article newArticle) {
+        publications.add(newArticle);
+    }
+    
+    /**
+     * Adds the keywords to every article in this journal.
+     * 
+     * @param words the keywords
+     */
+    public void addKeywords(ArrayList<String> words) {
+        for (Article pub : publications) {
+            pub.addKeywords(words);
+        }
+    }
+    
+    /**
      * Returns the name of this journal.
      * 
      * @return the name
@@ -41,5 +61,6 @@ public class Journal {
     public String getPublisher() {
         return publisher;
     }
+    
     
 }

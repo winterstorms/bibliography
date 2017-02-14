@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Author {
+public class Author implements Comparable<Author> {
     private final String firstname;
     private final String lastname;
     private ArrayList<Article> publications;
@@ -53,9 +53,28 @@ public class Author {
         return lastname;
     }
     
+    /**
+     * Returns the author's full name.
+     * 
+     * @return the name
+     */
+    public String getFullName() {
+        return getFirstname() + " " + getLastname();
+    }
+    
     @Override
-    public boolean equals(Object obj) {
-        return (obj instanceof Author) && firstname.equals(((Author) obj).getFirstname()) 
-                && lastname.equals(((Author) obj).getLastname());
+    public int compareTo(Author other) {
+        int result = lastname.compareTo(other.getLastname());
+        if (result != 0) return result;
+        
+        result = firstname.compareTo(other.getFirstname());
+        if (result != 0) return result;
+        
+        return 0;
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return (other instanceof Author) && getFullName().equals(((Author) other).getFullName());
     }
 }
