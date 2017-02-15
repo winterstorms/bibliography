@@ -62,6 +62,15 @@ public class Author implements Comparable<Author> {
         return getFirstname() + " " + getLastname();
     }
     
+    /**
+     * Returns this author's list of publications.
+     * 
+     * @return the list
+     */
+    public ArrayList<Article> getPublications() {
+        return publications;
+    }
+    
     @Override
     public int compareTo(Author other) {
         int result = lastname.compareTo(other.getLastname());

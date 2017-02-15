@@ -1,6 +1,8 @@
 package edu.kit.informatik.bibliography;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.TreeSet;
 
 /**
  * An article in a bibliography.
@@ -13,9 +15,9 @@ public class Article implements Comparable<Article> {
     private final String title;
     private final int year;
     private final ArticleType type;
-    private ArrayList<Article> citatedBy;
+    private TreeSet<Article> citatedBy;
     private ArrayList<Author> authors;
-    private ArrayList<String> keywords;
+    private TreeSet<String> keywords;
     
     /**
      * Creates e new article with the provided arguments.
@@ -37,7 +39,6 @@ public class Article implements Comparable<Article> {
      * @param newAuthors the authors to add
      */
     public void addAuthors(ArrayList<Author> newAuthors) {
-        
         authors.addAll(newAuthors);
     }
     
@@ -47,9 +48,7 @@ public class Article implements Comparable<Article> {
      * @param article the publication that cites this article
      */
     public void addCitation(Article article) {
-        if (!citatedBy.contains(article)) {
-            citatedBy.add(article);
-        }     
+        citatedBy.add(article); 
     }
     
     /**
@@ -57,8 +56,18 @@ public class Article implements Comparable<Article> {
      * 
      * @param words the new keywords
      */
-    public void addKeywords(ArrayList<String> words) {
+    public void addKeywords(Collection<String> words) {
         keywords.addAll(words);
+    }
+    
+    /**
+     * Checks whether this article has all the provided keywords.
+     * 
+     * @param words the keywords
+     * @return true if list of keywords includes all words 
+     */
+    public boolean hasKeywords(Collection<String> words) {
+        return keywords.containsAll(words);
     }
     
     /**
@@ -95,6 +104,33 @@ public class Article implements Comparable<Article> {
      */
     public ArrayList<Author> getAuthors() {
         return authors;
+    }
+    
+    /**
+     * Returns the article's set of keywords.
+     * 
+     * @return the keywords
+     */
+    public TreeSet<String> getKeywords() {
+        return keywords;
+    }
+    
+    /**
+     * Returns this article's the list of citations.
+     * 
+     * @return the citations
+     */
+    public TreeSet<Article> getCitations() {
+        return citatedBy;
+    }
+    
+    /**
+     * Returns the article type.
+     * 
+     * @return the type
+     */
+    public ArticleType getType() {
+        return type;
     }
     
     @Override
