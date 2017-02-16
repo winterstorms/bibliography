@@ -1,6 +1,5 @@
 package edu.kit.informatik;
 
-import edu.kit.informatik.bibliography.*;
 
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;

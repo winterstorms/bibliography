@@ -14,7 +14,7 @@ public class Article implements Comparable<Article> {
     private final String id;
     private final String title;
     private final int year;
-    private final ArticleType type;
+    private final Venue venue;
     private TreeSet<Article> citatedBy;
     private ArrayList<Author> authors;
     private TreeSet<String> keywords;
@@ -25,13 +25,13 @@ public class Article implements Comparable<Article> {
      * @param id the id
      * @param title the title
      * @param year the publishing year
-     * @param type the venue (journal or conference)
+     * @param venue the venue (journal or conference series)
      */
-    public Article(String id, String title, int year, ArticleType type) {
+    public Article(String id, String title, int year, Venue venue) {
         this.id = id;
         this.title = title;
         this.year = year;
-        this.type = type;
+        this.venue = venue;
     }
     /**
      * Adds provided authors to this article's list of authors.
@@ -64,6 +64,7 @@ public class Article implements Comparable<Article> {
      * Checks whether this article has all the provided keywords.
      * 
      * @param words the keywords
+     * 
      * @return true if list of keywords includes all words 
      */
     public boolean hasKeywords(Collection<String> words) {
@@ -129,8 +130,8 @@ public class Article implements Comparable<Article> {
      * 
      * @return the type
      */
-    public ArticleType getType() {
-        return type;
+    public Venue getVenue() {
+        return venue;
     }
     
     @Override

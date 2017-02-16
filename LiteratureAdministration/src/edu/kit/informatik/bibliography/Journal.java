@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Journal {
+public class Journal implements Venue {
     private final String name;
     private final String publisher;
     private ArrayList<Article> publications;
@@ -23,16 +23,7 @@ public class Journal {
         this.name = name;
         this.publisher = publisher;
     }
-    
-    /**
-     * Adds a new article to this journal's publications.
-     * 
-     * @param newArticle the article
-     */
-    public void addArticle(Article newArticle) {
-        publications.add(newArticle);
-    }
-    
+
     /**
      * Adds the keywords to every article in this journal.
      * 
@@ -44,11 +35,12 @@ public class Journal {
         }
     }
     
-    /**
-     * Returns the name of this journal.
-     * 
-     * @return the name
-     */
+    @Override
+    public void addArticle(Article newArticle) {
+        publications.add(newArticle);
+    }
+    
+    @Override
     public String getName() {
         return name;
     }

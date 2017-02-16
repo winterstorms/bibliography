@@ -1,6 +1,7 @@
 package edu.kit.informatik.bibliography;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * A series of conferences in a bibliography.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class ConferenceSeries {
+public class ConferenceSeries implements Venue {
     private final String name;
     private ArrayList<Conference> conferences;
     
@@ -41,11 +42,27 @@ public class ConferenceSeries {
         }
     }
     
+    @Override
+    public void addArticle(Article newArticle) throws NoSuchElementException {
+        findConference(newArticle.getYear()).addArticle(newArticle);
+    }
+    
     /**
-     * Returns the name of the series.
+     * Returns the conference with the given unique id if it is in this series.
      * 
-     * @return the name
+     * @param identifier the year in which the conference held place
+     * 
+     * @return the conference
+     * @throws NoSuchElementException if the bibliography does not contain the series
      */
+    public Conference findConference(int identifier) throws NoSuchElementException  {
+        for (Conference c : getConferences()) {
+            if (c.getYear() == identifier) return c;
+        }
+        throw new NoSuchElementException("conference not found.");
+    }
+    
+    @Override
     public String getName() {
         return name;
     }

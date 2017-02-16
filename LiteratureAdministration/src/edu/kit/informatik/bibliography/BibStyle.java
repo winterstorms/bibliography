@@ -15,7 +15,7 @@ public enum BibStyle {
             if (authors.length == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "[" + bibId + "] ";
             output.concat(formatAuthorNames(authors));
-            output.concat(", " + title + ", in Proceedings of " + nameSeries + ", " + location + ", " + year + ".");
+            output.concat(", \"" + title + ",\" in Proceedings of " + nameSeries + ", " + location + ", " + year + ".");
             Terminal.printLine(output);
         }
         
@@ -25,7 +25,7 @@ public enum BibStyle {
             if (authors.length == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "[" + bibId + "] ";
             output.concat(formatAuthorNames(authors));
-            output.concat(", " + title + ", " + nameJournal + ", " + year + ".");
+            output.concat(", \"" + title + ",\" " + nameJournal + ", " + year + ".");
             Terminal.printLine(output);
         }
         
@@ -49,7 +49,8 @@ public enum BibStyle {
             if (authors.length == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "(" + authors[0].getLastname() + ", " + year + ") ";
             output.concat(formatAuthorNames(authors));
-            output.concat(". " + title + ". Paper presented at " + nameSeries + ", " + year + ", " + location + ".");
+            output.concat(". \"" + title + ".\" Paper presented at " 
+                    + nameSeries + ", " + year + ", " + location + ".");
             Terminal.printLine(output);
         }
         
@@ -59,7 +60,7 @@ public enum BibStyle {
             if (authors.length == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "(" + authors[0].getLastname() + ", " + year + ") ";
             output.concat(formatAuthorNames(authors));
-            output.concat(". " + title + ". " + nameJournal + " (" + year + ").");
+            output.concat(". \"" + title + ".\" " + nameJournal + " (" + year + ").");
             Terminal.printLine(output);
         }
         

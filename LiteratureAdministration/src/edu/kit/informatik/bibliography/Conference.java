@@ -53,6 +53,15 @@ public class Conference {
         return year;
     }
     
+    /**
+     * Returns the location of the conference.
+     * 
+     * @return the location
+     */
+    public String getLocation() {
+        return location;
+    }
+    
     @Override
     public boolean equals(Object other) {
         return (other instanceof Conference) && (year == ((Conference) other).getYear());

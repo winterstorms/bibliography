@@ -1,13 +1,12 @@
 package edu.kit.informatik.bibliography;
 
-import java.util.ArrayList;
+import edu.kit.informatik.Terminal;
 import java.util.Collection;
-import java.util.Comparator;
-import java.util.NoSuchElementException;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
-
-import edu.kit.informatik.Terminal;
+import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 /**
  * A bibliography.
@@ -27,6 +26,10 @@ public class Bibliography {
      */
     public Bibliography() {
         styles = BibStyle.values();
+        authors = new ArrayList<Author>();
+        journals = new ArrayList<Journal>();
+        series = new ArrayList<ConferenceSeries>();
+        publications = new ArrayList<Article>();
     }
     
     /**
@@ -79,39 +82,25 @@ public class Bibliography {
     /**
      * Adds a new article with provided arguments to the specified venue (journal or conference).
      * 
-     * @param venue the venue
+     * @param articleType the type of the venue (journal or series)
+     * @param venueName the venue's name
      * @param id the new article's unique id
      * @param year the publishing year
      * @param title the title of the article
      * 
      * @throws NoSuchElementException if there is no journal or conference matching the specified venue
      */
-    public void addArticle(String venue, String id, int year, String title) throws NoSuchElementException {
-
-        //if there is a journal matching the venue add the article to it
-        int index = journals.indexOf(new Journal(venue, ""));
-        if (index != -1) {
-            Article newArticle = new Article(id, title, year, ArticleType.JOUR);
-            journals.get(index).addArticle(newArticle);
-            publications.add(newArticle);
-            return;
-        }
-        
-        /*
-         * if there is a conference series matching the venue with a conference 
-         * in the given year add the article to this conference.
-         */
-        index = series.indexOf(new ConferenceSeries(venue));
-        if (index == -1) throw new NoSuchElementException("there is no journal or conference series with this name.");
-        else {
-            int confIndex = series.get(index).getConferences().indexOf(new Conference(year, ""));
-            if (confIndex == -1) throw new NoSuchElementException("there is no conference in the given year.");
-            else {
-                Article newArticle = new Article(id, title, year, ArticleType.CONF);
-                series.get(index).getConferences().get(confIndex).addArticle(newArticle);
-                publications.add(newArticle);
-            }
-        }
+    public void addArticle(String articleType, String venueName, String id, int year, String title) 
+            throws NoSuchElementException {
+        Venue venue;
+        if (articleType.matches("journal")) {
+            venue = findJournal(venueName);
+        } else if (articleType.matches("series")) {
+            venue = findSeries(venueName);
+        } else throw new NoSuchElementException("there is no journal or conference series with this name.");
+        Article newArticle = new Article(id, title, year, venue);
+        venue.addArticle(newArticle);
+        publications.add(newArticle);
     }
     
     /**
@@ -142,7 +131,6 @@ public class Bibliography {
         
         if (cites.getYear() <= quoted.getYear()) 
             throw new IllegalArgumentException("the citing article has to be published after the quoted one!");
-        
         quoted.addCitation(cites);
     }
     
@@ -156,7 +144,6 @@ public class Bibliography {
      * @throws NoSuchElementException if the entity with this id does not exist
      */
     public void addKeywords(String entity, String id, ArrayList<String> words) throws NoSuchElementException {
-        int index;
         if (entity.equals("pub")) {
             Article article = findPublication(id);
             article.addKeywords(words);
@@ -168,8 +155,7 @@ public class Bibliography {
             journal.addKeywords(words);
         } else if (entity.equals("conference")) {
             ConferenceSeries ser = findSeries(id.split(",")[0]);
-            Conference conf = findConference(ser, Integer.parseInt(id.split(",")[1]));
-            conf.addKeywords(words);
+            ser.findConference(Integer.parseInt(id.split(",")[1])).addKeywords(words);
         }
     }
     
@@ -230,12 +216,12 @@ public class Bibliography {
     }
     
     /**
-     * Returns the jaccard index of the lists of keywords of the two articles specified bay their id
+     * Returns the jaccard index of the lists of keywords of the two articles specified by their id.
+     * 
      * @param idArticle the first article's id
      * @param idCompare the id of the article the first one is compared to
      * 
      * @return their jaccard index
-     * 
      * @throws NoSuchElementException if one of the articles does not exist
      */
     public double similarity(String idArticle, String idCompare) throws NoSuchElementException { 
@@ -250,11 +236,10 @@ public class Bibliography {
      * @param citations the numbers of citation
      * 
      * @return the hIndex
-     * 
      * @throws IllegalArgumentException if @param is null
      */
     public int hIndex(int[] citations) throws IllegalArgumentException {
-        if (citations == null) throw new IllegalArgumentException("no sitations found.");
+        if (citations == null) throw new IllegalArgumentException("no citations found.");
         int result = 0;
         int current;
         for (int i = 0; i < citations.length; i++) {
@@ -269,8 +254,7 @@ public class Bibliography {
      * 
      * @param name the author's name
      * 
-     * @return his/her hIndex
-     * 
+     * @return the author's hIndex
      * @throws NoSuchElementException if the author does not exist.
      */
     public int hIndexByAuthor(String name) throws NoSuchElementException {
@@ -373,33 +357,36 @@ public class Bibliography {
      * @param ids the articles' ids
      * 
      * @throws NoSuchElementException if article or style does not exist
+     * @throws IllegalArgumentException if one article has no authors
      */
-    public void printBib(String stylePattern, Collection<String> ids) throws NoSuchElementException {
-        BibStyle style;
-        if (BibStyle.IEEE.pattern().matcher(stylePattern).matches()) style = BibStyle.IEEE;
-        else if (BibStyle.CHIC.pattern().matcher(stylePattern).matches()) style = BibStyle.CHIC;
-        else throw new NoSuchElementException("specified style not found.");
+    public void printBib(String stylePattern, Collection<String> ids) 
+            throws NoSuchElementException, IllegalArgumentException {
+        if (!BibStyle.IEEE.pattern().matcher(stylePattern).matches() 
+                && !BibStyle.CHIC.pattern().matcher(stylePattern).matches()) 
+            throw new NoSuchElementException("specified style not found.");
         
         Article current;
         ArrayList<Article> articles = new ArrayList<Article>();
         for (String id : ids) {
             current = findPublication(id);
-            if (current.getAuthors().isEmpty()) 
-                throw new IllegalArgumentException("one of the articles has no authors.");
-            articles.add(current);
+            if (current.getAuthors().isEmpty()) throw new IllegalArgumentException("one of the articles is invalid.");
+            if (!articles.contains(current)) articles.add(current);
         }
+        articles.sort(new ArticleComparator());
         
-        //sortiere articles noch 
-        
-        
-        
+        Venue venue;
+        Author[] authors;
         for (int i = 0; i < articles.size(); i++) {
             current = articles.get(i);
-            if (current.getType().equals(ArticleType.CONF)) printConference(style.toString().toLowerCase(), i, 
-                    (Author[]) current.getAuthors().toArray(), current.getTitle(), "platzhalter", "location", 
-                    current.getYear());
-        
-        //füge article series/journal + location hinzu (interface für die beiden) schaffe dafür articleType ab.
+            authors = (Author[]) current.getAuthors().toArray();
+            venue = current.getVenue();
+            
+            if (venue instanceof ConferenceSeries) {
+                printConference(stylePattern, i, authors, current.getTitle(), venue.getName(), 
+                        ((ConferenceSeries) venue).findConference(current.getYear()).getLocation(), current.getYear());
+            } else {
+                printJournal(stylePattern, i, authors, current.getTitle(), venue.getName(), current.getYear());
+            }
         }
     }
     
@@ -409,7 +396,6 @@ public class Bibliography {
      * @param name the author's name
      * 
      * @return the coauthors
-     * 
      * @throws NoSuchElementException if author does not exist
      */
     private TreeSet<Author> getCoauthors(String name) throws NoSuchElementException {
@@ -428,7 +414,6 @@ public class Bibliography {
      * @param identifier the publication's supposed id
      * 
      * @return the publication
-     * 
      * @throws NoSuchElementException if the bibliography does not contain the publication
      */
     private Article findPublication(String identifier) throws NoSuchElementException  {
@@ -444,7 +429,6 @@ public class Bibliography {
      * @param identifier the series' supposed name
      * 
      * @return the series
-     * 
      * @throws NoSuchElementException if the bibliography does not contain the series
      */
     private ConferenceSeries findSeries(String identifier) throws NoSuchElementException  {
@@ -460,7 +444,6 @@ public class Bibliography {
      * @param identifier the journal's supposed name
      * 
      * @return the journal
-     * 
      * @throws NoSuchElementException if the bibliography does not contain the journal
      */
     private Journal findJournal(String identifier) throws NoSuchElementException  {
@@ -476,7 +459,6 @@ public class Bibliography {
      * @param identifier the author's supposed name
      * 
      * @return the author
-     * 
      * @throws NoSuchElementException if the bibliography does not contain the author
      */
     private Author findAuthor(String identifier) throws NoSuchElementException  {
@@ -484,23 +466,6 @@ public class Bibliography {
             if (a.getFullName().equals(identifier)) return a;
         }
         throw new NoSuchElementException("author not found.");
-    }
-    
-    /**
-     * Returns the conference with the given unique id if it is in the bibliography.
-     * 
-     * @param ser the series of this conference
-     * @param identifier the year in which the conference held place
-     * 
-     * @return the conference
-     * 
-     * @throws NoSuchElementException if the bibliography does not contain the series
-     */
-    private Conference findConference(ConferenceSeries ser, int identifier) throws NoSuchElementException  {
-        for (Conference c : ser.getConferences()) {
-            if (c.getYear() == identifier) return c;
-        }
-        throw new NoSuchElementException("conference not found.");
     }
     
     /**
