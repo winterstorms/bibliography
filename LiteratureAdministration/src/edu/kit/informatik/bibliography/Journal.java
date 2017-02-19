@@ -1,6 +1,7 @@
 package edu.kit.informatik.bibliography;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * A journal in a bibliography.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Journal implements Venue {
+public class Journal implements Venue, MyEntity {
     private final String name;
     private final String publisher;
     private ArrayList<Article> publications;
@@ -24,12 +25,8 @@ public class Journal implements Venue {
         this.publisher = publisher;
     }
 
-    /**
-     * Adds the keywords to every article in this journal.
-     * 
-     * @param words the keywords
-     */
-    public void addKeywords(ArrayList<String> words) {
+    @Override
+    public void addKeywords(Collection<String> words) {
         for (Article pub : publications) {
             pub.addKeywords(words);
         }
@@ -54,5 +51,14 @@ public class Journal implements Venue {
         return publisher;
     }
     
+    @Override
+    public String toString() {
+        return name;
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return (other instanceof Journal) && name.equals(((Journal) other).getName());
+    }
     
 }

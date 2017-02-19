@@ -1,6 +1,8 @@
 package edu.kit.informatik.bibliography;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * An author in a bibliography.
@@ -18,12 +20,25 @@ public class Author implements Comparable<Author> {
      *  
      * @param firstname the firstname
      * @param lastname the lastname
-     * 
-     * @throws SpellingException if names are not in lower case
      */
     public Author(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
+    }
+    
+    /**
+     * Creates a new author with the provided argument.
+     *  
+     * @param fullname the name
+     * 
+     * @throws IllegalArgumentException if the argument is not a valid name for an author
+     */
+    public Author(String fullname) throws IllegalArgumentException {
+        Matcher m = Pattern.compile("[a-zA-Z]+ [a-zA-Z]+").matcher(fullname);
+        if (!m.matches()) throw new IllegalArgumentException("invalid name for an author.");
+        String[] names = fullname.split(" ");
+        this.firstname = names[0];
+        this.lastname = names[1];
     }
     
     /**

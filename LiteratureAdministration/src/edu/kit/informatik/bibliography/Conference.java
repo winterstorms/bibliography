@@ -1,6 +1,7 @@
 package edu.kit.informatik.bibliography;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * A conference in a bibliography.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Conference {
+public class Conference implements MyEntity {
     private final int year;
     private final String location;
     private ArrayList<Article> publications;
@@ -33,12 +34,8 @@ public class Conference {
         publications.add(newArticle);
     }
     
-    /**
-     * Adds the keywords to every article in this conference.
-     * 
-     * @param words the keywords
-     */
-    public void addKeywords(ArrayList<String> words) {
+    @Override
+    public void addKeywords(Collection<String> words) {
         for (Article pub : publications) {
             pub.addKeywords(words);
         }
@@ -60,6 +57,20 @@ public class Conference {
      */
     public String getLocation() {
         return location;
+    }
+    
+    /**
+     * Returns the publications belonging to this conference.
+     * 
+     * @return the publications
+     */
+    public ArrayList<Article> getPublications() {
+        return publications;
+    }
+    
+    @Override
+    public String toString() {
+        return location + ", " + year;
     }
     
     @Override

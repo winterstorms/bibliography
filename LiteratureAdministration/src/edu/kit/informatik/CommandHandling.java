@@ -2,6 +2,7 @@ package edu.kit.informatik;
 
 
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -35,18 +36,18 @@ public class CommandHandling<T, C extends CommandHandling.Command<T>> {
      * @return the matching command or null
      */
     public C accept(String string) {
+        Matcher m;
         try {
             for (C c : commands) {
-                if (c.pattern().matcher(string).matches()) {
-                    c.apply(target, string);
+                m = c.pattern().matcher(string);
+                if (m.matches()) {
+                    c.apply(target, m.group(2));
                     return c;
                 }
             }
             if (!string.equals("")) throw new NoSuchElementException("this command doesn't exist.");
         } catch (NoSuchElementException e) {
             Terminal.printError(e.getMessage());
-        } catch (FalseNumberOfParametersException e) {
-            Terminal.printError("the number of parameters for this command is wrong.");
         } catch (PatternSyntaxException e) {
             Terminal.printError(e.getMessage());
         } catch (IllegalArgumentException e) {
@@ -70,8 +71,22 @@ public class CommandHandling<T, C extends CommandHandling.Command<T>> {
          * 
          * @param target the target system of the command
          * @param string the command
+         * 
+         * @throws IllegalArgumentException if the string is not valid for this command
          */
-        void apply(T target, String string);
+        void apply(T target, String string) throws IllegalArgumentException;
+        
+        /**
+         * Matches the input String against the provided pattern and after success returns an array of Strings 
+         * with the individual tokens (parameters) of the input.
+         * 
+         * @param regex the pattern to match
+         * @param input the input String
+         * 
+         * @return the parameters
+         * @throws IllegalArgumentException if the number of tokens does not match the expected one
+         */
+        String[] matchParameters(String regex, String input) throws IllegalArgumentException;
     }
     
     

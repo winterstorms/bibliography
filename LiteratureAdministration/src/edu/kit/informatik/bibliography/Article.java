@@ -10,7 +10,7 @@ import java.util.TreeSet;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Article implements Comparable<Article> {
+public class Article implements Comparable<Article>, MyEntity {
     private final String id;
     private final String title;
     private final int year;
@@ -51,11 +51,7 @@ public class Article implements Comparable<Article> {
         citatedBy.add(article); 
     }
     
-    /**
-     * Adds provided words to this article's list of keywords.
-     * 
-     * @param words the new keywords
-     */
+    @Override
     public void addKeywords(Collection<String> words) {
         keywords.addAll(words);
     }
@@ -69,15 +65,6 @@ public class Article implements Comparable<Article> {
      */
     public boolean hasKeywords(Collection<String> words) {
         return keywords.containsAll(words);
-    }
-    
-    /**
-     * Returns this article's id.
-     * 
-     * @return the id
-     */
-    public String getId() {
-        return id;
     }
     
     /**
@@ -135,6 +122,11 @@ public class Article implements Comparable<Article> {
     }
     
     @Override
+    public String toString() {
+        return id;
+    }
+    
+    @Override
     public int compareTo(Article other) {
         int result;
         
@@ -159,11 +151,11 @@ public class Article implements Comparable<Article> {
         if (result != 0) return result;
         
         //compare the id
-        return id.compareTo(other.getId());
+        return id.compareTo(other.toString());
     }
     
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof Article) && this.id.equals(((Article) obj).getId());
+        return (obj instanceof Article) && this.id.equals(((Article) obj).toString());
     }
 }

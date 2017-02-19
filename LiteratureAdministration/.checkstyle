@@ -4,7 +4,10 @@
   <local-check-config name="FinalTask1" location="https://sdqweb.ipd.kit.edu/lehre/WS1617-Programmieren/checkstyle-assignment05-all.xml" type="remote" description="">
     <additional-data name="cache-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="FinalTask1" local="true">
+  <local-check-config name="FinalTask2" location="https://sdqweb.ipd.kit.edu/lehre/WS1617-Programmieren/checkstyle-final01-all.xml" type="remote" description="">
+    <additional-data name="cache-file" value="false"/>
+  </local-check-config>
+  <fileset name="all" enabled="true" check-config-name="FinalTask2" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

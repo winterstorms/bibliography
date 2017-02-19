@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
+
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
@@ -17,7 +18,7 @@ import java.util.NoSuchElementException;
 public class Bibliography {
     private ArrayList<Author> authors;
     private ArrayList<Journal> journals;
-    private ArrayList<ConferenceSeries> series;
+    private ArrayList<Series> series;
     private ArrayList<Article> publications;
     private BibStyle[] styles;
     
@@ -28,7 +29,7 @@ public class Bibliography {
         styles = BibStyle.values();
         authors = new ArrayList<Author>();
         journals = new ArrayList<Journal>();
-        series = new ArrayList<ConferenceSeries>();
+        series = new ArrayList<Series>();
         publications = new ArrayList<Article>();
     }
     
@@ -37,8 +38,12 @@ public class Bibliography {
      * 
      * @param firstname the forename
      * @param lastname the surname
+     * 
+     * @throws IllegalArgumentException if author already exists
      */
     public void addAuthor(String firstname, String lastname) {
+        if (authors.contains(new Author(firstname, lastname))) 
+            throw new IllegalArgumentException("author with this name already exists");
         authors.add(new Author(firstname, lastname));
     }
     
@@ -47,8 +52,12 @@ public class Bibliography {
      * 
      * @param name its name
      * @param publisher its publisher
+     * 
+     * @throws IllegalArgumentException if journal already exists
      */
-    public void addJournal(String name, String publisher) {
+    public void addJournal(String name, String publisher) throws IllegalArgumentException {
+        if (journals.contains(new Journal(name, publisher))) 
+            throw new IllegalArgumentException("journal with this name already exists");
         journals.add(new Journal(name, publisher));
     }
     
@@ -56,27 +65,31 @@ public class Bibliography {
      * Adds a new conference series with the provided name to the list of conference series' the bibliography.
      * 
      * @param name the name
+     * 
+     * @throws IllegalArgumentException if series already exists
      */
-    public void addConferenceSeries(String name) {
-        series.add(new ConferenceSeries(name));
+    public void addSeries(String name) throws IllegalArgumentException {
+        if (series.contains(new Series(name))) 
+            throw new IllegalArgumentException("series with this name already exists");
+        series.add(new Series(name));
     }
     
     /**
      * Adds a new conference to an already existing conference series in the bibliography.
      * 
      * @param seriesName the name of the conference series
-     * @param location the location of the conference
      * @param year the year in which the conference takes place
+     * @param location the location of the conference
      * 
      * @throws NoSuchElementException if no conference series with the provided name exists
+     * @throws IllegalArgumentException if conference in this series already exists
      */
-    public void addConference(String seriesName, String location, int year) throws NoSuchElementException {
-        int index = series.indexOf(new ConferenceSeries(seriesName));
-        if (index == -1) {
-            throw new NoSuchElementException("conference series not found.");
-        } else {
-            series.get(index).addConference(new Conference(year, location));
-        }
+    public void addConference(String seriesName, int year, String location) 
+            throws NoSuchElementException, IllegalArgumentException {
+        Series ser = (Series) findEntity("series", seriesName);
+        if (ser.getConferences().contains(new Conference(year, location))) 
+            throw new IllegalArgumentException("conference in this year already exists");
+        ser.addConference(new Conference(year, location));
     }
     
     /**
@@ -89,16 +102,13 @@ public class Bibliography {
      * @param title the title of the article
      * 
      * @throws NoSuchElementException if there is no journal or conference matching the specified venue
+     * @throws IllegalArgumentException if article already exists
      */
     public void addArticle(String articleType, String venueName, String id, int year, String title) 
-            throws NoSuchElementException {
-        Venue venue;
-        if (articleType.matches("journal")) {
-            venue = findJournal(venueName);
-        } else if (articleType.matches("series")) {
-            venue = findSeries(venueName);
-        } else throw new NoSuchElementException("there is no journal or conference series with this name.");
+            throws NoSuchElementException, IllegalArgumentException {
+        Venue venue = (Venue) findEntity(articleType, venueName);
         Article newArticle = new Article(id, title, year, venue);
+        if (publications.contains(newArticle)) throw new IllegalArgumentException("article already exists");
         venue.addArticle(newArticle);
         publications.add(newArticle);
     }
@@ -107,10 +117,21 @@ public class Bibliography {
      * Determines the given article's authors as the provided ones and adds the article too the authors' publications.
      * 
      * @param id the article's id
-     * @param authors the authors
+     * @param authorNames the authors' names
+     * 
+     * @throws NoSuchElementException if one of the authors does not exist
+     * @throws IllegalArgumentException if article has already one of the authors
      */
-    public void writtenBy(String id, ArrayList<Author> authors) {
-        Article article = findPublication(id);
+    public void writtenBy(String id, String[] authorNames) throws IllegalArgumentException, NoSuchElementException {
+        Article article = (Article) findEntity("pub", id);
+        ArrayList<Author> authors = new ArrayList<Author>();
+        for (String a : authorNames) {
+            authors.add(findAuthor(a));
+        }
+        ArrayList<Author> copy = new ArrayList<Author>();
+        copy.addAll(article.getAuthors());
+        copy.retainAll(authors);
+        if (!copy.isEmpty()) throw new IllegalArgumentException("article already had one of the authors added."); 
         article.addAuthors(authors);
         for (Author a : authors) {
             a.addPub(article);
@@ -126,9 +147,8 @@ public class Bibliography {
      * @throws NoSuchElementException if one of the articles does not exist
      */
     public void cites(String citesId, String quotedId) throws NoSuchElementException {
-        Article cites = findPublication(citesId);
-        Article quoted = findPublication(quotedId);
-        
+        Article cites = (Article) findEntity("pub", citesId);
+        Article quoted = (Article) findEntity("pub", quotedId);
         if (cites.getYear() <= quoted.getYear()) 
             throw new IllegalArgumentException("the citing article has to be published after the quoted one!");
         quoted.addCitation(cites);
@@ -137,26 +157,14 @@ public class Bibliography {
     /**
      * Adds keywords to the entity with the provided id.
      * 
-     * @param entity describes the type of the entity (publication, journal, series, ...)
+     * @param type describes the type of the entity (publication, journal, series, ...)
      * @param id the id
      * @param words the keywords to add
      * 
      * @throws NoSuchElementException if the entity with this id does not exist
      */
-    public void addKeywords(String entity, String id, ArrayList<String> words) throws NoSuchElementException {
-        if (entity.equals("pub")) {
-            Article article = findPublication(id);
-            article.addKeywords(words);
-        } else if (entity.equals("series")) {
-            ConferenceSeries ser = findSeries(id);
-            ser.addKeywords(words);
-        } else if (entity.equals("journal")) {
-            Journal journal = findJournal(id);
-            journal.addKeywords(words);
-        } else if (entity.equals("conference")) {
-            ConferenceSeries ser = findSeries(id.split(",")[0]);
-            ser.findConference(Integer.parseInt(id.split(",")[1])).addKeywords(words);
-        }
+    public void addKeywords(String type, String id, Collection<String> words) throws NoSuchElementException {
+        findEntity(type, id).addKeywords(words);
     }
     
     /**
@@ -165,24 +173,9 @@ public class Bibliography {
      * @param articles the list of publications
      */
     public void printPublications(Collection<Article> articles) {
-        for (Article a : articles) {
-            Terminal.printLine(a.getId());
+        for (MyEntity a : articles) {
+            Terminal.printLine(a.toString());
         }
-    }
-    
-    /**
-     * Prints all articles published by at least one of the provided authors.
-     *  
-     * @param authors the authors' names
-     */
-    public void printByAuthors(Collection<String> authors) {
-        TreeSet<Article> articles = new TreeSet<Article>();
-        Author author;
-        for (String name : authors) {
-            author = findAuthor(name);
-            articles.addAll(author.getPublications());
-        }
-        printPublications(articles);
     }
     
     /**
@@ -212,7 +205,7 @@ public class Bibliography {
         union.addAll(set1);
         union.addAll(set2);
         set1.retainAll(set2);
-        return (set1.size() / union.size());
+        return Math.round((set1.size() / union.size()) * 1000) / 1000;
     }
     
     /**
@@ -225,8 +218,8 @@ public class Bibliography {
      * @throws NoSuchElementException if one of the articles does not exist
      */
     public double similarity(String idArticle, String idCompare) throws NoSuchElementException { 
-        TreeSet<String> first = findPublication(idArticle).getKeywords();
-        TreeSet<String> compare = findPublication(idCompare).getKeywords();
+        TreeSet<String> first = ((Article) findEntity("pub", idArticle)).getKeywords();
+        TreeSet<String> compare = ((Article) findEntity("pub", idCompare)).getKeywords();
         return jaccard(first, compare);
     }
     
@@ -292,7 +285,6 @@ public class Bibliography {
         Author author = findAuthor(name);
         coauthors.add(author);
         TreeSet<Article> foreignCitations = new TreeSet<Article>();
-        
         for (Article article : author.getPublications()) {
             for (Article citation : article.getCitations()) {
                 boolean foreign = true;
@@ -303,7 +295,7 @@ public class Bibliography {
             }
         }
         for (Article a : foreignCitations) {
-            Terminal.printLine(a.getId());
+            Terminal.printLine(a.toString());
         }
     }
     
@@ -321,7 +313,7 @@ public class Bibliography {
      * @throws NoSuchElementException if style does not exist
      * @throws IllegalArgumentException if no authors are provided
      */
-    public void printConference(String style, int bibId, Author[] authors, String title, 
+    public void printConference(String style, int bibId, ArrayList<Author> authors, String title, 
             String series, String location, int year) throws NoSuchElementException, IllegalArgumentException {
         for (BibStyle b : styles) {
             if (b.pattern().matcher(style).matches()) b.printConf(bibId, authors, title, series, location, year);
@@ -342,8 +334,8 @@ public class Bibliography {
      * @throws NoSuchElementException if style does not exist
      * @throws IllegalArgumentException if no authors are provided
      */
-    public void printJournal(String style, int bibId, Author[] authors, String title, String journal, int year) 
-            throws NoSuchElementException, IllegalArgumentException {
+    public void printJournal(String style, int bibId, ArrayList<Author> authors, String title, 
+            String journal, int year) throws NoSuchElementException, IllegalArgumentException {
         for (BibStyle b : styles) {
             if (b.pattern().matcher(style).matches()) b.printJournal(bibId, authors, title, journal, year);
         }
@@ -351,45 +343,113 @@ public class Bibliography {
     }
     
     /**
-     * Prints all the given articles in the specified style
+     * Prints all the given articles in the specified style.
      * 
-     * @param stylePattern the output format
+     * @param style the output format
      * @param ids the articles' ids
      * 
      * @throws NoSuchElementException if article or style does not exist
      * @throws IllegalArgumentException if one article has no authors
      */
-    public void printBib(String stylePattern, Collection<String> ids) 
-            throws NoSuchElementException, IllegalArgumentException {
-        if (!BibStyle.IEEE.pattern().matcher(stylePattern).matches() 
-                && !BibStyle.CHIC.pattern().matcher(stylePattern).matches()) 
-            throw new NoSuchElementException("specified style not found.");
-        
-        Article current;
+    public void printBib(String style, Collection<String> ids) throws NoSuchElementException, IllegalArgumentException {
+        if (!BibStyle.IEEE.pattern().matcher(style).matches() && !BibStyle.CHIC.pattern()
+                .matcher(style).matches()) throw new NoSuchElementException("specified style not found.");
         ArrayList<Article> articles = new ArrayList<Article>();
+        Article pub;
         for (String id : ids) {
-            current = findPublication(id);
-            if (current.getAuthors().isEmpty()) throw new IllegalArgumentException("one of the articles is invalid.");
-            if (!articles.contains(current)) articles.add(current);
+            pub = (Article) findEntity("pub", id);
+            if (pub.getAuthors().isEmpty()) throw new IllegalArgumentException("one of the articles is invalid.");
+            if (!articles.contains(pub)) articles.add(pub);
         }
-        articles.sort(new ArticleComparator());
+        articles = sortArticles(articles);
         
         Venue venue;
-        Author[] authors;
-        for (int i = 0; i < articles.size(); i++) {
-            current = articles.get(i);
-            authors = (Author[]) current.getAuthors().toArray();
+        for (Article current : articles) {
             venue = current.getVenue();
-            
-            if (venue instanceof ConferenceSeries) {
-                printConference(stylePattern, i, authors, current.getTitle(), venue.getName(), 
-                        ((ConferenceSeries) venue).findConference(current.getYear()).getLocation(), current.getYear());
+            if (venue instanceof Series) {
+                printConference(style, articles.indexOf(current), current.getAuthors(), current.getTitle(), 
+                        venue.getName(), ((Series) venue).findConference(current.getYear()).getLocation(), 
+                        current.getYear());
             } else {
-                printJournal(stylePattern, i, authors, current.getTitle(), venue.getName(), current.getYear());
+                printJournal(style, articles.indexOf(current), current.getAuthors(), 
+                        current.getTitle(), venue.getName(), current.getYear());
             }
         }
     }
     
+    /**
+     * Returns sorted version of the provided list.
+     * 
+     * @param list the list
+     * @return the sorted list
+     */
+    public ArrayList<Article> sortArticles(ArrayList<Article> list) {
+        list.sort(new ArticleComparator());
+        return list;
+    }
+    
+    /**
+     * Returns the list of publications.
+     * 
+     * @return the list
+     */
+    public ArrayList<Article> getPublications() {
+        return publications;
+    }
+    
+    /**
+     * Returns the entity with the given unique identifier (id or name) if it is in the bibliography.
+     * 
+     * @param type the entity's supposed type (conference, series, journal or article)
+     * @param identifier the entity's supposed name
+     * 
+     * @return the entity
+     * @throws NoSuchElementException if the bibliography does not contain the entity
+     */
+    public MyEntity findEntity(String type, String identifier) throws NoSuchElementException  {
+        if (type.equals("pub")) {
+            for (Article a : publications) {
+                if (a.toString().equals(identifier)) return a;
+            }
+            throw new NoSuchElementException("publication not found.");
+        } else if (type.equals("journal")) {
+            for (Journal j : journals) {
+                if (j.toString().equals(identifier)) return j;
+            }
+            throw new NoSuchElementException("journal not found.");
+        } else if (type.equals("series")) {
+            for (Series s : series) {
+                if (s.toString().equals(identifier)) return s;
+            }
+            throw new NoSuchElementException("series not found.");
+        } else if (type.equals("conference")) {
+            String[] id = identifier.split(",");
+            for (Series s : series) {
+                if (s.toString().equals(id[0])) {
+                    Series ser = s;
+                    return ser.findConference(Integer.parseInt(id[1]));
+                }
+            }
+            throw new NoSuchElementException("series not found.");
+        } else throw new NoSuchElementException("the provided type specifies no entity.");
+        
+    }
+    
+    /**
+     * Returns the author with the given unique id if it is in the bibliography.
+     * 
+     * @param identifier the author's supposed name
+     * 
+     * @return the author
+     * @throws NoSuchElementException if the bibliography does not contain the author
+     */
+    public Author findAuthor(String identifier) throws NoSuchElementException  {
+        for (Author a : authors) {
+            if (a.getFullName().equals(identifier)) return a;
+        }
+        throw new NoSuchElementException("author not found.");
+    }
+
     /**
      * Returns set of all coauthors of the author with the given name excluding the author himself.
      * 
@@ -406,66 +466,6 @@ public class Bibliography {
         }
         names.remove(author);
         return names;
-    }
-    
-    /**
-     * Returns the publication with the given unique id if it is in the bibliography.
-     * 
-     * @param identifier the publication's supposed id
-     * 
-     * @return the publication
-     * @throws NoSuchElementException if the bibliography does not contain the publication
-     */
-    private Article findPublication(String identifier) throws NoSuchElementException  {
-        for (Article a : publications) {
-            if (a.getId().equals(identifier)) return a;
-        }
-        throw new NoSuchElementException("publication not found.");
-    }
-    
-    /**
-     * Returns the conference series with the given unique id if it is in the bibliography.
-     * 
-     * @param identifier the series' supposed name
-     * 
-     * @return the series
-     * @throws NoSuchElementException if the bibliography does not contain the series
-     */
-    private ConferenceSeries findSeries(String identifier) throws NoSuchElementException  {
-        for (ConferenceSeries s : series) {
-            if (s.getName().equals(identifier)) return s;
-        }
-        throw new NoSuchElementException("series not found.");
-    }
-    
-    /**
-     * Returns the journal with the given unique id if it is in the bibliography.
-     * 
-     * @param identifier the journal's supposed name
-     * 
-     * @return the journal
-     * @throws NoSuchElementException if the bibliography does not contain the journal
-     */
-    private Journal findJournal(String identifier) throws NoSuchElementException  {
-        for (Journal j : journals) {
-            if (j.getName().equals(identifier)) return j;
-        }
-        throw new NoSuchElementException("journal not found.");
-    }
-    
-    /**
-     * Returns the author with the given unique id if it is in the bibliography.
-     * 
-     * @param identifier the author's supposed name
-     * 
-     * @return the author
-     * @throws NoSuchElementException if the bibliography does not contain the author
-     */
-    private Author findAuthor(String identifier) throws NoSuchElementException  {
-        for (Author a : authors) {
-            if (a.getFullName().equals(identifier)) return a;
-        }
-        throw new NoSuchElementException("author not found.");
     }
     
     /**

@@ -1,5 +1,6 @@
 package edu.kit.informatik.bibliography;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import edu.kit.informatik.Terminal;
@@ -10,9 +11,9 @@ public enum BibStyle {
      */
     IEEE("ieee") {
         @Override
-        public void printConf(int bibId, Author[] authors, String title, 
+        public void printConf(int bibId, ArrayList<Author> authors, String title, 
                 String nameSeries, String location, int year) throws IllegalArgumentException {
-            if (authors.length == 0) throw new IllegalArgumentException("article has no authors.");
+            if (authors.size() == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "[" + bibId + "] ";
             output.concat(formatAuthorNames(authors));
             output.concat(", \"" + title + ",\" in Proceedings of " + nameSeries + ", " + location + ", " + year + ".");
@@ -20,9 +21,9 @@ public enum BibStyle {
         }
         
         @Override
-        public void printJournal(int bibId, Author[] authors, String title, String nameJournal, int year) 
+        public void printJournal(int bibId, ArrayList<Author> authors, String title, String nameJournal, int year) 
                 throws IllegalArgumentException {
-            if (authors.length == 0) throw new IllegalArgumentException("article has no authors.");
+            if (authors.size() == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "[" + bibId + "] ";
             output.concat(formatAuthorNames(authors));
             output.concat(", \"" + title + ",\" " + nameJournal + ", " + year + ".");
@@ -30,11 +31,11 @@ public enum BibStyle {
         }
         
         @Override
-        public String formatAuthorNames(Author[] authors) {
-            String result = authors[0].getFirstname().toUpperCase().charAt(0) + ". " + authors[0].getLastname();
-            if (authors.length > 2) result += " et al.";
-            if (authors.length == 1) result += authors[1].getFirstname().toUpperCase().charAt(0) 
-                    + ". " + authors[1].getLastname();
+        public String formatAuthorNames(ArrayList<Author> authors) {
+            String result = authors.get(0).getFirstname().toUpperCase().charAt(0) + ". " + authors.get(0).getLastname();
+            if (authors.size() > 2) result += " et al.";
+            if (authors.size() == 1) result += authors.get(1).getFirstname().toUpperCase().charAt(0) 
+                    + ". " + authors.get(1).getLastname();
             return result;
         }
     },
@@ -44,10 +45,10 @@ public enum BibStyle {
      */
     CHIC("chicago") {
         @Override
-        public void printConf(int bibId, Author[] authors, String title, 
+        public void printConf(int bibId, ArrayList<Author> authors, String title, 
                 String nameSeries, String location, int year) throws IllegalArgumentException {
-            if (authors.length == 0) throw new IllegalArgumentException("article has no authors.");
-            String output = "(" + authors[0].getLastname() + ", " + year + ") ";
+            if (authors.size() == 0) throw new IllegalArgumentException("article has no authors.");
+            String output = "(" + authors.get(0).getLastname() + ", " + year + ") ";
             output.concat(formatAuthorNames(authors));
             output.concat(". \"" + title + ".\" Paper presented at " 
                     + nameSeries + ", " + year + ", " + location + ".");
@@ -55,26 +56,26 @@ public enum BibStyle {
         }
         
         @Override
-        public void printJournal(int bibId, Author[] authors, String title, String nameJournal, int year) 
+        public void printJournal(int bibId, ArrayList<Author> authors, String title, String nameJournal, int year) 
                 throws IllegalArgumentException {
-            if (authors.length == 0) throw new IllegalArgumentException("article has no authors.");
-            String output = "(" + authors[0].getLastname() + ", " + year + ") ";
+            if (authors.size() == 0) throw new IllegalArgumentException("article has no authors.");
+            String output = "(" + authors.get(0).getLastname() + ", " + year + ") ";
             output.concat(formatAuthorNames(authors));
             output.concat(". \"" + title + ".\" " + nameJournal + " (" + year + ").");
             Terminal.printLine(output);
         }
         
         @Override
-        public String formatAuthorNames(Author[] authors) {
-            String result = authors[0].getLastname() + ", " + authors[0].getFirstname();
-            if (authors.length == 1) return result;
-            if (authors.length > 2) {
-                for (int i = 1; i < authors.length - 1; i++) {
-                    result.concat(", " + authors[i].getLastname() + ", " + authors[i].getFirstname());
+        public String formatAuthorNames(ArrayList<Author> authors) {
+            String result = authors.get(0).getLastname() + ", " + authors.get(0).getFirstname();
+            if (authors.size() == 1) return result;
+            if (authors.size() > 2) {
+                for (int i = 1; i < authors.size() - 1; i++) {
+                    result.concat(", " + authors.get(i).getLastname() + ", " + authors.get(i).getFirstname());
                 }
             }
-            result.concat(", and " + authors[authors.length - 1].getLastname() + ", " 
-                    + authors[authors.length - 1].getFirstname());
+            result.concat(", and " + authors.get(authors.size() - 1).getLastname() + ", " 
+                    + authors.get(authors.size() - 1).getFirstname());
             
             return result;
         }
@@ -113,8 +114,8 @@ public enum BibStyle {
      * 
      * @throws IllegalArgumentException if no authors are provided
      */
-    public void printConf(int bibId, Author[] authors, String title, String nameSeries, String location, int year) 
-            throws IllegalArgumentException { }
+    public void printConf(int bibId, ArrayList<Author> authors, String title, String nameSeries, 
+            String location, int year) throws IllegalArgumentException { }
     
     /**
      * Prints a journal article in the specified format of the enum.
@@ -127,7 +128,7 @@ public enum BibStyle {
      * 
      * @throws IllegalArgumentException if no authors are provided
      */
-    public void printJournal(int bibId, Author[] authors, String title, String nameJournal, int year) 
+    public void printJournal(int bibId, ArrayList<Author> authors, String title, String nameJournal, int year) 
             throws IllegalArgumentException { }
     
     /**
@@ -137,7 +138,7 @@ public enum BibStyle {
      * 
      * @return a String with the output for the authors names
      */
-    public String formatAuthorNames(Author[] authors) { 
+    public String formatAuthorNames(ArrayList<Author> authors) { 
         return null;
     }
 }

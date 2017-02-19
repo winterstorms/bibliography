@@ -1,6 +1,7 @@
 package edu.kit.informatik.bibliography;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.NoSuchElementException;
 
 /**
@@ -9,7 +10,7 @@ import java.util.NoSuchElementException;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class ConferenceSeries implements Venue {
+public class Series implements Venue, MyEntity {
     private final String name;
     private ArrayList<Conference> conferences;
     
@@ -18,7 +19,7 @@ public class ConferenceSeries implements Venue {
      * 
      * @param name the name of the series
      */
-    public ConferenceSeries(String name) {
+    public Series(String name) {
         this.name = name;
     }
     
@@ -31,12 +32,8 @@ public class ConferenceSeries implements Venue {
         conferences.add(newConference);
     }
     
-    /**
-     * Adds the provided words to the keywords of every conference in this series.
-     * 
-     * @param words the keywords
-     */
-    public void addKeywords(ArrayList<String> words) {
+    @Override
+    public void addKeywords(Collection<String> words) {
         for (Conference conf : conferences) {
             conf.addKeywords(words);
         }
@@ -77,7 +74,12 @@ public class ConferenceSeries implements Venue {
     }
     
     @Override
+    public String toString() {
+        return name;
+    }
+    
+    @Override
     public boolean equals(Object other) {
-        return (other instanceof ConferenceSeries) && name.equals(((ConferenceSeries) other).getName());
+        return (other instanceof Series) && name.equals(((Series) other).getName());
     }
 }
