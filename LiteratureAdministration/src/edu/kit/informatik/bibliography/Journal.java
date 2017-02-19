@@ -23,6 +23,7 @@ public class Journal implements Venue, MyEntity {
     public Journal(String name, String publisher) {
         this.name = name;
         this.publisher = publisher;
+        publications = new ArrayList<Article>();
     }
 
     @Override
@@ -59,6 +60,5 @@ public class Journal implements Venue, MyEntity {
     @Override
     public boolean equals(Object other) {
         return (other instanceof Journal) && name.equals(((Journal) other).getName());
-    }
-    
+    } 
 }

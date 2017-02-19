@@ -3,6 +3,7 @@ package edu.kit.informatik.bibliography;
 import edu.kit.informatik.Terminal;
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -106,6 +107,8 @@ public class Bibliography {
      */
     public void addArticle(String articleType, String venueName, String id, int year, String title) 
             throws NoSuchElementException, IllegalArgumentException {
+        if (!articleType.equals("series") && !articleType.equals("journal")) 
+            throw new IllegalArgumentException("venue has to be a series or journal");
         Venue venue = (Venue) findEntity(articleType, venueName);
         Article newArticle = new Article(id, title, year, venue);
         if (publications.contains(newArticle)) throw new IllegalArgumentException("article already exists");
@@ -184,6 +187,7 @@ public class Bibliography {
      * @param words the keywords
      */
     public void findKeywords(Collection<String> words) {
+        if (words.isEmpty()) return;
         TreeSet<Article> articles = new TreeSet<Article>();
         for (Article a : publications) {
             if (a.hasKeywords(words)) articles.add(a);
@@ -205,7 +209,7 @@ public class Bibliography {
         union.addAll(set1);
         union.addAll(set2);
         set1.retainAll(set2);
-        return Math.round((set1.size() / union.size()) * 1000) / 1000;
+        return (Math.floor(((double) set1.size()) / union.size() * 1000)) / 1000;
     }
     
     /**
@@ -233,6 +237,7 @@ public class Bibliography {
      */
     public int hIndex(int[] citations) throws IllegalArgumentException {
         if (citations == null) throw new IllegalArgumentException("no citations found.");
+        Arrays.sort(citations);
         int result = 0;
         int current;
         for (int i = 0; i < citations.length; i++) {
@@ -316,7 +321,10 @@ public class Bibliography {
     public void printConference(String style, int bibId, ArrayList<Author> authors, String title, 
             String series, String location, int year) throws NoSuchElementException, IllegalArgumentException {
         for (BibStyle b : styles) {
-            if (b.pattern().matcher(style).matches()) b.printConf(bibId, authors, title, series, location, year);
+            if (b.pattern().matcher(style).matches()) {
+                b.printConf(bibId, authors, title, series, location, year);
+                return;
+            }
         }
         throw new NoSuchElementException("specified style not found.");
     }
@@ -337,7 +345,10 @@ public class Bibliography {
     public void printJournal(String style, int bibId, ArrayList<Author> authors, String title, 
             String journal, int year) throws NoSuchElementException, IllegalArgumentException {
         for (BibStyle b : styles) {
-            if (b.pattern().matcher(style).matches()) b.printJournal(bibId, authors, title, journal, year);
+            if (b.pattern().matcher(style).matches()) {
+                b.printJournal(bibId, authors, title, journal, year);
+                return;
+            }
         }
         throw new NoSuchElementException("specified style not found.");
     }
@@ -367,11 +378,11 @@ public class Bibliography {
         for (Article current : articles) {
             venue = current.getVenue();
             if (venue instanceof Series) {
-                printConference(style, articles.indexOf(current), current.getAuthors(), current.getTitle(), 
+                printConference(style, articles.indexOf(current) + 1, current.getAuthors(), current.getTitle(), 
                         venue.getName(), ((Series) venue).findConference(current.getYear()).getLocation(), 
                         current.getYear());
             } else {
-                printJournal(style, articles.indexOf(current), current.getAuthors(), 
+                printJournal(style, articles.indexOf(current) + 1, current.getAuthors(), 
                         current.getTitle(), venue.getName(), current.getYear());
             }
         }

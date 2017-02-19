@@ -21,7 +21,7 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     /**
      * Implements the quit command as specified in the task.
      */
-    QUIT("quit") {
+    QUIT("(quit)()") {
         @Override
         public void apply(Bibliography bibliography, String string) {
             Terminal.printLine("Ok");
@@ -38,16 +38,13 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     ADD_AUTHOR("(add author )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*,[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*,[^,;]*", string);
             Token.NAME.matchToken(params[0]);
             Token.NAME.matchToken(params[1]);
             bibliography.addAuthor(params[0], params[1]);
             Terminal.printLine("Ok");
         }
     },
-    
     /**
      * Implements the command to add a journal to the bibliography.
      */
@@ -55,16 +52,13 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     ADD_JOURNAL("(add journal )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*,[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*,[^,;]*", string);
             Token.TITLE.matchToken(params[0]);
             Token.TITLE.matchToken(params[1]);
             bibliography.addJournal(params[0], params[1]);
             Terminal.printLine("Ok");
         }
     },
-    
     /**
      * Implements the command to add a conference series to the bibliography.
      */
@@ -72,15 +66,12 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     ADD_SERIES("(add conference series )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*", string);
             Token.TITLE.matchToken(params[0]);
             bibliography.addSeries(params[0]);
             Terminal.printLine("Ok");
         }
     },
-    
     /**
      * Implements the command to add a conference to a series in the bibliography.
      */
@@ -89,10 +80,7 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException, 
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*,[^,;]*,[^,;]*", 
-                    string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*,[^,;]*,[^,;]*", string);
             Token.TITLE.matchToken(params[0]);
             Token.YEAR.matchToken(params[1]);
             Token.TITLE.matchToken(params[2]);
@@ -100,7 +88,6 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             Terminal.printLine("Ok");
         }
     },
-    
     /**
      * Implements the command to add an article to an entity.
      */
@@ -109,14 +96,12 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String rest = string.substring(matcher.start(2), matcher.end(2));
-            matcher = Pattern.compile("([^,;]*:)(.*)").matcher(rest);
+            Matcher matcher = Pattern.compile("([^,;]*):(.*)").matcher(string);
             if (!matcher.matches()) throw new IllegalArgumentException("parameters falsely delimited.");
-            matcher = Pattern.compile("(.*) (.*)").matcher(rest.substring(matcher.start(1), matcher.end(1)));
+            String rest = matcher.group(2);
+            matcher = Pattern.compile("([^,;]*?) ([^,;]*)").matcher(matcher.group(1));
             if (!matcher.matches()) throw new IllegalArgumentException("entity has wrong format.");
-            String[] params = matchParameters("[^,;]*,[^,;]*,[^,;]*", rest.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*,[^,;]*,[^,;]*", rest);
             Token.TITLE.matchToken(matcher.group(2));
             Token.ID.matchToken(params[0]);
             Token.YEAR.matchToken(params[1]);
@@ -126,7 +111,6 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             Terminal.printLine("Ok");
         }
     },
-    
     /**
      * Implements the command to add authors to a publication.
      */
@@ -135,14 +119,10 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*,([^,;]*)((;[^,;]*)*)", 
-                    string.substring(matcher.start(2), matcher.end(2)));
-            int size = params.length;
-            String[] names = new String[size - 1];
+            String[] params = matchParameters("[^,;]*,([^,;]*)((;[^,;]*)*)", string);
+            String[] names = new String[params.length - 1];
             Token.TITLE.matchToken(params[0]);
-            for (int i = 1; i < size; i++) {
+            for (int i = 1; i < params.length; i++) {
                 Token.FULLNAME.matchToken(params[i]);
                 names[i - 1] = params[i];
             }
@@ -150,7 +130,6 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             Terminal.printLine("Ok");
         }
     },
-    
     /**
      * Implements the command to add a publication to another publication's citations.
      */
@@ -159,16 +138,13 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*,[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*,[^,;]*", string);
             Token.ID.matchToken(params[0]);
             Token.ID.matchToken(params[1]);
             bibliography.cites(params[0], params[1]);
             Terminal.printLine("Ok");
         }
     },
-    
     /**
      * Implements the command to add keywords to an entity.
      */
@@ -177,58 +153,47 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String rest = string.substring(matcher.start(2), matcher.end(2));
-            matcher = Pattern.compile("([^;,]*) ([^;]*):(.*)").matcher(rest);
-            String entity = matcher.group(1);
+            Matcher matcher = Pattern.compile("([^;,]*) ([^;]*):(.*)").matcher(string);
             if (!matcher.matches()) throw new IllegalArgumentException("parameters are falsely delimited.");
-            String entityId = rest.substring(matcher.start(1), matcher.end(1));
-            String[] params = matchParameters("([^,;]*)((;[^,;]*)*", rest.substring(matcher.start(2), matcher.end(2)));
+            String entity = matcher.group(1);
+            String entityId = matcher.group(2);
+            String[] params = matchParameters("([^,;]*)((;[^,;]*)*)", matcher.group(3));
             TreeSet<String> words = new TreeSet<String>();
             int size = params.length;
             for (int i = 0; i < size; i++) {
                 Token.WORD.matchToken(params[i]);
-                words.add(params[i]);
+                if (!params[i].isEmpty()) words.add(params[i]);
             }
-            matcher = Pattern.compile("(.*)|((.*),(.*))").matcher(entityId);
+            matcher = Pattern.compile("(([^,]*)(,(.*))?)").matcher(entityId);
             if (!matcher.matches()) throw new IllegalArgumentException("entity has wrong format.");
-            int number = matcher.groupCount();
-            if (number == 1) {
-                Token.TITLE.matchToken(matcher.group(1));
-            }
-            else {
-                Token.TITLE.matchToken(matcher.group(2));
-                Token.YEAR.matchToken(matcher.group(3));
-            }
+            Token.TITLE.matchToken(matcher.group(2));
+            if (matcher.group(4) != null) Token.YEAR.matchToken(matcher.group(4));
             bibliography.addKeywords(entity, matcher.group(1), words);
             Terminal.printLine("Ok");
         }
     },
-    
     /**
      * Implements the command to list all publications in the bibliography.
      */
-    ALL_PUBLICATIONS("all publications") {
+    ALL_PUBLICATIONS("(all publications)()") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
             bibliography.printPublications(bibliography.getPublications());
         }
     },
-    
-
     /**
      * Implements the command to list all invalid publications in the bibliography.
      */
-    INVALID_PUBLICATIONS("list invalid publications") {
+    INVALID_PUBLICATIONS("(list invalid publications)()") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
             ArrayList<Article> articles = new ArrayList<Article>();
-            articles.addAll(bibliography.getPublications());
-            bibliography.printPublications(bibliography.sortArticles(articles));
+            for (Article a : bibliography.getPublications()) {
+                if (a.getAuthors().isEmpty()) articles.add(a);
+            }
+            bibliography.printPublications(articles);
         }
     },
-    
     /**
      * Implements the command to list all publications written by the provided author.
      */
@@ -237,39 +202,30 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*((;[^,;]*)*)", string.substring(matcher.start(2), matcher.end(2)));
-            int size = params.length;
-            for (int i = 0; i < size; i++) {
-                Token.FULLNAME.matchToken(params[i]);
-            }
+            String[] params = matchParameters("[^,;]*((;[^,;]*)*)", string);
             TreeSet<Article> articles = new TreeSet<Article>();
             Author author;
             for (String name : params) {
+                Token.FULLNAME.matchToken(name);
                 author = bibliography.findAuthor(name);
                 articles.addAll(author.getPublications());
             }
             bibliography.printPublications(articles);
         }
     },
-    
     /**
      * Implements the command to list all articles of a conference.
      */
-//  IN_PROCEEDINGS("in proceedings <series,<year>")
+//  IN_PROCEEDINGS("in proceedings <series>,<year>")
     IN_PROCEEDINGS("(in proceedings )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException, 
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*,[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*,[^,;]*", string);
             Series ser = ((Series) bibliography.findEntity("series", params[0]));
             bibliography.printPublications(ser.findConference(Integer.parseInt(params[1])).getPublications());
         }
     },
-    
     /**
      * Implements the command to find publications with the provided keywords.
      */
@@ -277,19 +233,16 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     FIND_KEYWORDS("(find keywords )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*((;[^,;]*)*)", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*((;[^,;]*)*)", string);
             ArrayList<String> words = new ArrayList<String>();
             int size = params.length;
             for (int i = 0; i < size; i++) {
                 Token.WORD.matchToken(params[i]);
-                words.add(params[i]);
+                if (!params[i].isEmpty()) words.add(params[i]);
             }
             bibliography.findKeywords(words);
         }
     },
-    
     /**
      * Implements the command to calculate the jaccard index of two sets.
      */
@@ -297,9 +250,7 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     JACCARD("(jaccard )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            matcher = Pattern.compile("(.*) (.*)").matcher(string);
+            Matcher matcher = Pattern.compile("(.*) (.*)").matcher(string);
             if (!matcher.matches()) throw new IllegalArgumentException("this command needs exactly two sets as "
                     + "parameters to work");
             String[] set = matchParameters("[^,;]*((;[^,;]*)*)", string.substring(matcher.start(1), matcher.end(1)));
@@ -320,7 +271,6 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             Terminal.printLine(bibliography.jaccard(words, otherWords));
         }
     },
-    
     /**
      * Implements the command calculate the similarity of two provided publications.
      */
@@ -329,13 +279,10 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*,[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*,[^,;]*", string);
             Terminal.printLine(bibliography.similarity(params[0], params[1]));
         }
     },
-    
     /**
      * Implements the command to determine the hIndex of the provided numbers.
      */
@@ -343,10 +290,7 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     DIR_HINDEX("(direct h-index )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*((;[^,;]*)*)", 
-                    string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*((;[^,;]*)*)", string);
             int size = params.length;
             int[] numbers = new int[size];
             for (int i = 0; i < size; i++) {
@@ -360,7 +304,6 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             Terminal.printLine(bibliography.hIndex(numbers));
         }
     },
-    
     /**
      * Implements the command to determine the hIndex of the provided author.
      */
@@ -369,14 +312,11 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*", string);
             Token.FULLNAME.matchToken(params[0]);
             Terminal.printLine(bibliography.hIndexByAuthor(params[0]));
         }
     },
-    
     /**
      * Implements the command to list the coauthors of the provided author.
      */
@@ -385,14 +325,11 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*", string);
             Token.FULLNAME.matchToken(params[0]);
             bibliography.printCoauthors(params[0]);
         }
     },
-    
     /**
      * Implements the command to list the foreign citations of the provided author.
      */
@@ -401,14 +338,11 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException, 
             NoSuchElementException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            String[] params = matchParameters("[^,;]*", string.substring(matcher.start(2), matcher.end(2)));
+            String[] params = matchParameters("[^,;]*", string);
             Token.FULLNAME.matchToken(params[0]);
             bibliography.printForeignCitations(params[0]);
         }
     },
-    
     /**
      * Implements the command to directly print a conference article.
      */
@@ -417,12 +351,10 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     PRINT_CONF("(direct print conference )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            matcher = Pattern.compile("([^,;:]*):(.*)").matcher(string);
+            Matcher matcher = Pattern.compile("([^,;:]*):(.*)").matcher(string);
             if (!matcher.matches()) throw new IllegalArgumentException("parameters falsely delimited.");
             String style = matcher.group(1);
-            String[] params = matchParameters("[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*)", matcher.group(2));
+            String[] params = matchParameters("[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*", matcher.group(2));
             ArrayList<Author> authors = new ArrayList<Author>();
             Token.FULLNAME.matchToken(params[0]);
             authors.add(new Author(params[0]));
@@ -442,7 +374,6 @@ public enum Command implements CommandHandling.Command<Bibliography> {
                     Integer.parseInt(params[6]));
         }
     },
-    
     /**
      * Implements the command to directly print a journal article.
      */
@@ -450,12 +381,10 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     PRINT_JOURNAL("(direct print journal )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            matcher = Pattern.compile("([^,;:]*):(.*)").matcher(string);
+            Matcher matcher = Pattern.compile("([^,;:]*):(.*)").matcher(string);
             if (!matcher.matches()) throw new IllegalArgumentException("parameters falsely delimited.");
             String style = matcher.group(1);
-            String[] params = matchParameters("[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*)", matcher.group(2));
+            String[] params = matchParameters("[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*,[^,;]*", matcher.group(2));
             ArrayList<Author> authors = new ArrayList<Author>();
             Token.FULLNAME.matchToken(params[0]);
             authors.add(new Author(params[0]));
@@ -473,7 +402,6 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             bibliography.printJournal(style, 1, authors, params[3], params[4], Integer.parseInt(params[5]));
         }
     },
-    
     /**
      * Implements the command to print the provided publications as a bibliography.
      */
@@ -481,9 +409,7 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     PRINT_BIB("(print bibliography )(.*)") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            Matcher matcher = pattern().matcher(string);
-            matcher.matches();
-            matcher = Pattern.compile("([^,;:]*):(.*)").matcher(string);
+            Matcher matcher = Pattern.compile("([^,;:]*):(.*)").matcher(string);
             if (!matcher.matches()) throw new IllegalArgumentException("parameters falsely delimited.");
             String style = matcher.group(1);
             String[] params = matchParameters("([^,;]*)((;[^,;]*)*)", matcher.group(2));
@@ -517,7 +443,7 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             = new CommandHandling<Bibliography, Command>(new Bibliography(), Command.values());
         Command c;
         do {
-           c = h.accept(Terminal.readLine());
+            c = h.accept(Terminal.readLine());
         } while (c == null || !c.isQuit());
     }
     
@@ -534,7 +460,7 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         Matcher m = Pattern.compile(regex).matcher(input);
         if (!m.matches()) 
             throw new IllegalArgumentException("wrong number of parameters or they are falsely delimited.");
-        return input.split(",;");
+        return input.split("[,;]", -1);
     }
     
     /**

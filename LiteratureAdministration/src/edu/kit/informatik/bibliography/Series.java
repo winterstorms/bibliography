@@ -21,6 +21,7 @@ public class Series implements Venue, MyEntity {
      */
     public Series(String name) {
         this.name = name;
+        conferences = new ArrayList<Conference>();
     }
     
     /**

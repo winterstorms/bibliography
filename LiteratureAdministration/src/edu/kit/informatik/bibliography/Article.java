@@ -32,6 +32,9 @@ public class Article implements Comparable<Article>, MyEntity {
         this.title = title;
         this.year = year;
         this.venue = venue;
+        citatedBy = new TreeSet<Article>();
+        authors = new ArrayList<Author>();
+        keywords = new TreeSet<String>();
     }
     /**
      * Adds provided authors to this article's list of authors.

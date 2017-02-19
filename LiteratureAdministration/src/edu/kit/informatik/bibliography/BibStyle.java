@@ -15,8 +15,9 @@ public enum BibStyle {
                 String nameSeries, String location, int year) throws IllegalArgumentException {
             if (authors.size() == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "[" + bibId + "] ";
-            output.concat(formatAuthorNames(authors));
-            output.concat(", \"" + title + ",\" in Proceedings of " + nameSeries + ", " + location + ", " + year + ".");
+            output = output.concat(formatAuthorNames(authors));
+            output = output.concat(", \"" + title + ",\" in Proceedings of " + nameSeries + ", " 
+                    + location + ", " + year + ".");
             Terminal.printLine(output);
         }
         
@@ -25,8 +26,8 @@ public enum BibStyle {
                 throws IllegalArgumentException {
             if (authors.size() == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "[" + bibId + "] ";
-            output.concat(formatAuthorNames(authors));
-            output.concat(", \"" + title + ",\" " + nameJournal + ", " + year + ".");
+            output = output.concat(formatAuthorNames(authors));
+            output = output.concat(", \"" + title + ",\" " + nameJournal + ", " + year + ".");
             Terminal.printLine(output);
         }
         
@@ -34,7 +35,7 @@ public enum BibStyle {
         public String formatAuthorNames(ArrayList<Author> authors) {
             String result = authors.get(0).getFirstname().toUpperCase().charAt(0) + ". " + authors.get(0).getLastname();
             if (authors.size() > 2) result += " et al.";
-            if (authors.size() == 1) result += authors.get(1).getFirstname().toUpperCase().charAt(0) 
+            if (authors.size() == 2) result += " and " + authors.get(1).getFirstname().toUpperCase().charAt(0) 
                     + ". " + authors.get(1).getLastname();
             return result;
         }
@@ -49,8 +50,8 @@ public enum BibStyle {
                 String nameSeries, String location, int year) throws IllegalArgumentException {
             if (authors.size() == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "(" + authors.get(0).getLastname() + ", " + year + ") ";
-            output.concat(formatAuthorNames(authors));
-            output.concat(". \"" + title + ".\" Paper presented at " 
+            output = output.concat(formatAuthorNames(authors));
+            output = output.concat(". \"" + title + ".\" Paper presented at " 
                     + nameSeries + ", " + year + ", " + location + ".");
             Terminal.printLine(output);
         }
@@ -60,8 +61,8 @@ public enum BibStyle {
                 throws IllegalArgumentException {
             if (authors.size() == 0) throw new IllegalArgumentException("article has no authors.");
             String output = "(" + authors.get(0).getLastname() + ", " + year + ") ";
-            output.concat(formatAuthorNames(authors));
-            output.concat(". \"" + title + ".\" " + nameJournal + " (" + year + ").");
+            output = output.concat(formatAuthorNames(authors));
+            output = output.concat(". \"" + title + ".\" " + nameJournal + " (" + year + ").");
             Terminal.printLine(output);
         }
         
@@ -74,7 +75,7 @@ public enum BibStyle {
                     result.concat(", " + authors.get(i).getLastname() + ", " + authors.get(i).getFirstname());
                 }
             }
-            result.concat(", and " + authors.get(authors.size() - 1).getLastname() + ", " 
+            result = result.concat(", and " + authors.get(authors.size() - 1).getLastname() + ", " 
                     + authors.get(authors.size() - 1).getFirstname());
             
             return result;

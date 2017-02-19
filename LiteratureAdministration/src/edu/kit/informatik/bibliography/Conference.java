@@ -23,6 +23,7 @@ public class Conference implements MyEntity {
     public Conference(int year, String location) {
         this.year = year;
         this.location = location;
+        publications = new ArrayList<Article>();
     }
 
     /**

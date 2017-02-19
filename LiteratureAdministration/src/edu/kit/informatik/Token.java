@@ -22,7 +22,7 @@ public enum Token {
     /**
      * Pattern for the name of a publication, conference, series, journal, publisher or a location.
      */
-    TITLE("[^,;]+", "the name of a venue, publication or puclisher must not include a \", or ;\"."),
+    TITLE("[^,;]+", "the name of a venue, publication or publisher must not include a \", or ;\"."),
     /**
      * Pattern for a year.
      */
