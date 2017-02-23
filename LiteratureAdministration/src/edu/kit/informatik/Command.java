@@ -16,6 +16,7 @@ import java.util.NoSuchElementException;
 import edu.kit.informatik.bibliography.Bibliography;
 import edu.kit.informatik.bibliography.Publication;
 import edu.kit.informatik.bibliography.Author;
+import edu.kit.informatik.bibliography.BibStyle;
 import edu.kit.informatik.bibliography.Series;
 
 /**
@@ -377,8 +378,13 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             Token.TITLE.matchToken(params[4]);
             Token.TITLE.matchToken(params[5]);
             Token.YEAR.matchToken(params[6]);
-            bibliography.printConference(style, 1, authors, params[3], params[4], params[5],
-                    Integer.parseInt(params[6]));
+            for (BibStyle b : BibStyle.values()) {
+                if (b.pattern().matcher(style).matches()) {
+                    b.printConf(1, authors, params[3], params[4], params[5], Integer.parseInt(params[6]));
+                    return;
+                }
+            }
+            throw new NoSuchElementException("specified style not found.");
         }
     },
     /**
@@ -406,7 +412,13 @@ public enum Command implements CommandHandling.Command<Bibliography> {
             Token.TITLE.matchToken(params[3]);
             Token.TITLE.matchToken(params[4]);
             Token.TITLE.matchToken(params[5]);
-            bibliography.printJournal(style, 1, authors, params[3], params[4], Integer.parseInt(params[5]));
+            for (BibStyle b : BibStyle.values()) {
+                if (b.pattern().matcher(style).matches()) {
+                    b.printJournal(1, authors, params[3], params[4], Integer.parseInt(params[5]));
+                    return;
+                }        
+            }
+            throw new NoSuchElementException("specified style not found.");
         }
     },
     /**

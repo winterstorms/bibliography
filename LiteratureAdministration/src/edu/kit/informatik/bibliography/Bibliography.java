@@ -21,13 +21,11 @@ public class Bibliography {
     private ArrayList<Journal> journals;
     private ArrayList<Series> series;
     private ArrayList<Publication> publications;
-    private BibStyle[] styles;
     
     /**
      * Creates new bibliography with the styles provided in BibStyle.java.
      */
     public Bibliography() {
-        styles = BibStyle.values();
         authors = new ArrayList<Author>();
         journals = new ArrayList<Journal>();
         series = new ArrayList<Series>();
@@ -269,7 +267,8 @@ public class Bibliography {
      * @throws NoSuchElementException if the author does not exist
      */
     public void printCoauthors(String name) throws NoSuchElementException {
-        TreeSet<Author> coauthors = getCoauthors(name);
+        Author author = findAuthor(name);
+        TreeSet<Author> coauthors = author.getCoauthors();
         for (Author a : coauthors) {
             Terminal.printLine(a.getFullName());
         }
@@ -283,8 +282,8 @@ public class Bibliography {
      * @throws NoSuchElementException if author does not exist
      */
     public void printForeignCitations(String name) throws NoSuchElementException {
-        TreeSet<Author> coauthors = getCoauthors(name);
         Author author = findAuthor(name);
+        TreeSet<Author> coauthors = author.getCoauthors();
         coauthors.add(author);
         TreeSet<Publication> foreignCitations = new TreeSet<Publication>();
         for (Publication pubs : author.getPublications()) {
@@ -302,66 +301,21 @@ public class Bibliography {
     }
     
     /**
-     * Prints an article published on a conference in the specified format.
+     * Prints all the given publications in the specified style.
      * 
-     * @param style the output format
-     * @param bibId the number of the article in its bibliography
-     * @param authors the article's authors
-     * @param title the title of the article
-     * @param series the series of the conference
-     * @param location location of the conference
-     * @param year year of the conference
+     * @param format the output format
+     * @param ids the publications' ids
      * 
-     * @throws NoSuchElementException if style does not exist
-     * @throws IllegalArgumentException if no authors are provided
+     * @throws NoSuchElementException if publication or style does not exist
+     * @throws IllegalArgumentException if one publication has no authors
      */
-    public void printConference(String style, int bibId, ArrayList<Author> authors, String title, 
-            String series, String location, int year) throws NoSuchElementException, IllegalArgumentException {
-        for (BibStyle b : styles) {
-            if (b.pattern().matcher(style).matches()) {
-                b.printConf(bibId, authors, title, series, location, year);
-                return;
-            }
+    public void printBib(String format, Collection<String> ids) throws NoSuchElementException, 
+        IllegalArgumentException {
+        BibStyle style = null;
+        for (BibStyle b : BibStyle.values()) {
+            if (b.pattern().matcher(format).matches()) style = b;
         }
-        throw new NoSuchElementException("specified style not found.");
-    }
-    
-    /**
-     * Prints a journal article in the specified format.
-     * 
-     * @param style the output format
-     * @param bibId position of the article in the bibliography
-     * @param authors the authors of the article
-     * @param title the article's title
-     * @param journal the name of the journal
-     * @param year the publishing year
-     * 
-     * @throws NoSuchElementException if style does not exist
-     * @throws IllegalArgumentException if no authors are provided
-     */
-    public void printJournal(String style, int bibId, ArrayList<Author> authors, String title, 
-            String journal, int year) throws NoSuchElementException, IllegalArgumentException {
-        for (BibStyle b : styles) {
-            if (b.pattern().matcher(style).matches()) {
-                b.printJournal(bibId, authors, title, journal, year);
-                return;
-            }
-        }
-        throw new NoSuchElementException("specified style not found.");
-    }
-    
-    /**
-     * Prints all the given articles in the specified style.
-     * 
-     * @param style the output format
-     * @param ids the articles' ids
-     * 
-     * @throws NoSuchElementException if article or style does not exist
-     * @throws IllegalArgumentException if one article has no authors
-     */
-    public void printBib(String style, Collection<String> ids) throws NoSuchElementException, IllegalArgumentException {
-        if (!BibStyle.IEEE.pattern().matcher(style).matches() && !BibStyle.CHIC.pattern()
-                .matcher(style).matches()) throw new NoSuchElementException("specified style not found.");
+        if (style == null) throw new NoSuchElementException("specified style not found.");
         ArrayList<Article> articles = new ArrayList<Article>();
         Article pub;
         for (String id : ids) {
@@ -375,12 +329,12 @@ public class Bibliography {
         for (Article current : articles) {
             venue = current.getVenue();
             if (venue instanceof Series) {
-                printConference(style, articles.indexOf(current) + 1, current.getAuthors(), current.getTitle(), 
+                style.printConf(articles.indexOf(current) + 1, current.getAuthors(), current.getTitle(), 
                         venue.getName(), ((Series) venue).findConference(current.getYear()).getLocation(), 
                         current.getYear());
             } else {
-                printJournal(style, articles.indexOf(current) + 1, current.getAuthors(), 
-                        current.getTitle(), venue.getName(), current.getYear());
+                style.printJournal(articles.indexOf(current) + 1, current.getAuthors(), current.getTitle(), 
+                        venue.getName(), current.getYear());
             }
         }
     }
@@ -456,24 +410,6 @@ public class Bibliography {
             if (a.getFullName().equals(identifier)) return a;
         }
         throw new NoSuchElementException("author not found.");
-    }
-
-    /**
-     * Returns set of all coauthors of the author with the given name excluding the author himself.
-     * 
-     * @param name the author's name
-     * 
-     * @return the coauthors
-     * @throws NoSuchElementException if author does not exist
-     */
-    private TreeSet<Author> getCoauthors(String name) throws NoSuchElementException {
-        Author author = findAuthor(name);
-        TreeSet<Author> names = new TreeSet<Author>();
-        for (Publication article : author.getPublications()) {
-            names.addAll(article.getAuthors());
-        }
-        names.remove(author);
-        return names;
     }
     
     /**

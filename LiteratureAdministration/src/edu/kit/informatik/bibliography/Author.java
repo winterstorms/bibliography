@@ -1,6 +1,7 @@
 package edu.kit.informatik.bibliography;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,6 +50,20 @@ public class Author implements Comparable<Author> {
      */
     public void addPub(Publication publication) {
         publications.add(publication);
+    }
+
+    /**
+     * Returns set of all coauthors of this author with the given name excluding the author himself.
+     * 
+     * @return the coauthors
+     */
+    public TreeSet<Author> getCoauthors() {
+        TreeSet<Author> names = new TreeSet<Author>();
+        for (Publication article : getPublications()) {
+            names.addAll(article.getAuthors());
+        }
+        names.remove(this);
+        return names;
     }
     
     /**
