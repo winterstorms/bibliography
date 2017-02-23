@@ -9,10 +9,10 @@ import java.util.Collection;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Conference implements MyEntity {
+public class Conference extends Entity {
     private final int year;
     private final String location;
-    private ArrayList<Article> publications;
+    private ArrayList<Publication> publications;
     
     /**
      * Creates new conference with provided arguments.
@@ -21,9 +21,10 @@ public class Conference implements MyEntity {
      * @param location the location
      */
     public Conference(int year, String location) {
+        super();
         this.year = year;
         this.location = location;
-        publications = new ArrayList<Article>();
+        publications = new ArrayList<Publication>();
     }
 
     /**
@@ -37,7 +38,8 @@ public class Conference implements MyEntity {
     
     @Override
     public void addKeywords(Collection<String> words) {
-        for (Article pub : publications) {
+        getKeywords().addAll(words);
+        for (Publication pub : publications) {
             pub.addKeywords(words);
         }
     }
@@ -65,7 +67,7 @@ public class Conference implements MyEntity {
      * 
      * @return the publications
      */
-    public ArrayList<Article> getPublications() {
+    public ArrayList<Publication> getPublications() {
         return publications;
     }
     

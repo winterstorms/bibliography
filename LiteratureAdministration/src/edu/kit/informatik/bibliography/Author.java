@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class Author implements Comparable<Author> {
     private final String firstname;
     private final String lastname;
-    private ArrayList<Article> publications;
+    private ArrayList<Publication> publications;
     
     /**
      * Creates a new author with the provided arguments.
@@ -24,7 +24,7 @@ public class Author implements Comparable<Author> {
     public Author(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
-        publications = new ArrayList<Article>();
+        publications = new ArrayList<Publication>();
     }
     
     /**
@@ -45,10 +45,10 @@ public class Author implements Comparable<Author> {
     /**
      * Adds provided article to this author's publications.
      * 
-     * @param article the article
+     * @param publication the article
      */
-    public void addPub(Article article) {
-        publications.add(article);
+    public void addPub(Publication publication) {
+        publications.add(publication);
     }
     
     /**
@@ -83,7 +83,7 @@ public class Author implements Comparable<Author> {
      * 
      * @return the list
      */
-    public ArrayList<Article> getPublications() {
+    public ArrayList<Publication> getPublications() {
         return publications;
     }
     

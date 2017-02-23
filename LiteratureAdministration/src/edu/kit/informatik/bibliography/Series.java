@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Series implements Venue, MyEntity {
+public class Series extends Entity implements Venue {
     private final String name;
     private ArrayList<Conference> conferences;
     
@@ -20,6 +20,7 @@ public class Series implements Venue, MyEntity {
      * @param name the name of the series
      */
     public Series(String name) {
+        super();
         this.name = name;
         conferences = new ArrayList<Conference>();
     }
@@ -35,6 +36,7 @@ public class Series implements Venue, MyEntity {
     
     @Override
     public void addKeywords(Collection<String> words) {
+        getKeywords().addAll(words);
         for (Conference conf : conferences) {
             conf.addKeywords(words);
         }

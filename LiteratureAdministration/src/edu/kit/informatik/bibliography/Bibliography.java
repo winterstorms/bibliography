@@ -20,7 +20,7 @@ public class Bibliography {
     private ArrayList<Author> authors;
     private ArrayList<Journal> journals;
     private ArrayList<Series> series;
-    private ArrayList<Article> publications;
+    private ArrayList<Publication> publications;
     private BibStyle[] styles;
     
     /**
@@ -31,7 +31,7 @@ public class Bibliography {
         authors = new ArrayList<Author>();
         journals = new ArrayList<Journal>();
         series = new ArrayList<Series>();
-        publications = new ArrayList<Article>();
+        publications = new ArrayList<Publication>();
     }
     
     /**
@@ -43,9 +43,9 @@ public class Bibliography {
      * @throws IllegalArgumentException if author already exists
      */
     public void addAuthor(String firstname, String lastname) {
-        if (authors.contains(new Author(firstname, lastname))) 
-            throw new IllegalArgumentException("author with this name already exists");
-        authors.add(new Author(firstname, lastname));
+        Author author = new Author(firstname, lastname);
+        if (authors.contains(author)) throw new IllegalArgumentException("author with this name already exists.");
+        authors.add(author);
     }
     
     /**
@@ -57,9 +57,9 @@ public class Bibliography {
      * @throws IllegalArgumentException if journal already exists
      */
     public void addJournal(String name, String publisher) throws IllegalArgumentException {
-        if (journals.contains(new Journal(name, publisher))) 
-            throw new IllegalArgumentException("journal with this name already exists");
-        journals.add(new Journal(name, publisher));
+        Journal journal = new Journal(name, publisher);
+        if (journals.contains(journal)) throw new IllegalArgumentException("journal with this name already exists.");
+        journals.add(journal);
     }
     
     /**
@@ -70,9 +70,9 @@ public class Bibliography {
      * @throws IllegalArgumentException if series already exists
      */
     public void addSeries(String name) throws IllegalArgumentException {
-        if (series.contains(new Series(name))) 
-            throw new IllegalArgumentException("series with this name already exists");
-        series.add(new Series(name));
+        Series ser = new Series(name);
+        if (series.contains(ser)) throw new IllegalArgumentException("series with this name already exists.");
+        series.add(ser);
     }
     
     /**
@@ -88,9 +88,10 @@ public class Bibliography {
     public void addConference(String seriesName, int year, String location) 
             throws NoSuchElementException, IllegalArgumentException {
         Series ser = (Series) findEntity("series", seriesName);
-        if (ser.getConferences().contains(new Conference(year, location))) 
-            throw new IllegalArgumentException("conference in this year already exists");
-        ser.addConference(new Conference(year, location));
+        Conference conf = new Conference(year, location);
+        if (ser.getConferences().contains(conf)) 
+            throw new IllegalArgumentException("conference in this year already exists.");
+        ser.addConference(conf);
     }
     
     /**
@@ -126,32 +127,28 @@ public class Bibliography {
      * @throws IllegalArgumentException if article has already one of the authors
      */
     public void writtenBy(String id, String[] authorNames) throws IllegalArgumentException, NoSuchElementException {
-        Article article = (Article) findEntity("pub", id);
+        Publication pub = (Publication) findEntity("pub", id);
         ArrayList<Author> authors = new ArrayList<Author>();
         for (String a : authorNames) {
             authors.add(findAuthor(a));
         }
-        ArrayList<Author> copy = new ArrayList<Author>();
-        copy.addAll(article.getAuthors());
-        copy.retainAll(authors);
-        if (!copy.isEmpty()) throw new IllegalArgumentException("article already had one of the authors added."); 
-        article.addAuthors(authors);
+        pub.addAuthors(authors);
         for (Author a : authors) {
-            a.addPub(article);
+            a.addPub(pub);
         }
     }
     
     /**
-     * Adds a reference of the citing article to the list of citations of the quoted article.
+     * Adds a reference of the citing publication to the list of citations of the quoted publication.
      * 
-     * @param citesId the citing article's id
-     * @param quotedId the quoted article's id
+     * @param citesId the citing publication's id
+     * @param quotedId the quoted publication's id
      * 
      * @throws NoSuchElementException if one of the articles does not exist
      */
     public void cites(String citesId, String quotedId) throws NoSuchElementException {
-        Article cites = (Article) findEntity("pub", citesId);
-        Article quoted = (Article) findEntity("pub", quotedId);
+        Publication cites = (Publication) findEntity("pub", citesId);
+        Publication quoted = (Publication) findEntity("pub", quotedId);
         if (cites.getYear() <= quoted.getYear()) 
             throw new IllegalArgumentException("the citing article has to be published after the quoted one!");
         quoted.addCitation(cites);
@@ -173,10 +170,10 @@ public class Bibliography {
     /**
      * Prints the unique id of every publication in the given list.
      * 
-     * @param articles the list of publications
+     * @param publications the list of publications
      */
-    public void printPublications(Collection<Article> articles) {
-        for (MyEntity a : articles) {
+    public void printPublications(Collection<Publication> publications) {
+        for (Publication a : publications) {
             Terminal.printLine(a.toString());
         }
     }
@@ -188,11 +185,11 @@ public class Bibliography {
      */
     public void findKeywords(Collection<String> words) {
         if (words.isEmpty()) return;
-        TreeSet<Article> articles = new TreeSet<Article>();
-        for (Article a : publications) {
-            if (a.hasKeywords(words)) articles.add(a);
+        TreeSet<Publication> pubs = new TreeSet<Publication>();
+        for (Publication p : getPublications()) {
+            if (p.hasKeywords(words)) pubs.add(p);
         }
-        printPublications(articles);
+        printPublications(pubs);
     }
     
     /**
@@ -289,9 +286,9 @@ public class Bibliography {
         TreeSet<Author> coauthors = getCoauthors(name);
         Author author = findAuthor(name);
         coauthors.add(author);
-        TreeSet<Article> foreignCitations = new TreeSet<Article>();
-        for (Article article : author.getPublications()) {
-            for (Article citation : article.getCitations()) {
+        TreeSet<Publication> foreignCitations = new TreeSet<Publication>();
+        for (Publication pubs : author.getPublications()) {
+            for (Publication citation : pubs.getCitations()) {
                 boolean foreign = true;
                 for (Author au : coauthors) {
                     if (citation.getAuthors().contains(au)) foreign = false;
@@ -299,7 +296,7 @@ public class Bibliography {
                 if (foreign) foreignCitations.add(citation);
             }
         }
-        for (Article a : foreignCitations) {
+        for (Publication a : foreignCitations) {
             Terminal.printLine(a.toString());
         }
     }
@@ -404,23 +401,23 @@ public class Bibliography {
      * 
      * @return the list
      */
-    public ArrayList<Article> getPublications() {
+    public ArrayList<Publication> getPublications() {
         return publications;
     }
     
     /**
      * Returns the entity with the given unique identifier (id or name) if it is in the bibliography.
      * 
-     * @param type the entity's supposed type (conference, series, journal or article)
+     * @param type the entity's supposed type (conference, series, journal or publication)
      * @param identifier the entity's supposed name
      * 
      * @return the entity
      * @throws NoSuchElementException if the bibliography does not contain the entity
      */
-    public MyEntity findEntity(String type, String identifier) throws NoSuchElementException  {
+    public Entity findEntity(String type, String identifier) throws NoSuchElementException  {
         if (type.equals("pub")) {
-            for (Article a : publications) {
-                if (a.toString().equals(identifier)) return a;
+            for (Publication p : publications) {
+                if (p.toString().equals(identifier)) return p;
             }
             throw new NoSuchElementException("publication not found.");
         } else if (type.equals("journal")) {
@@ -472,7 +469,7 @@ public class Bibliography {
     private TreeSet<Author> getCoauthors(String name) throws NoSuchElementException {
         Author author = findAuthor(name);
         TreeSet<Author> names = new TreeSet<Author>();
-        for (Article article : author.getPublications()) {
+        for (Publication article : author.getPublications()) {
             names.addAll(article.getAuthors());
         }
         names.remove(author);

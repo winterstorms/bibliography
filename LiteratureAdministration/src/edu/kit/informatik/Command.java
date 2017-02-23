@@ -2,12 +2,19 @@ package edu.kit.informatik;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.NoSuchElementException;
 
 import edu.kit.informatik.bibliography.Bibliography;
-import edu.kit.informatik.bibliography.Article;
+import edu.kit.informatik.bibliography.Publication;
 import edu.kit.informatik.bibliography.Author;
 import edu.kit.informatik.bibliography.Series;
 
@@ -187,11 +194,11 @@ public enum Command implements CommandHandling.Command<Bibliography> {
     INVALID_PUBLICATIONS("(list invalid publications)()") {
         @Override
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException {
-            ArrayList<Article> articles = new ArrayList<Article>();
-            for (Article a : bibliography.getPublications()) {
-                if (a.getAuthors().isEmpty()) articles.add(a);
+            ArrayList<Publication> pubs = new ArrayList<Publication>();
+            for (Publication a : bibliography.getPublications()) {
+                if (a.getAuthors().isEmpty()) pubs.add(a);
             }
-            bibliography.printPublications(articles);
+            bibliography.printPublications(pubs);
         }
     },
     /**
@@ -203,14 +210,14 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         public void apply(Bibliography bibliography, String string) throws IllegalArgumentException,
             NoSuchElementException {
             String[] params = matchParameters("[^,;]*((;[^,;]*)*)", string);
-            TreeSet<Article> articles = new TreeSet<Article>();
+            TreeSet<Publication> pubs = new TreeSet<Publication>();
             Author author;
             for (String name : params) {
                 Token.FULLNAME.matchToken(name);
                 author = bibliography.findAuthor(name);
-                articles.addAll(author.getPublications());
+                pubs.addAll(author.getPublications());
             }
-            bibliography.printPublications(articles);
+            bibliography.printPublications(pubs);
         }
     },
     /**
@@ -442,9 +449,29 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         final CommandHandling<Bibliography, Command> h 
             = new CommandHandling<Bibliography, Command>(new Bibliography(), Command.values());
         Command c;
+        try {
+            InputStream in = new FileInputStream(new File("/Users/Frithjof/Documents/workspacejava/"
+                    + "LiteratureAdministration/src/edu/kit/informatik/testfile.txt"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+            
+            do {
+               String input = reader.readLine();
+               Terminal.printLine(input);
+               c = h.accept(input);
+            } while (c == null || !c.isQuit());
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        /*
         do {
             c = h.accept(Terminal.readLine());
-        } while (c == null || !c.isQuit());
+         } while (c == null || !c.isQuit());
+         */
     }
     
     @Override

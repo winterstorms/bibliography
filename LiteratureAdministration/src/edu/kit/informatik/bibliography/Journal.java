@@ -9,10 +9,10 @@ import java.util.Collection;
  * @author Frithjof Marquardt
  * @version 1.00, 10.02.2017
  */
-public class Journal implements Venue, MyEntity {
+public class Journal extends Entity implements Venue {
     private final String name;
     private final String publisher;
-    private ArrayList<Article> publications;
+    private ArrayList<Publication> publications;
     
     /**
      * Creates new journal with provided arguments.
@@ -21,14 +21,16 @@ public class Journal implements Venue, MyEntity {
      * @param publisher the journal's publisher
      */
     public Journal(String name, String publisher) {
+        super();
         this.name = name;
         this.publisher = publisher;
-        publications = new ArrayList<Article>();
+        publications = new ArrayList<Publication>();
     }
 
     @Override
     public void addKeywords(Collection<String> words) {
-        for (Article pub : publications) {
+        getKeywords().addAll(words);
+        for (Publication pub : publications) {
             pub.addKeywords(words);
         }
     }

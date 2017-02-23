@@ -31,10 +31,5 @@ direct print conference chicago:Sergey Brin,Lawrence Page,,The Anatomy of a Larg
 direct print journal ieee:Edsger Dijkstra,,,Go To Statement Considered Harmful,Comm. of the ACM,1968
 direct print journal chicago:Edsger Dijkstra,,,Go To Statement Considered Harmful,Comm. of the ACM,1968
 
-all publications
-print bibliography ieee;pub1
-
-print bibliography chcago:pub1;pub3
-
-
+add keywords to journal j1:
 quit
