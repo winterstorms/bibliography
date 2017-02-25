@@ -2,6 +2,7 @@ package edu.kit.informatik.matchthree;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 import edu.kit.informatik.matchthree.framework.FillingStrategy;
 import edu.kit.informatik.matchthree.framework.Position;
@@ -107,7 +108,7 @@ public class MatchThreeBoard implements Board {
             state[position.y][position.x] = ' ';
             return;
         }
-        if (!tokens.contains(newToken)) throw new IllegalArgumentException("Token is not valid.");
+        if (!tokens.contains(newToken)) throw new IllegalTokenException("Token is not valid.");
         else state[position.y][position.x] = newToken.toString().charAt(0);
     }
 
@@ -118,7 +119,29 @@ public class MatchThreeBoard implements Board {
 
     @Override
     public Set<Position> moveTokensToBottom() {
-        throw new UnsupportedOperationException();
+        TreeSet<Position> changes = new TreeSet<Position>();
+        TreeSet<Position> empty = new TreeSet<Position>();
+        for (int i = 0; i < getRowCount(); i++) {
+            for (int j = 0; j < getColumnCount(); j++) {
+                if (state[i][j] == ' ') empty.add(Position.at(j, i));
+            }
+        }
+        for (int i = getRowCount() - 1; i > 0; i--) {
+            for (int j = 0; j < getColumnCount(); j++) {
+                if (state[i][j] == ' ') {
+                    for (int k = i; k > 0; k--) {
+                        state[k][j] = state[k - 1][j];
+                        changes.add(Position.at(j, k));
+                    }
+                    state[0][j] = ' ';
+                    changes.add(Position.at(j, 0));
+                }
+            }
+        }
+        for (Position pos : empty) {
+            if (getTokenAt(pos) == null) changes.remove(pos);
+        }
+        return changes;
     }
 
     @Override
@@ -150,16 +173,13 @@ public class MatchThreeBoard implements Board {
 
     @Override
     public String toTokenString() {
-        throw new UnsupportedOperationException();
-    }
-    
-    /**
-     * Checks whether the provided position is on the board.
-     * 
-     * @param pos the position
-     * @throws BoardDimensionException if the position is not an the board
-     */
-    private void isValidPosition(Position pos) throws BoardDimensionException {
-        
+        String result = "";
+        for (int i = 0; i < getRowCount(); i++) {
+            for (int j = 0; j < getColumnCount(); j++) {
+                result += state[i][j];
+            }
+            if (i < getRowCount() - 1) result += ";";
+        }
+        return result;
     }
 }
