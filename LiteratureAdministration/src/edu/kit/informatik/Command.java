@@ -499,7 +499,11 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         Matcher m = Pattern.compile(regex).matcher(input);
         if (!m.matches()) 
             throw new IllegalArgumentException("wrong number of parameters or they are falsely delimited.");
-        return input.split("[,;]", -1);
+        String[] result = input.split("[,;]", -1);
+        for (int i = 0; i < result.length; i++) {
+            result[i] = result[i].trim();
+        }
+        return result;
     }
     
     /**
