@@ -3,6 +3,11 @@ package edu.kit.informatik.matchthree;
 import edu.kit.informatik.matchthree.framework.Position;
 import edu.kit.informatik.matchthree.framework.interfaces.Move;
 import edu.kit.informatik.matchthree.framework.interfaces.MoveFactory;
+import edu.kit.informatik.matchthree.moves.FlipDown;
+import edu.kit.informatik.matchthree.moves.FlipRight;
+import edu.kit.informatik.matchthree.moves.RotateColumnDown;
+import edu.kit.informatik.matchthree.moves.RotateRowRight;
+import edu.kit.informatik.matchthree.moves.RotateSquareClockwise;
 
 /**
  * Implementation of a move factory.

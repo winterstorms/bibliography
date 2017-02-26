@@ -1,7 +1,7 @@
-package edu.kit.informatik.matchthree;
+package edu.kit.informatik.matchthree.moves;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import edu.kit.informatik.matchthree.framework.Position;
 import edu.kit.informatik.matchthree.framework.Token;
@@ -10,50 +10,48 @@ import edu.kit.informatik.matchthree.framework.interfaces.Board;
 import edu.kit.informatik.matchthree.framework.interfaces.Move;
 
 /**
- * Implements a move that rotates a row left.
+ * Implements a move swapping a field and the field below.
  * 
  * @author Frithjof Marquardt
  * @version 1.00, 25.02.2017
  */
-public class RotateRowLeft implements Move {
-    private final int row;
+public class FlipDown implements Move {
+    private final Position pos;
     
     /**
-     * Creates a new move that rotates the provided row left.
+     * Creates a new move that flips the field at position and the field below.
      * 
-     * @param rowIndex the index of the row to rotate
+     * @param position the position to flip
      */
-    public RotateRowLeft(int rowIndex) {
-        row = rowIndex;
+    public FlipDown(Position position) {
+        pos = position;
     }
 
     @Override
     public boolean canBeApplied(Board board) {
-        return (board.getRowCount() > row) && (row >= 0);
+        return (board.containsPosition(pos)) && (board.containsPosition(pos.plus(0, 1)));
     }
 
     @Override
     public void apply(Board board) {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
-        Token tokenA = board.getTokenAt(Position.at(0, row));
-        for (int i = 0; i > board.getColumnCount() - 1; i++) {
-            board.setTokenAt(Position.at(i, row), board.getTokenAt(Position.at(i + 1, row)));
-        }
-        board.setTokenAt(Position.at(board.getColumnCount() - 1, row), tokenA);
+        Token tokenA = board.getTokenAt(pos);
+        board.setTokenAt(pos, board.getTokenAt(pos.plus(0, 1)));
+        board.setTokenAt(pos.plus(0, 1), tokenA);
+
     }
 
     @Override
     public Move reverse() {
-        return new RotateRowRight(row);
+        return this;
     }
 
     @Override
     public Set<Position> getAffectedPositions(Board board) {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
-        TreeSet<Position> affected = new TreeSet<Position>();
-        for (int i = 0; i < board.getColumnCount(); i++) {
-            affected.add(Position.at(i, row));
-        }
+        Set<Position> affected = new HashSet<Position>();
+        affected.add(pos);
+        affected.add(pos.plus(0, 1));
         return affected;
     }
 }

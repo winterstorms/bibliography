@@ -1,8 +1,8 @@
 package edu.kit.informatik.matchthree;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
 
 import edu.kit.informatik.matchthree.framework.FillingStrategy;
 import edu.kit.informatik.matchthree.framework.Position;
@@ -119,8 +119,8 @@ public class MatchThreeBoard implements Board {
 
     @Override
     public Set<Position> moveTokensToBottom() {
-        TreeSet<Position> changes = new TreeSet<Position>();
-        TreeSet<Position> empty = new TreeSet<Position>();
+        Set<Position> changes = new HashSet<Position>();
+        Set<Position> empty = new HashSet<Position>();
         for (int i = 0; i < getRowCount(); i++) {
             for (int j = 0; j < getColumnCount(); j++) {
                 if (state[i][j] == ' ') empty.add(Position.at(j, i));
@@ -168,7 +168,7 @@ public class MatchThreeBoard implements Board {
     @Override
     public void fillWithTokens() throws NoFillingStrategyException {
         if (fillStrategy != null) fillStrategy.fill(this);
-        throw new NoFillingStrategyException();
+        else throw new NoFillingStrategyException();
     }
 
     @Override

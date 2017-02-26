@@ -1,7 +1,7 @@
-package edu.kit.informatik.matchthree;
+package edu.kit.informatik.matchthree.moves;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import edu.kit.informatik.matchthree.framework.Position;
 import edu.kit.informatik.matchthree.framework.Token;
@@ -50,7 +50,7 @@ public class RotateColumnDown implements Move {
     @Override
     public Set<Position> getAffectedPositions(Board board) {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
-        TreeSet<Position> affected = new TreeSet<Position>();
+        Set<Position> affected = new HashSet<Position>();
         for (int i = 0; i < board.getRowCount(); i++) {
             affected.add(Position.at(column, i));
         }

@@ -1,7 +1,7 @@
 package edu.kit.informatik.matchthree;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import edu.kit.informatik.matchthree.framework.Delta;
 import edu.kit.informatik.matchthree.framework.Position;
@@ -26,14 +26,16 @@ public class MaximumDeltaMatcher implements Matcher {
      */
     public MaximumDeltaMatcher(Set<Delta> deltas) {
         if (deltas.size() == 0) throw new MatcherInitializationException("Matcher must have at least one valid delta.");
-        this.deltas = deltas;
         Delta invalid = Delta.dxy(0, 0);
+        Set<Delta> negatives = new HashSet<Delta>();
         for (Delta d : deltas) {
             if (d == null) throw new MatcherInitializationException("\"Null\" is not a valid delta.");
             if (d.equals(invalid)) 
                 throw new MatcherInitializationException(invalid.toString() + " is not a valid delta.");
-            this.deltas.add(d.negate());
+            negatives.add(d.negate());
         }
+        deltas.addAll(negatives);
+        this.deltas = deltas;
     }
 
     @Override
@@ -41,11 +43,11 @@ public class MaximumDeltaMatcher implements Matcher {
         if (!board.containsPosition(initial)) 
             throw new BoardDimensionException(initial.toString() + "is not on the board.");
         Token token = board.getTokenAt(initial);
-        Set<Set<Position>> result = new TreeSet<Set<Position>>();
+        Set<Set<Position>> result = new HashSet<Set<Position>>();
         if (token.equals(null)) return result;
-        TreeSet<Position> match = new TreeSet<Position>();
+        Set<Position> match = new HashSet<Position>();
         match.add(initial);
-        TreeSet<Position> hits = new TreeSet<Position>();
+        Set<Position> hits = new HashSet<Position>();
         do {
             for (Position p : match) {
                 for (Delta d : deltas) {
@@ -64,7 +66,7 @@ public class MaximumDeltaMatcher implements Matcher {
             if (!board.containsPosition(p)) 
                 throw new BoardDimensionException(p.toString() + "is not on the board.");
         }
-        Set<Set<Position>> result = new TreeSet<Set<Position>>();
+        Set<Set<Position>> result = new HashSet<Set<Position>>();
         for (Position p : initial) {
             result.addAll(match(board, p));
         }
