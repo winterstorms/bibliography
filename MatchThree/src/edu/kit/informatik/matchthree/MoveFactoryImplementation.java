@@ -5,39 +5,39 @@ import edu.kit.informatik.matchthree.framework.interfaces.Move;
 import edu.kit.informatik.matchthree.framework.interfaces.MoveFactory;
 
 /**
- *
+ * Implementation of a move factory.
+ * 
+ * @author Frithjof Marquardt
+ * @version 1.00, 25.02.2017
  */
 public class MoveFactoryImplementation implements MoveFactory {
     /**
-     * 
+     * Empty constructor that creates a new MoveFactory.
      */
-    public MoveFactoryImplementation() {
-        throw new UnsupportedOperationException();
-    }
+    public MoveFactoryImplementation() { }
 
     @Override
     public Move flipRight(Position position) {
-        throw new UnsupportedOperationException();
+        return new FlipRight(position);
     }
 
     @Override
     public Move flipDown(Position position) {
-        throw new UnsupportedOperationException();
+        return new FlipDown(position);
     }
 
     @Override
     public Move rotateSquareClockwise(Position position) {
-        throw new UnsupportedOperationException();
+        return new RotateSquareClockwise(position);
     }
 
     @Override
     public Move rotateColumnDown(int columnIndex) {
-        throw new UnsupportedOperationException();
+        return new RotateColumnDown(columnIndex);
     }
 
     @Override
     public Move rotateRowRight(int rowIndex) {
-        throw new UnsupportedOperationException();
+        return new RotateRowRight(rowIndex);
     }
-
 }
