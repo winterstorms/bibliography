@@ -2,13 +2,6 @@ package edu.kit.informatik;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.NoSuchElementException;
@@ -461,29 +454,9 @@ public enum Command implements CommandHandling.Command<Bibliography> {
         final CommandHandling<Bibliography, Command> h 
             = new CommandHandling<Bibliography, Command>(new Bibliography(), Command.values());
         Command c;
-        try {
-            InputStream in = new FileInputStream(new File("/Users/Frithjof/Documents/workspacejava/"
-                    + "LiteratureAdministration/src/edu/kit/informatik/testfile.txt"));
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-            
-            do {
-               String input = reader.readLine();
-               Terminal.printLine(input);
-               c = h.accept(input);
-            } while (c == null || !c.isQuit());
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        /*
         do {
             c = h.accept(Terminal.readLine());
-         } while (c == null || !c.isQuit());
-         */
+        } while (c == null || !c.isQuit());
     }
     
     @Override

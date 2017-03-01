@@ -1,6 +1,7 @@
 package edu.kit.informatik.bibliography;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.TreeSet;
 
 public class Publication extends Entity {
@@ -33,11 +34,11 @@ public class Publication extends Entity {
      * @param newAuthors the authors to add
      * @throws IllegalArgumentException if publication already has one of the authors 
      */
-    public void addAuthors(ArrayList<Author> newAuthors) throws IllegalArgumentException {
+    public void addAuthors(Collection<Author> newAuthors) throws IllegalArgumentException {
         ArrayList<Author> copy = new ArrayList<Author>();
         copy.addAll(getAuthors());
         copy.retainAll(authors);
-        if (!copy.isEmpty()) throw new IllegalArgumentException("article already had one of the authors added.");
+        if (!copy.isEmpty()) throw new IllegalArgumentException("publication already had one of the authors added.");
         authors.addAll(newAuthors);
     }
     

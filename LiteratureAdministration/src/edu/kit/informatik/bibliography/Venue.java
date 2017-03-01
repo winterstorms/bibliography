@@ -1,5 +1,7 @@
 package edu.kit.informatik.bibliography;
 
+import java.util.TreeSet;
+
 /**
  * Implements the venue for a publication.
  * 
@@ -20,4 +22,11 @@ public interface Venue {
      * @return the name
      */
     String getName();
+    
+    /**
+     * Returns the publication's set of keywords.
+     * 
+     * @return the keywords
+     */
+    TreeSet<String> getKeywords();
 }

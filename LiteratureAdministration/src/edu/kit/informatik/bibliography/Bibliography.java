@@ -111,24 +111,27 @@ public class Bibliography {
         Venue venue = (Venue) findEntity(articleType, venueName);
         Article newArticle = new Article(id, title, year, venue);
         if (publications.contains(newArticle)) throw new IllegalArgumentException("article already exists");
+        newArticle.addKeywords(venue.getKeywords());
         venue.addArticle(newArticle);
         publications.add(newArticle);
     }
     
     /**
-     * Determines the given article's authors as the provided ones and adds the article too the authors' publications.
+     * Sets the given publication's authors as the provided ones and adds the publication to the authors' publications.
      * 
-     * @param id the article's id
+     * @param id the publication's id
      * @param authorNames the authors' names
      * 
      * @throws NoSuchElementException if one of the authors does not exist
-     * @throws IllegalArgumentException if article has already one of the authors
+     * @throws IllegalArgumentException if publication has already one of the authors 
+     *      or is about to add an author multiple times
      */
     public void writtenBy(String id, String[] authorNames) throws IllegalArgumentException, NoSuchElementException {
         Publication pub = (Publication) findEntity("pub", id);
-        ArrayList<Author> authors = new ArrayList<Author>();
+        TreeSet<Author> authors = new TreeSet<Author>();
         for (String a : authorNames) {
-            authors.add(findAuthor(a));
+            if (!authors.add(findAuthor(a))) 
+                throw new IllegalArgumentException("list contains one author several times.");
         }
         pub.addAuthors(authors);
         for (Author a : authors) {
