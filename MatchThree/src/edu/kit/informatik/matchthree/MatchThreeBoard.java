@@ -14,7 +14,10 @@ import edu.kit.informatik.matchthree.framework.exceptions.TokenStringParseExcept
 import edu.kit.informatik.matchthree.framework.interfaces.Board;
 
 /**
+ * Implements the board for a match three game.
  * 
+ * @author Frithjof Marquardt
+ * @version 1.00, 01.03.2017
  */
 public class MatchThreeBoard implements Board {
     private final Set<Token> tokens;

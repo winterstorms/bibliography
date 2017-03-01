@@ -77,15 +77,20 @@ public class MatchThreeGame implements Game {
         Set<Set<Position>> copy = validateMatches(matches);
         Set<Position> affected;
         int factor = 1;
+        int row;
+        Position pos;
         while (!copy.isEmpty()) {
             calculateScore(copy, factor++);
             affected = board.moveTokensToBottom();
-            board.fillWithTokens();
             for (int i = 0; i < board.getColumnCount(); i++) {
-                for (int j = 0; j < board.getRowCount(); j++) {
-                    affected.add(Position.at(i, j));
+                row = 0;
+                pos = Position.at(i, row);
+                while (board.getTokenAt(pos) == null) {
+                    affected.add(pos);
+                    pos = Position.at(i, ++row);
                 }
             }
+            board.fillWithTokens();
             copy = validateMatches(matcher.matchAll(board, affected));
         }
     }

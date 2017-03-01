@@ -29,7 +29,7 @@ public class FlipRight implements Move {
 
     @Override
     public boolean canBeApplied(Board board) {
-        return (board.containsPosition(pos)) && (board.containsPosition(pos.plus(0, 1)));
+        return (board.containsPosition(pos)) && (board.containsPosition(pos.plus(1, 0)));
     }
 
     @Override
