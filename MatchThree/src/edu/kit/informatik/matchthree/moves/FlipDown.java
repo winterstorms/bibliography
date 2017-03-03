@@ -22,8 +22,11 @@ public class FlipDown implements Move {
      * Creates a new move that flips the field at position and the field below.
      * 
      * @param position the position to flip
+     * @throws BoardDimensionException if parameter is not valid for any board
      */
     public FlipDown(Position position) {
+        if (position.x < 0 || position.y < 0) throw new BoardDimensionException("Move affecting "
+                + "a position with negative coordinates can never be applied to any board.");
         pos = position;
     }
 

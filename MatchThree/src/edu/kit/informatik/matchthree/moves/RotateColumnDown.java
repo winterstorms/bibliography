@@ -22,14 +22,17 @@ public class RotateColumnDown implements Move {
      * Creates a new move that rotates the provided column down.
      * 
      * @param columnIndex the index of the column to rotate
+     * @throws BoardDimensionException if parameter is not valid for any board
      */
     public RotateColumnDown(int columnIndex) {
+        if (columnIndex < 0) 
+            throw new BoardDimensionException("Columns with a negative index do not exist on any board.");
         column = columnIndex;
     }
 
     @Override
     public boolean canBeApplied(Board board) {
-        return (board.getColumnCount() > column) && (column >= 0);
+        return (board.getColumnCount() > column);
     }
 
     @Override

@@ -22,14 +22,16 @@ public class RotateRowRight implements Move {
      * Creates a new move that rotates the provided row right.
      * 
      * @param rowIndex the index of the row to rotate
+     * @throws BoardDimensionException if parameter is not valid for any board
      */
     public RotateRowRight(int rowIndex) {
+        if (rowIndex < 0) throw new BoardDimensionException("Rows with a negative index do not exist on any board.");
         row = rowIndex;
     }
 
     @Override
     public boolean canBeApplied(Board board) {
-        return (board.getRowCount() > row) && (row >= 0);
+        return (board.getRowCount() > row);
     }
 
     @Override

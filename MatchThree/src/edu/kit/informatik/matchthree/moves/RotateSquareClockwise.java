@@ -22,8 +22,11 @@ public class RotateSquareClockwise implements Move {
      * Creates a new move that rotates a square of fields clockwise.
      * 
      * @param position the position of the upper left corner of the square
+     * @throws BoardDimensionException if parameter is not valid for any board
      */
     public RotateSquareClockwise(Position position) {
+        if (position.x < 0 || position.y < 0) throw new BoardDimensionException("Move affecting "
+                + "a position with negative coordinates can never be applied to any board.");
         pos = position;
     }
 
