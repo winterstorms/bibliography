@@ -2,43 +2,17 @@ add author a,a
 add author b,b
 add author c,c
 add author d,d
+add author e,e
 add journal j1,J
 add journal j2,usadb sa
 add conference series ser1
 add conference series ser2
-add conference ser1,1999,fej
-add conference ser1,2000,ka
-add article to series ser1:pub1,1999,ka-test
-add article to series ser1:pub2,2000,ka-test
+add conference ser1,1999,berlin
+add conference ser1,2000,karlsruhe
+add conference ser2,1111,london
+add conference ser2,2030,hongkong
+add article to series ser1:pub1,1999,berlinale
+add article to series ser1:pub2,2000,schloss karlsruhe
 add article to journal j1:pub3,1999,info
-add article to journal j2:pub4,1129,medival
-add conference ser2,1999,huesx
-add article to series ser2:pub6,1999,tets
-written-by pub1,a a;b b
-written-by pub2,a a;b b
-written-by pub3,a a
-written-by pub6,d d
-written-by pub4,c c
-cites pub1,pub4
-cites pub6,pub4
-coauthors of a a
-
-foreign citations of a a
-
-foreign citations of c c
-direct print conference ieee:Sergey Brin,Lawrence Page,,The Anatomy of a Large-Scale Hypertextual Web Search Engine,WWW,Brisbane Australia,1998
-direct print conference chicago:Sergey Brin,Lawrence Page,,The Anatomy of a Large-Scale Hypertextual Web Search Engine,WWW,Brisbane Australia,1998
-direct print journal ieee:Edsger Dijkstra,,,Go To Statement Considered Harmful,Comm. of the ACM,1968
-direct print journal chicago:Edsger Dijkstra,,,Go To Statement Considered Harmful,Comm. of the ACM,1968
-
-print bibliography ieee:pub1;pub2;pub3;pub4;pub6
-print bibliography chicago:pub1;pub2;pub3;pub4;pub6
-add keywords to journal j1:one;two;three
-find keywords one;two
-find keywords one;four
-
-add keywords to series ser1:f;re;gr;t
-add keywords to pub pub1:dja
-find keywords f;re
-find keywords gr;dja
-quit
+add article to journal j2:pub4,1129,knights and armies
+add article to series ser2:pub5,1111,boroughs

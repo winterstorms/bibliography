@@ -89,6 +89,7 @@ public class Bibliography {
         Conference conf = new Conference(year, location);
         if (ser.getConferences().contains(conf)) 
             throw new IllegalArgumentException("conference in this year already exists.");
+        conf.addKeywords(ser.getKeywords());
         ser.addConference(conf);
     }
     

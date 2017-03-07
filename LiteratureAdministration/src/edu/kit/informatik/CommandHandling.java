@@ -38,6 +38,7 @@ public class CommandHandling<T, C extends CommandHandling.Command<T>> {
     public C accept(String string) {
         Matcher m;
         try {
+            if (string == null) throw new IllegalArgumentException("no command entered.");
             for (C c : commands) {
                 m = c.pattern().matcher(string);
                 if (m.matches()) {
@@ -45,7 +46,8 @@ public class CommandHandling<T, C extends CommandHandling.Command<T>> {
                     return c;
                 }
             }
-            if (!string.equals("")) throw new NoSuchElementException("this command doesn't exist.");
+            if (!string.trim().equals("")) throw new NoSuchElementException("this command doesn't exist.");
+            throw new IllegalArgumentException("no command entered.");
         } catch (NoSuchElementException e) {
             Terminal.printError(e.getMessage());
         } catch (PatternSyntaxException e) {

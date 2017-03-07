@@ -37,7 +37,7 @@ public class Publication extends Entity {
     public void addAuthors(Collection<Author> newAuthors) throws IllegalArgumentException {
         ArrayList<Author> copy = new ArrayList<Author>();
         copy.addAll(getAuthors());
-        copy.retainAll(authors);
+        copy.retainAll(newAuthors);
         if (!copy.isEmpty()) throw new IllegalArgumentException("publication already had one of the authors added.");
         authors.addAll(newAuthors);
     }

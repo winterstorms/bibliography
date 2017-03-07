@@ -10,7 +10,8 @@ public enum Token {
     /**
      * Pattern for the full name of a person.
      */
-    FULLNAME("[a-zA-Z]+ [a-zA-Z]+", "the name of a person must consist only of letters, but at least one."),
+    FULLNAME("[a-zA-Z]+ [a-zA-Z]+", "first and last name must consist only of letters, but at least one, "
+            + "and have to be seperated by exactly one space character."),
     /**
      * Pattern for a keyword.
      */
