@@ -99,6 +99,7 @@ public class MatchThreeGame implements Game {
             sum += 3 + (match.size() - 3) * 2;
             board.removeTokensAt(match);
         }
+        sum *= matches.size();
         score += sum * factor;
     }
     

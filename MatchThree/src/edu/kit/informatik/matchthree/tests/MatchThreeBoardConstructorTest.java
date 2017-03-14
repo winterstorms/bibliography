@@ -45,13 +45,14 @@ public class MatchThreeBoardConstructorTest {
     /**
      * Tests some other things
      */
+    @Test
     public void testPublicOpt() {
         Board b = new MatchThreeBoard(Token.set("AXO*"), "O*O;***;O*O;O*O");
         b.setFillingStrategy(new DeterministicStrategy(
                 Token.iterator("AOA**"), Token.iterator("AXAXA"), Token.iterator("A**A*")));
         HashSet<Delta> set = new HashSet<Delta>();
         set.add(Delta.dxy(1, 0));
-        set.add(null);
+        set.add(Delta.dxy(0, 1));
         Matcher m = new MaximumDeltaMatcher(set);
         Game g = new MatchThreeGame(b, m);
         g.initializeBoardAndStart();
