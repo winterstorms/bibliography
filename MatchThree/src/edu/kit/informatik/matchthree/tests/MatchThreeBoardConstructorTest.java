@@ -28,10 +28,9 @@ public class MatchThreeBoardConstructorTest {
      */
     @Test
     public void testAB23() {
-        Board board = new MatchThreeBoard(Token.set("AB"), 2, 3);
-
-        assertEquals(2, board.getColumnCount());
-        assertEquals(3, board.getRowCount());
-        assertEquals(Token.set("AB"), board.getAllValidTokens());
+        Board b = new MatchThreeBoard(Token.set("AB"), 2, 3);
+        assertEquals(b.getColumnCount(), 2);
+        assertEquals(b.getRowCount(), 3);
+        assertEquals(b.getAllValidTokens(), Token.set("BA"));
     }
 }

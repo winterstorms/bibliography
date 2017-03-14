@@ -38,7 +38,7 @@ public class MatchThreeBoard implements Board {
             throw new BoardDimensionException("Board needs to have at least two columns and two rows.");
         if (tokens.size() < 2) throw new IllegalArgumentException("Board needs to have at least two valid tokens.");
         this.tokens = tokens;
-        state = new char[columnCount][rowCount];
+        state = new char[rowCount][columnCount];
         for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < columnCount; j++) {
                 state[i][j] = ' ';

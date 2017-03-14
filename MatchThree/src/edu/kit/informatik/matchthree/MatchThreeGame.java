@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import edu.kit.informatik.matchthree.framework.Position;
-import edu.kit.informatik.matchthree.framework.RandomStrategy;
 import edu.kit.informatik.matchthree.framework.exceptions.BoardDimensionException;
 import edu.kit.informatik.matchthree.framework.interfaces.Board;
 import edu.kit.informatik.matchthree.framework.interfaces.Game;
