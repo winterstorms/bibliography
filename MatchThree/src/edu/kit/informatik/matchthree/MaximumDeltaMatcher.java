@@ -23,8 +23,9 @@ public class MaximumDeltaMatcher implements Matcher {
      * Creates a new matcher with the provided set of valid deltas.
      * 
      * @param deltas the set of deltas used to find matches
+     * @throws MatcherInitializationException if the set of deltas is not valid
      */
-    public MaximumDeltaMatcher(Set<Delta> deltas) {
+    public MaximumDeltaMatcher(Set<Delta> deltas) throws MatcherInitializationException {
         if (deltas.size() == 0) throw new MatcherInitializationException("Matcher must have at least one valid delta.");
         Delta invalid = Delta.dxy(0, 0);
         Set<Delta> negatives = new HashSet<Delta>();

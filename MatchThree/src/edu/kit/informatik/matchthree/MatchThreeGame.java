@@ -83,9 +83,9 @@ public class MatchThreeGame implements Game {
             for (int i = 0; i < board.getColumnCount(); i++) {
                 row = 0;
                 pos = Position.at(i, row);
-                while (board.getTokenAt(pos) == null) {
+                while ((board.getTokenAt(pos) == null) && (row < board.getRowCount())) {
+                    pos = Position.at(i, row++);
                     affected.add(pos);
-                    pos = Position.at(i, ++row);
                 }
             }
             board.fillWithTokens();
