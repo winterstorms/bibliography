@@ -47,8 +47,9 @@ public class MaximumDeltaMatcher implements Matcher {
         if (token.equals(null)) return result;
         Set<Position> match = new HashSet<Position>();
         match.add(initial);
-        Set<Position> hits = new HashSet<Position>();
+        Set<Position> hits;
         do {
+            hits = new HashSet<Position>();
             for (Position p : match) {
                 for (Delta d : deltas) {
                     Position pos = p.plus(d);

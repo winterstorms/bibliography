@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import edu.kit.informatik.matchthree.framework.Position;
-import edu.kit.informatik.matchthree.framework.Token;
 import edu.kit.informatik.matchthree.framework.exceptions.BoardDimensionException;
 import edu.kit.informatik.matchthree.framework.interfaces.Board;
 import edu.kit.informatik.matchthree.framework.interfaces.Move;
@@ -24,7 +23,7 @@ public class FlipDown implements Move {
      * @param position the position to flip
      * @throws BoardDimensionException if parameter is not valid for any board
      */
-    public FlipDown(Position position) {
+    public FlipDown(Position position) throws BoardDimensionException {
         if (position.x < 0 || position.y < 0) throw new BoardDimensionException("Move affecting "
                 + "a position with negative coordinates can never be applied to any board.");
         pos = position;
@@ -36,12 +35,8 @@ public class FlipDown implements Move {
     }
 
     @Override
-    public void apply(Board board) {
-        if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
-        Token tokenA = board.getTokenAt(pos);
-        board.setTokenAt(pos, board.getTokenAt(pos.plus(0, 1)));
-        board.setTokenAt(pos.plus(0, 1), tokenA);
-
+    public void apply(Board board) throws BoardDimensionException {
+        board.swapTokens(pos, pos.plus(0, 1));
     }
 
     @Override
@@ -50,7 +45,7 @@ public class FlipDown implements Move {
     }
 
     @Override
-    public Set<Position> getAffectedPositions(Board board) {
+    public Set<Position> getAffectedPositions(Board board) throws BoardDimensionException {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
         Set<Position> affected = new HashSet<Position>();
         affected.add(pos);

@@ -24,7 +24,7 @@ public class RotateSquareClockwise implements Move {
      * @param position the position of the upper left corner of the square
      * @throws BoardDimensionException if parameter is not valid for any board
      */
-    public RotateSquareClockwise(Position position) {
+    public RotateSquareClockwise(Position position) throws BoardDimensionException {
         if (position.x < 0 || position.y < 0) throw new BoardDimensionException("Move affecting "
                 + "a position with negative coordinates can never be applied to any board.");
         pos = position;
@@ -36,7 +36,7 @@ public class RotateSquareClockwise implements Move {
     }
 
     @Override
-    public void apply(Board board) {
+    public void apply(Board board) throws BoardDimensionException {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
         Token tokenA = board.getTokenAt(pos);
         board.setTokenAt(pos, board.getTokenAt(pos.plus(0, 1)));
@@ -51,7 +51,7 @@ public class RotateSquareClockwise implements Move {
     }
 
     @Override
-    public Set<Position> getAffectedPositions(Board board) {
+    public Set<Position> getAffectedPositions(Board board) throws BoardDimensionException {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
         Set<Position> affected = new HashSet<Position>();
         affected.add(pos);

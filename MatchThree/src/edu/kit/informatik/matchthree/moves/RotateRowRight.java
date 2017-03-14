@@ -24,7 +24,7 @@ public class RotateRowRight implements Move {
      * @param rowIndex the index of the row to rotate
      * @throws BoardDimensionException if parameter is not valid for any board
      */
-    public RotateRowRight(int rowIndex) {
+    public RotateRowRight(int rowIndex) throws BoardDimensionException {
         if (rowIndex < 0) throw new BoardDimensionException("Rows with a negative index do not exist on any board.");
         row = rowIndex;
     }
@@ -35,7 +35,7 @@ public class RotateRowRight implements Move {
     }
 
     @Override
-    public void apply(Board board) {
+    public void apply(Board board) throws BoardDimensionException {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
         Token tokenEnd = board.getTokenAt(Position.at(board.getColumnCount() - 1, row));
         for (int i = board.getColumnCount() - 1; i > 0; i--) {
@@ -50,7 +50,7 @@ public class RotateRowRight implements Move {
     }
 
     @Override
-    public Set<Position> getAffectedPositions(Board board) {
+    public Set<Position> getAffectedPositions(Board board) throws BoardDimensionException {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
         Set<Position> affected = new HashSet<Position>();
         for (int i = 0; i < board.getColumnCount(); i++) {

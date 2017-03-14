@@ -24,7 +24,7 @@ public class RotateColumnDown implements Move {
      * @param columnIndex the index of the column to rotate
      * @throws BoardDimensionException if parameter is not valid for any board
      */
-    public RotateColumnDown(int columnIndex) {
+    public RotateColumnDown(int columnIndex) throws BoardDimensionException {
         if (columnIndex < 0) 
             throw new BoardDimensionException("Columns with a negative index do not exist on any board.");
         column = columnIndex;
@@ -36,7 +36,7 @@ public class RotateColumnDown implements Move {
     }
 
     @Override
-    public void apply(Board board) {
+    public void apply(Board board) throws BoardDimensionException {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
         Token tokenEnd = board.getTokenAt(Position.at(column, board.getRowCount() - 1));
         for (int i = board.getRowCount() - 1; i > 0; i--) {
@@ -51,7 +51,7 @@ public class RotateColumnDown implements Move {
     }
 
     @Override
-    public Set<Position> getAffectedPositions(Board board) {
+    public Set<Position> getAffectedPositions(Board board) throws BoardDimensionException {
         if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
         Set<Position> affected = new HashSet<Position>();
         for (int i = 0; i < board.getRowCount(); i++) {

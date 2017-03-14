@@ -32,7 +32,6 @@ public class MatchThreeGame implements Game {
     public MatchThreeGame(Board board, Matcher matcher) {
         setMatcher(matcher);
         this.board = board;
-        board.setFillingStrategy(new RandomStrategy());
         score = 0;
     }
 
