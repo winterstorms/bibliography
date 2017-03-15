@@ -31,9 +31,10 @@ public class MatchThreeBoard implements Board {
      * @param tokens the set of tokens
      * @param columnCount the number of columns
      * @param rowCount the number of rows
-     * @throws BoardDimensionException if board is smaller than 2x2
+     * @throws BoardDimensionException if number of columns or rows is smaller than 2
      */
     public MatchThreeBoard(Set<Token> tokens, int columnCount, int rowCount) throws BoardDimensionException {
+        if (tokens == null) throw new IllegalArgumentException("Parameters must not be null.");
         if (columnCount < 2 || rowCount < 2) 
             throw new BoardDimensionException("Board needs to have at least two columns and two rows.");
         if (tokens.size() < 2) throw new IllegalArgumentException("Board needs to have at least two valid tokens.");
@@ -53,10 +54,13 @@ public class MatchThreeBoard implements Board {
      * 
      * @param tokens the set of valid tokens
      * @param tokenString the String specifying the content of each field of the board
+     * @throws BoardDimensionException if number of columns or rows is smaller than 2
      * @throws TokenStringParseException 
      *      if the tokenString does not match the format for a board or contains an invalid token
      */
-    public MatchThreeBoard(Set<Token> tokens, String tokenString) throws TokenStringParseException {
+    public MatchThreeBoard(Set<Token> tokens, String tokenString) 
+            throws BoardDimensionException, TokenStringParseException {
+        if (tokens == null || tokenString == null) throw new IllegalArgumentException("Parameters must not be null.");
         if (tokens.size() < 2) throw new IllegalArgumentException("Board needs to have at least two valid tokens.");
         String[] rowsString = tokenString.split(";");
         int rowCount = rowsString.length;
@@ -117,6 +121,7 @@ public class MatchThreeBoard implements Board {
 
     @Override
     public boolean containsPosition(Position position) {
+        if (position == null) throw new IllegalArgumentException("Parameters must not be null.");
         return (position.x >= 0 && position.x < getColumnCount() && position.y >= 0 && position.y < getRowCount());
     }
 
@@ -156,6 +161,7 @@ public class MatchThreeBoard implements Board {
 
     @Override
     public void removeTokensAt(Set<Position> positions) throws BoardDimensionException {
+        if (positions == null) throw new IllegalArgumentException("Parameters must not be null.");
         for (Position pos : positions) {
             if (!containsPosition(pos)) throw new BoardDimensionException(pos.toString() + " is not on the board.");
         }

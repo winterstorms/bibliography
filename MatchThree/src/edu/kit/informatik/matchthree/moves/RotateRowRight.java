@@ -31,6 +31,7 @@ public class RotateRowRight implements Move {
 
     @Override
     public boolean canBeApplied(Board board) {
+        if (board == null) throw new IllegalArgumentException("Parameters must not be null.");
         return (board.getRowCount() > row);
     }
 

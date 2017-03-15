@@ -26,6 +26,7 @@ public class MaximumDeltaMatcher implements Matcher {
      * @throws MatcherInitializationException if the set of deltas is not valid
      */
     public MaximumDeltaMatcher(Set<Delta> deltas) throws MatcherInitializationException {
+        if (deltas == null) throw new IllegalArgumentException("Parameters must not be null.");
         if (deltas.size() == 0) throw new MatcherInitializationException("Matcher must have at least one valid delta.");
         Delta invalid = Delta.dxy(0, 0);
         Set<Delta> negatives = new HashSet<Delta>();
@@ -41,6 +42,7 @@ public class MaximumDeltaMatcher implements Matcher {
 
     @Override
     public Set<Set<Position>> match(Board board, Position initial) throws BoardDimensionException {
+        if (board == null || initial == null) throw new IllegalArgumentException("Parameters must not be null.");
         if (!board.containsPosition(initial)) 
             throw new BoardDimensionException(initial.toString() + "is not on the board.");
         Token token = board.getTokenAt(initial);
@@ -64,6 +66,7 @@ public class MaximumDeltaMatcher implements Matcher {
 
     @Override
     public Set<Set<Position>> matchAll(Board board, Set<Position> initial) throws BoardDimensionException {
+        if (board == null || initial == null) throw new IllegalArgumentException("Parameters must not be null.");
         for (Position p : initial) {
             if (!board.containsPosition(p)) 
                 throw new BoardDimensionException(p.toString() + "is not on the board.");

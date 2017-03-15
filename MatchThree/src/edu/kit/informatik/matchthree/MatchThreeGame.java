@@ -1,7 +1,6 @@
 package edu.kit.informatik.matchthree;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import edu.kit.informatik.matchthree.framework.Position;
@@ -29,6 +28,7 @@ public class MatchThreeGame implements Game {
      * @param matcher the matcher for identifying hits on the board
      */
     public MatchThreeGame(Board board, Matcher matcher) {
+        if (board == null || matcher == null) throw new IllegalArgumentException("Parameters must not be null.");
         setMatcher(matcher);
         this.board = board;
         score = 0;
@@ -49,6 +49,7 @@ public class MatchThreeGame implements Game {
 
     @Override
     public void acceptMove(Move move) throws BoardDimensionException {
+        if (move == null) throw new IllegalArgumentException("Parameters must not be null.");
         move.apply(board);
         analyseBoard(matcher.matchAll(board, move.getAffectedPositions(board)));
     }
@@ -67,11 +68,12 @@ public class MatchThreeGame implements Game {
     }
     @Override
     public void setMatcher(Matcher matcher) {
-        Objects.requireNonNull(matcher);
+        if (matcher == null) throw new IllegalArgumentException("Parameters must not be null.");
         this.matcher = matcher;
     }
     
     private void analyseBoard(Set<Set<Position>> matches) {
+        if (matches == null) throw new IllegalArgumentException("Parameters must not be null.");
         Set<Set<Position>> copy = validateMatches(matches);
         Set<Position> affected;
         int factor = 1;
@@ -105,7 +107,10 @@ public class MatchThreeGame implements Game {
     
     private Set<Set<Position>> validateMatches(Set<Set<Position>> matches) {
         Set<Set<Position>> copy = new HashSet<Set<Position>>();
-        copy.addAll(matches);
+        for (Set<Position> match : matches) {
+            if (match != null) copy.add(match);
+            else matches.remove(match);
+        }
         Set<Set<Position>> remove = new HashSet<Set<Position>>();
         boolean valid;
         for (Set<Position> match : matches) {

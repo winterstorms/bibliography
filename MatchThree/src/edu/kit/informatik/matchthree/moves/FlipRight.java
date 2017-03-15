@@ -24,6 +24,7 @@ public class FlipRight implements Move {
      * @throws BoardDimensionException if parameter is not valid for any board
      */
     public FlipRight(Position position) throws BoardDimensionException {
+        if (position == null) throw new IllegalArgumentException("Parameters must not be null.");
         if (position.x < 0 || position.y < 0) throw new BoardDimensionException("Move affecting "
                 + "a position with negative coordinates can never be applied to any board.");
         pos = position;
@@ -31,11 +32,13 @@ public class FlipRight implements Move {
 
     @Override
     public boolean canBeApplied(Board board) {
+        if (board == null) throw new IllegalArgumentException("Parameters must not be null.");
         return (board.containsPosition(pos)) && (board.containsPosition(pos.plus(1, 0)));
     }
 
     @Override
     public void apply(Board board) throws BoardDimensionException {
+        if (!canBeApplied(board)) throw new BoardDimensionException("Move cannot be applied to this board.");
         board.swapTokens(pos, pos.plus(1, 0));
     }
 
