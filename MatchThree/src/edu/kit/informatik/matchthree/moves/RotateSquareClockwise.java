@@ -1,6 +1,7 @@
 package edu.kit.informatik.matchthree.moves;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import edu.kit.informatik.matchthree.framework.Position;
@@ -22,10 +23,10 @@ public class RotateSquareClockwise implements Move {
      * Creates a new move that rotates a square of fields clockwise.
      * 
      * @param position the position of the upper left corner of the square
-     * @throws BoardDimensionException if parameter is not valid for any board
+     * @throws BoardDimensionException if position has negative coordinates
      */
     public RotateSquareClockwise(Position position) throws BoardDimensionException {
-        if (position == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(position);
         if (position.x < 0 || position.y < 0) throw new BoardDimensionException("Move affecting "
                 + "a position with negative coordinates can never be applied to any board.");
         pos = position;
@@ -33,7 +34,7 @@ public class RotateSquareClockwise implements Move {
 
     @Override
     public boolean canBeApplied(Board board) {
-        if (board == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(board);
         return (board.containsPosition(pos)) && (board.containsPosition(pos.plus(1, 1)));
     }
 

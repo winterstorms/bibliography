@@ -34,11 +34,12 @@ public class MatchThreeBoard implements Board {
      * @throws BoardDimensionException if number of columns or rows is smaller than 2
      */
     public MatchThreeBoard(Set<Token> tokens, int columnCount, int rowCount) throws BoardDimensionException {
-        if (tokens == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(tokens);
         if (columnCount < 2 || rowCount < 2) 
             throw new BoardDimensionException("Board needs to have at least two columns and two rows.");
         if (tokens.size() < 2) throw new IllegalArgumentException("Board needs to have at least two valid tokens.");
-        this.tokens = tokens;
+        this.tokens = new HashSet<Token>();
+        this.tokens.addAll(tokens);
         state = new char[rowCount][columnCount];
         for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < columnCount; j++) {
@@ -60,7 +61,8 @@ public class MatchThreeBoard implements Board {
      */
     public MatchThreeBoard(Set<Token> tokens, String tokenString) 
             throws BoardDimensionException, TokenStringParseException {
-        if (tokens == null || tokenString == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(tokens);
+        Objects.requireNonNull(tokenString);
         if (tokens.size() < 2) throw new IllegalArgumentException("Board needs to have at least two valid tokens.");
         String[] rowsString = tokenString.split(";");
         int rowCount = rowsString.length;
@@ -71,7 +73,8 @@ public class MatchThreeBoard implements Board {
             if (rowsString[i].length() != rowLength) 
                 throw new TokenStringParseException("All rows of the board must have the same length.");
         }
-        this.tokens = tokens;
+        this.tokens = new HashSet<Token>();
+        this.tokens.addAll(tokens);
         state = new char[rowCount][rowLength];
         for (int i = 0; i < state.length; i++) {
             for (int j = 0; j < state[0].length; j++) {
@@ -121,7 +124,7 @@ public class MatchThreeBoard implements Board {
 
     @Override
     public boolean containsPosition(Position position) {
-        if (position == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(position);
         return (position.x >= 0 && position.x < getColumnCount() && position.y >= 0 && position.y < getRowCount());
     }
 
@@ -161,7 +164,7 @@ public class MatchThreeBoard implements Board {
 
     @Override
     public void removeTokensAt(Set<Position> positions) throws BoardDimensionException {
-        if (positions == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(positions);
         for (Position pos : positions) {
             if (!containsPosition(pos)) throw new BoardDimensionException(pos.toString() + " is not on the board.");
         }

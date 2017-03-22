@@ -1,6 +1,7 @@
 package edu.kit.informatik.matchthree.moves;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import edu.kit.informatik.matchthree.framework.Position;
@@ -22,7 +23,7 @@ public class RotateColumnUp implements Move {
      * Creates a new move that rotates the provided column up.
      * 
      * @param columnIndex the index of the column to rotate
-     * @throws BoardDimensionException if parameter is not valid for any board
+     * @throws BoardDimensionException if columnIndex specifies column with negative index
      */
     public RotateColumnUp(int columnIndex) throws BoardDimensionException {
         if (columnIndex < 0) 
@@ -32,7 +33,7 @@ public class RotateColumnUp implements Move {
 
     @Override
     public boolean canBeApplied(Board board) {
-        if (board == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(board);
         return (board.getColumnCount() > column);
     }
 

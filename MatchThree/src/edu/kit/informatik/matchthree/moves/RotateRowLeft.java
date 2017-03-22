@@ -1,6 +1,7 @@
 package edu.kit.informatik.matchthree.moves;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import edu.kit.informatik.matchthree.framework.Position;
@@ -31,7 +32,7 @@ public class RotateRowLeft implements Move {
 
     @Override
     public boolean canBeApplied(Board board) {
-        if (board == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(board);
         return (board.getRowCount() > row);
     }
 

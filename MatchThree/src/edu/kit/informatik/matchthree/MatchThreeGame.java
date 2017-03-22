@@ -1,6 +1,7 @@
 package edu.kit.informatik.matchthree;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import edu.kit.informatik.matchthree.framework.Position;
@@ -28,7 +29,8 @@ public class MatchThreeGame implements Game {
      * @param matcher the matcher for identifying hits on the board
      */
     public MatchThreeGame(Board board, Matcher matcher) {
-        if (board == null || matcher == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(board);
+        Objects.requireNonNull(matcher);
         setMatcher(matcher);
         this.board = board;
         score = 0;
@@ -49,7 +51,7 @@ public class MatchThreeGame implements Game {
 
     @Override
     public void acceptMove(Move move) throws BoardDimensionException {
-        if (move == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(move);
         move.apply(board);
         analyseBoard(matcher.matchAll(board, move.getAffectedPositions(board)));
     }
@@ -68,12 +70,12 @@ public class MatchThreeGame implements Game {
     }
     @Override
     public void setMatcher(Matcher matcher) {
-        if (matcher == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(matcher);
         this.matcher = matcher;
     }
     
     private void analyseBoard(Set<Set<Position>> matches) {
-        if (matches == null) throw new IllegalArgumentException("Parameters must not be null.");
+        Objects.requireNonNull(matches);
         Set<Set<Position>> copy = validateMatches(matches);
         Set<Position> affected;
         int factor = 1;
