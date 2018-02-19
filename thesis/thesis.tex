@@ -1,0 +1,168 @@
+% Vorlage für eine Bachelorarbeit
+% Siehe auch LaTeX-Kurs von Mathematik-Online
+% www.mathematik-online.org/kurse
+% Anpassungen für die Fakultät für Mathematik
+% am KIT durch Klaus Spitzmüller und Roland Schnaubelt Dezember 2011
+
+\documentclass[12pt,a4paper]{scrartcl}
+% scrartcl ist eine abgeleitete Artikel-Klasse im Koma-Skript
+% zur Kontrolle des Umbruchs Klassenoption draft verwenden
+
+
+% die folgenden Packete erlauben den Gebrauch von Umlauten und ß
+% in der Latex Datei
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb,amsthm}
+
+\usepackage[shortlabels]{enumitem}
+\usepackage{cite}
+
+% Abstand obere Blattkante zur Kopfzeile ist 2.54cm - 15mm
+\setlength{\topmargin}{-15mm}
+
+%nach Absaetzen Hoehe eines 'x' Abstand
+%\setlength{\parskip}{0.5ex}
+
+
+% Umgebungen für Definitionen, Sätze, usw.
+% Es werden Sätze, Definitionen etc innerhalb einer Section mit
+% 1.1, 1.2 etc durchnummeriert, ebenso die Gleichungen mit (1.1), (1.2) ..
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{con}[thm]{Conjecture}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{cor}{Corollary}[thm]
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} 
+\newtheorem*{prf}{Proof}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{note}[thm]{Observation}
+
+\renewenvironment{proof}{{\bfseries Proof}}{\qed}
+\numberwithin{equation}{section} 
+
+% einige Abkuerzungen
+\newcommand{\C}{\mathbb{C}} % komplexe
+\newcommand{\K}{\mathbb{K}} % komplexe
+\newcommand{\R}{\mathbb{R}} % reelle
+\newcommand{\Q}{\mathbb{Q}} % rationale
+\newcommand{\Z}{\mathbb{Z}} % ganze
+\newcommand{\N}{\mathbb{N}} % natuerliche
+
+\usepackage{xpatch}
+\makeatletter
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+
+
+\begin{document}
+  % Keine Seitenzahlen im Vorspann
+  \pagestyle{empty}
+
+  % Titelblatt der Arbeit
+  \begin{titlepage}
+
+\begin{figure}[h]
+\includegraphics[scale=0.5]{KITLogo_RGB_eng} 
+   %\includegraphics[scale=0.45]{kit-logo} 
+\end{figure}
+  
+    \vspace*{2cm} 
+
+ \begin{center} \large 
+    
+    Bachelor Thesis
+    \vspace*{2cm}
+
+    {\huge Title Of Bachelor Thesis}
+    \vspace*{2.5cm}
+
+    Author's Name
+    \vspace*{1.5cm}
+
+    Due Date
+    \vspace*{4.5cm}
+
+
+    Advisor: Name of Advisor \\[1cm]
+    Faculty of Mathematics \\[1cm]
+		Karlsruhe Institute of Technology
+  \end{center}
+\end{titlepage}
+
+Abstract
+\newpage
+  % Inhaltsverzeichnis
+  \tableofcontents
+
+\newpage
+ 
+
+
+  % Ab sofort Seitenzahlen in der Kopfzeile anzeigen
+  \pagestyle{headings}
+
+\section{Introduction}
+\input{intro}
+\newpage
+\section{Basic Concepts}
+\input{basics_new}
+\newpage 
+\section{Current State of Research}
+
+\input{existing_proofs}
+\newpage
+\section{Induced trees in Mycielskian graphs}
+\input{mycielski}
+  % Literaturverzeichnis (beginnt auf einer ungeraden Seite)
+  \newpage
+\section{Intersection Graph of Line Segments}
+\input{line_segments}
+\newpage
+
+%\begin{thebibliography}{Lam00}
+ 
+%\bibitem[Gya87]{Gyárfás:1987} András Gyárfás: {\it Problems from the world surrounding perfect graphs}. Applicationes Mathematicae XIX, 1987
+ 
+%\end{thebibliography}
+ 
+
+\bibliography{/Users/Frithjof/Documents/studium/ba/arbeit/bib/refs.bib}
+\bibliographystyle{ieeetr}
+      
+  % ggf. hier Tabelle mit Symbolen 
+  % (kann auch auf das Inhaltsverzeichnis folgen)
+
+\newpage
+  
+ \thispagestyle{empty}
+
+
+\vspace*{8cm}
+
+
+\section*{Erklärung}
+
+Hiermit versichere ich, dass ich diese Arbeit selbständig verfasst und keine anderen, als die angegebenen Quellen und Hilfsmittel benutzt, die wörtlich oder inhaltlich übernommenen Stellen als solche kenntlich gemacht und die Satzung des Karlsruher Instituts für Technologie zur Sicherung guter wissenschaftlicher Praxis in der jeweils gültigen Fassung beachtet habe. \\[2ex] 
+
+I hereby declare that I have written this thesis independently and did not use sources or means other than those specified in the text, identified literally or substantively adopted passages, and respected the statutes of the Karlruhe Institute of Technology for protection of good scientific practice in its valid version.
+
+
+
+\noindent
+Karlsruhe, the Date \\[5ex]
+
+% Unterschrift (handgeschrieben)
+
+
+
+\end{document}
+

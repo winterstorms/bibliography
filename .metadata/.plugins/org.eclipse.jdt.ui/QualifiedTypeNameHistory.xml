@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.TreeSet"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.MatchThreeBoard"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.Token"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.moves.FlipRight"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.moves.RotateSquareClockwise"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.moves.RotateColumnDown"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.moves.RotateRowRight"/>
+<fullyQualifiedTypeName name="java.util.AbstractSet"/>
+<fullyQualifiedTypeName name="java.lang.annotation.Target"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.RandomStrategy"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.DeterministicStrategy"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.MaximumDeltaMatcher"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.Delta"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.interfaces.Matcher"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.MatchThreeGame"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.interfaces.Game"/>
+<fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.exceptions.BoardDimensionException"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.exceptions.IllegalTokenException"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.exceptions.NoFillingStrategyException"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.exceptions.TokenStringParseException"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.exceptions.MatcherInitializationException"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.Position"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.framework.interfaces.Move"/>
+<fullyQualifiedTypeName name="edu.kit.informatik.matchthree.moves.FlipDown"/>
+<fullyQualifiedTypeName name="org.junit.Assert"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.util.Objects"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+</qualifiedTypeNameHistroy>

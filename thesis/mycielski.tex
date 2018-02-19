@@ -1,0 +1,68 @@
+Finding a counterexample for the Gyárfás-Sumner conjecture implies constructing a family $\mathcal{F}$ of graphs such that $\mathcal{F}\subseteq\textit{Forb}(T)$ for some tree $T$ but we can not find a bounding function for $\mathcal{F}$. Mycielski's construction of triangle-free graphs with high chromatic number \cite{My55} may provide such a family. The goal of this chapter is to eliminate families of graphs obtained by the Mycielskian construction as candidates for disproving the Gyárfás-Sumner conjecture by showing that in each of these families we find infinitly many graphs containing an induced copy of $T$ for all trees $T$.
+
+\begin{defn}
+Let $G=(V,E)$ be a graph. Its \textit{Mycielskian graph} $\mu(G)$ consists of an induced copy $G$, a set $U$ of copies $u_i$ for every vertex $v_i\in V$ and one further vertex $w$. We call $w$ the center vertex of $\mu (G)$. In addition to the edges of the induced copy of $G$, the edge set of $\mu(G)$ includes two edges $\lbrace v_i,u_j\rbrace$ and $\lbrace u_i,v_j\rbrace$ for every edge $\lbrace v_i,v_j\rbrace$ in $E$ and edges $\lbrace u,w\rbrace$ for every vertex $u\in U$. 
+\end{defn}
+Mycielski's construction provides a sequence of graphs $G_0,G_1, G_2,\dots $ starting with $G_0=K_2$, where $G_i = \mu (G_{i-1})$. Let us denote the family of graphs in this sequence as $\mathcal{M}(K_2)$. Then, $\omega (G_i) = 2$ for all $i>0$, and for the chromatic number holds $\chi (G_i)=\chi (G_{i-1}) +1$, $i\in\N$. Also for $i\in\N$, let $G_i=(V_i,E_i)$. Denote the set of copies in this graph as $U_i$ and the one additional vertex as $w_i$. First, observe the following fact.
+\begin{note}\label{o1my}
+If a graph $G_i$ contains an induced copy of a graph $H$, then all graphs of the sequence with a higher index contain an induced copy of $H$ as well.
+\end{note}
+
+Second, observe that it does not matter which graph $G$ we choose as the first in the sequence of the construction. The proofs depend not on the structure of $G$ but rather on the vertices we add in each step of the construction and the graphs in $\mathcal{M}(G)$ still have a bounded clique number as the construction does not even create triangles. For our purpose, consider the sequence of graphs $\mathcal{M}(K_2)$ obtained by the mycielskian construction that starts with $G = K_2$.
+
+Third, note that this construction indeed provides families of graphs worthy to look at for disproving the conjecture. Obviously, every family $\mathcal{M}(G)$ contains graphs of arbitrarily large chromatic number and they all have the same clique number. Furthermore, it is easy to see that $\mathcal{M}(G)$ is not trivially $\chi$-bounded by theorem \ref{t2cr} since for each $n\in\N$ there is a graph $G_i$ in $\mathcal{M}(G)$ (and therefore all graphs of higher index in the sequence as well) with $G_i\subseteq_I K_{n,n}$. Consider the graph $G_i$ where the number of copies $u\in U$ is at least $n$. Together with the center vertex $w$ in $G_i$ and the copies of $w$ in the next $n-1$ graphs of the sequence, they contain an induced $K_{n,n}$, i.e. $\mathcal{M}(G)\nsubseteq\textit{Forb}(T,K_{n,n})$ for all trees $T$. Thus, if we would find a tree $T$ with $\mathcal{M}(G)\subseteq \textit{Forb}(T)$, we could not bound $\textit{Forb}(T)$.
+
+We start with two proofs by induction proving the existence of induced copies of paths and caterpillars in graphs of $\mathcal{M}(K_2)$. For $i\in\N$ denote the copy of the center vertex $w_i$ in $G_{i+1}$ as $w_i^\prime$. Let $Q_n =(w_1^\prime ,w_2^\prime ,\dots ,w_n^\prime)$ be the path through the copies of the first $n$ center vertices. 
+\begin{thm}\label{t1my}
+The path $Q_n$ is an induced subgraph of $G_{n+1}$ for all $n\in\N$, $n>1$.
+\end{thm}
+\begin{prf}
+We prove this theorem by induction on $n$. To launch the induction let $n=2$. In the graph $G_2$, $w_2$ and $w^\prime_1$ are adjacent because $w^\prime_1\in U_2$. Thus, $G_3$ includes an edge between $w^\prime_1$ and $w^\prime_2$. Hence, as a path with just two vertices, $Q_2$ is an induced subgraph of $G_3$.
+
+Now let $n>2$ and assume $Q_{n^\prime}\subseteq_I G_{n^\prime +1}$ for all $2\leq n^\prime <n$. By induction hypothesis, $Q_{n-1}$ is an induced subgraph of $G_n$. Recall the observation \ref{o1my}. The path $Q_{n-1}$ is also an induced subgraph of $G_{n+1}$. 
+Now consider $w_n$. It is adjacent to any vertex in $U_n$ - including $w^\prime_{n-1}$ - but no other vertex, in particular no $w^\prime_i$, $i\in [n-2]$. Thus, as the copy of $w_n$ in $G_{n+1}$, $w^\prime_n$ is only adjacent to $w^\prime_{n-1}$ and no other vertex of $Q_{n-1}$. Thus, $Q_n$ is an induced subgraph of $G_{n+1}$.\qed
+\end{prf}
+
+\begin{cor}\label{c1my}
+The graph $G_{n+1}$ contains an induced copy of $P_n$ for all $n\in\N$, $n>1$.
+\end{cor}
+\begin{prf}
+The path $Q_n$ is a copy of $P_n$ and $Q_n\subseteq_I G_{n+1}$ by theorem \ref{t1my}.\qed
+\end{prf}
+
+In the next proof we will use certain subgraphs of $Q_n$ to construct an induced copy of a caterpillar in some $G\in\mathcal{M}(K_2)$. Therefore, let $Q_{i,j}=(w_i^\prime ,\dots , w_j^\prime )$, $1\leq i < j\leq n$, denote the path between $w_i^\prime$ and $w_j^\prime$ coinciding with the vertices of $Q_n$. In the special case where $i=j$, let $V(Q_{i,i})$ just denote the set of one vertex $\lbrace w_i^\prime \rbrace$.
+
+\begin{thm}
+Let $T$ be a caterpillar tree. There is an $G\in\mathcal{M}(K_2)$ containing a copy of $T$ as an induced subgraph.
+\end{thm}
+\begin{prf}
+Let $T$ be a caterpillar tree with maximum degree $d = \Delta (T)$. Let $P=(p_1,p_2,...,p_n)$ be a longest path in $T$. Then, $P$ is a path on $n$ vertices. If $d<=2$, $T$ is a path and therefore $T=P$. Corollary \ref{c1my} then states, that it is an induced subgraph of $G_{n+1}$. 
+If not, we have $d>2$. Every vertex in $P$ has not more than $d$ leaves. Now, let $G_i$ be a graph with $|V(G_i)| >= d$ and consider $G_{i+n+1}$. With theorem \ref{t1my}, the path $Q_{i+n}=(w^\prime_1,w^\prime_2,...,w^\prime_{i+n})\subseteq_I G_{i+n+1}$. Thus, $Q_{i+1,i+n}$ is still an induced path and a path on $n$ vertices. Let $N_1:=U_{i+1}$ and for $1<l\leq n$ let $N_l\subseteq U_{i+l}$ denote the copies of the vertices in $N_{l-1}$. Observe, that $\vert N_l \vert \geq d$ for all $l\in [n]$. We then claim that the vertices in $C_k:=V(Q_{i+1,i+k})\cup\bigcup_{l=1}^k N_l$ are an induced tree in $G_{i+n+1}$. We prove this by induction on $k$.
+
+For the base case let $k=1$. The vertices in $N_1=U_{i+1}$ form a stable set  and are adjacent to $w_{i+1}$ by definition of $U_{i+1}$. Therefore they are adjacent to $w^\prime_{i+1}$ as well. Thus, $C_1$ forms an induced copy of a star $K_{1,\vert N_1\vert}$, i.e. $G_{i+n}[C1]$ is an induced tree.
+
+Now let $1<k\leq n$ and suppose $C_{k^\prime}$ is an induced tree for any $k^\prime\in\N$, $k^\prime <k$. By the inductive hypothesis, $C_{k-1}$ is an induced tree, i.e. from the vertices in $C_{k-1}$ the vertices in $N_{k-1}$ are only adjacent to $w_{i+k-1}^\prime$. Observe that $(C_{k-1}\setminus \lbrace w_{i+k-1}^\prime\rbrace )\subseteq V_{i+k-1}$. Consider $N_k\subseteq U_{i+k}$. By the definition of vertices in $U_{i+k}$, vertices in $N_k$ do not have an edge to any vertex from $C_{k-1}\setminus \lbrace w_{i+k-1}^\prime\rbrace$ since the vertices in $N_{k-1}$ do not have them. Furthermore, $N_k\cup\lbrace w_{i+k-1}^\prime \subseteq U_{i+k}$ is a stable set by definition but each vertex in this set has an edge to $w_{i+k}$ and therefore $w_{i+k}^\prime$. What is left to show, is that $w_{i+k}^\prime$ is not adjacent to any vertex in $C_{k-1}\setminus \lbrace w_{i+k-1}^\prime\rbrace$. That is easy to see, since $(C_{k-1}\setminus \lbrace w_{i+k-1}^\prime\rbrace )\cap U_{i+k}=\emptyset$.
+Thus, $C_k$ is an induced tree in $G_{i+k+1}$.
+
+By mapping $p_j$ to the vertices of $w^\prime_i+j$ and the leaves of every vertex $p_j$ to a vertex from $N_j$, $j\in [n]$, we obtain an induced copy of $T$ in $G_{i+n+1}$.\qed
+\end{prf}
+
+After stating the proofs for some special cases of trees, there is actually a slightly different approach that proves that for all trees $T$ we can find a graph $G\in\mathcal{M}(K_2)$ containing an induced copy of $T$. Therefore, we need to introduce the concept of a rooted tree first. We can \textit{root} a tree $T$ by choosing a vertex $r\in T$ that we call the \textit{root} of $T$ and inductively setting the \textit{parent} of all neighbors of a vertex $v$ except its parent to be $v$ and let $C(v) =N(v)\setminus \lbrace p(v)\rbrace$ denote the set of \textit{children} of $v$.
+Second, consider a graph $G_i\in\mathcal{M}(K_2)$. If $u\in U_i$ holds for a vertex $u$, call $u$ a copy in level $i$.
+\begin{thm}
+Let $T$ be tree. Then, there exists a $G\in\mathcal{M}(K_2)$ containing an induced copy of $T$.
+\end{thm}
+\begin{prf}
+Let $n$ be the number of vertices in $T$ and choose a vertex $r$ as the root of $T$. Denote the vertices as $r=v_1$, $v_2$, ..., $v_n$ in an order we would obtain by performing an in-order tree traversal. I.e. starting with the root vertex $r$ for $i\in [n-1]$ we choose $v_{i+1}$ as any vertex in $C_(v_i)$. If there is no child left that is not assigned yet, consider the previous vertices in decreasing order and choose a child of them if possible. Observe that each vertex except $v_1$ is a child of a vertex with a smaller index.
+
+We shall construct an induced copy of $T$ with vertices $c_1,\dots ,c_n$. 
+In preparation of the construction, note that each vertex $c_i$ will be a copy in some level $j\in\N$, i.e. $c_i\in U_j$. We refer to this level as $l_i$. Recall that then we denote the center vertex of this level by $w_{l_i}$.
+
+We construct the induced copy of $T$ by choosing the root vertex $v_1$ as a copy in some level $m\in\N$ and adding the other vertices in their order in the following way. Each vertex $v_i$, $i>1$, has a parent $v_k$ with $k<i$. Let vertex $c_i$ be the copy of $w_{l_k}$ in a level strictly higher than the level  $l_{i-1}$. Since $w_{l_k}$ and $c_k$ are adjacent, $c_i$ and $c_k$ are as well. Thus, for every edge in $T$, there is an edge in the copy of $T$. Observe that all vertices $c_1,\dots , c_n$ are copies in different levels. 
+
+We need to confirm that this copy is indeed induced. We prove this by induction on $i$, claiming that the vertices in $\lbrace c_1, c_2, \dots , v_i\rbrace$ form an induced tree in $G_{l_i}$. To launch the induction, let $i=1$. One vertex by itself induces no edge. Thus, it trivially induces a tree in $G_m$.
+
+Let $i\in [n]$, $i>1$, and suppose the statement holds for any $1\leq i^\prime < i$. Then, by the inductive hypothesis, the vertices in $\lbrace c_1, c_2, \dots , c_{i-1}\rbrace$ induce a tree in the level $l_{i-1}$ and therefore also in the level $l_i$ since $l_i >l_{i-1}$ and $G_{l_i}$ then contains an induced copy of $G_{l_{i-1}}$ by observation \ref{o1my}. The vertex $c_i$ is a copy of some $w_{l_k}$, $k<i$. The vertex $w_{l_k}$ is only adjacent to vertices $U_{l_k}$, i.e. it is not adjacent to any vertex in $\lbrace c_1, \dots , c_{k-1}$. Therefore, $c_i$ is also not adjacent to them. Since center vertices of different levels are never adjacent by definition, no vertex in $c_j\in\lbrace c_{k+1}, \dots ,c_{i^\prime}\rbrace$ chosen after $c_k$ can, as a copy of $w_{l_j}$, be adjacent to $w_{l_k}$. Therefore, $c_i$ is only adjacent to $c_k$ as wanted and the vertices $\lbrace c_1, c_2, \dots , v_i\rbrace$ induce a tree in $G_{l_k}$.
+
+Thus, we constructed a copy of $T$ in $G_{l_n}$.\qed
+\end{prf}

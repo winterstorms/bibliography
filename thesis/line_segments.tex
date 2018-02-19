@@ -1,0 +1,73 @@
+Besides the Mycielskian construction we can obtain triangle-free graphs of arbitrarily large chromatic number also from the following construction by Pawlik et al. \cite{Paw14} using intersection graphs of line segments in an axis-aligned rectangle. As mentioned in a paper by Felsner et al. \cite{Fe18} the construction of Burling graphs results in exactly the same set of graphs. They state that the  construction of these graphs actually traces back to the PhD thesis by Burling himself \cite{Bu65}. Since the result is the same regardless of the construction, it is enough to consider one to exclude all constructions as candidates for disproving the Gyárfás-Sumner conjecture. This chapter will prove that for all trees $T$ the family of graphs obtained by these constructions indeed contains many that induce $T$.
+
+\begin{defn}
+Let $R$ be an axis-aligned rectangle with boundaries $[a,b]\times [c,d]$ and $\mathcal{L}$ a family of line segments contained in the interior of $R$. A probe $P$ is a rectangle $[a^\prime ,b]\times [c^\prime ,d^\prime]$ with the following properties:
+\begin{enumerate}[(i)]
+\item $a<a^\prime < b$ and $c<c^\prime <d^\prime < d$
+\item no line segment in $\mathcal{L}$ intersects the left boundary of $P$
+\item no line segment in $\mathcal{L}$ ends in $P$ or on the boundary on $P$
+\item line segments in $\mathcal{L}$ intersecting $P$ are pairwise disjoint
+\end{enumerate}
+We call the rectangle $[a^\prime ,b^\prime ]\times [c^\prime ,d^\prime]$ with the maximal $b^\prime$, such that no line segment intersects it, the root of $P$.
+\end{defn}
+
+\begin{thm}
+For every $k\in\N$ exists a family $\mathcal{L}$ of line segments in the plane with no three pairwise intersecting segments and $\chi (G)\geq k$, where $G$ is the intersection graph of $\mathcal{L}$.
+\end{thm}
+
+\begin{prf}
+Let $R$ be an axis-aligned rectangle with a non-empty interior. Let $(s_i)_{i\in\N}$ and $(p_i)_{i\in\N}$ be sequences inductively defined by setting $s_1=p_1=1$, $s_{i+1}=(p_i+1)s_i+p_i^2$ and $p_{i+1}=2p_i^2$. For every $k\in\N$ we now construct a family $\mathcal{L}_k$ of $s_k$ line segments, such that no three are pairwise intersecting, and a family $\mathcal{P}_k$ of $p_k$ pairwise disjoint probes in $R$, such that for every proper coloring $c$ of $\mathcal{L}_k$ there is a probe $P\in\mathcal{P}_k$ for which $c$ uses at least $k$ colors on the line segments of $\mathcal{L}_k$ intersecting $P$, by induction on $k$. Then, the corresponding intersection graph $G_k$ for $\mathcal{L}_k$ is triangle-free and $\chi (G)\geq k$.
+
+For the base case $k=1$ consider an arbitrary non-horizontal line segment in $R$. Let $\mathcal{L}_1$ just contain this segment and choose any rectangle in $R$ that shares its right boundary with $R$ and intersects the line segment with its lower and upper bound as the probe $p$ in $\mathcal{P}_1$. $G_1$ is obviously triangle-free and $p$ uses exactly one color on the segment it contains.
+
+For the induction step, consider a given rectangle $R$ and families $\mathcal{L}_k$ and $\mathcal{P}_k$ for a fixed $k\in\N$. To construct $\mathcal{L}_{k+1}$ draw $\mathcal{L}_k$ in $R$ and for each probe $p\in\mathcal{P}_k$ place another copy $\mathcal{L}_p$ of $\mathcal{L}_k$ with probes $\mathcal{P}_{p}$ in the root of $p$. Afterwards, for each $p\in\mathcal{P}_k$ and every $q\in\mathcal{P}_{p}$ draw the diagonal $d_q$ of $q$, i.e. a line segment from its bottom-left corner to its upper-right corner. $d_q$ crosses all segments intersecting $q$ but no other. Then, $\mathcal{L}_k$ consists of the segments from the $p_k + 1$ copies of $\mathcal{L}_k$ and the $p_k^2$ diagonals, i.e. $\vert \mathcal{L}_{k+1}\vert =(p_k + 1)s_k+p_k^2=s_{k+1}$. Since the copies of $\mathcal{L}_k$ are triangle-free and disjoint and $d_q$ intersects only the segments in $q$, an independent set of segments, $\mathcal{L}_{k+1}$ is also triangle-free.
+
+Now we want to construct $\mathcal{P}_{k+1}$. For each $p\in\mathcal{P}_k$ and every $q\in\mathcal{P}_{p}$ let $\mathcal{L}(p)$ be the set of segments in $\mathcal{P}_k$ intersecting $p$ and $\mathcal{L}_p(q)$ the segments in $\mathcal{L}(p)$ intersecting $q$. We add two probes to $\mathcal{P}_{k+1}$. We place the first one, the upper probe $u_q$, close to the top of $q$, such that it pierces the diagonal $d_q$ but no other segment in $\mathcal{L}_p(q)$ and choose the second probe, the lower probe $l_q$, close to the bottom of $q$ such that it pierces all segments in $\mathcal{L}_p(q)$ but not $d_q$. Then, both probes end at the right boundary of $R$. By the induction hypothesis and the way we placed $\mathcal{L}_p$, $\mathcal{L}(p)\cup \lbrace d_q\rbrace$ and $\mathcal{L}(p)\cup\mathcal{L}_p(q)$ are both independent sets, i.e. both $u_q$ and $l_q$ are proper probes. Finally, observe that $\vert \mathcal{P}_{k+1}\vert = 2p_k^2=p_{k+1}$.
+
+Let $c$ be a coloring of $\mathcal{L}_{k+1}$. Consider the restriction of $c$ to the original copy of $\mathcal{L}_k$. By the induction hypothesis, there exists a probe $p\in\mathcal{P}_k$ for which $c$ needs $k$ colors to paint the line segments in $p$. Now, consider the copy $\mathcal{L}_p$ of $\mathcal{L}_k$ in the root of $p$. Again, by induction hypothesis, there is a probe $q\in\mathcal{P}_p$ that uses $k$ colors on the segments in $\mathcal{L}_p$ intersecting $q$. If the colors in used by $c$ in $p$ and $q$ are different, at least $k+1$ colors are used on the segments pierced by the lower probe $l_q$. Otherwise, $d_q$ has a different color than the colors used in $p$ and $q$ and thus, $c$ uses $k+1$ colors on the segments pierced by the upper probe $u_q$.\qed
+\end{prf}
+
+Similar to the construction of triangle-free graphs of large chromatic number by Mycielski, there exist rather simple proofs showing that such graphs provided by the construction above contain induced copies of stars and paths as well.
+
+\begin{note}
+If we denote the intersection graph obtained from the family of line segments $\mathcal{L}_k$ in step $k$ of the construction above as $G_k$, it is easy to see that $G_{k+1}$ contains an induced copy of $G_k$. With this knowledge it is enough to prove the existence of an induced copy of a tree $T$ in some $G_k$ since it then is not a suitable candidate to disprove the conjecture as it is contained in a graph of arbitrarily large chromatic number.
+\end{note}
+
+\begin{thm}
+Let $n\in\N$. Then, $G_{n+1}$ contains an induced copy of $K_{1,n}$.
+\end{thm}
+\begin{prf}
+Let $n\in\N$ be fixed and consider $G_n$. For any coloring $c$ of $\mathcal{L}_n$ there is a probe for which $c$ uses $n$ colors on the pierced line segments. Thus, there exists a probe $p$ in $\mathcal{P}_n$ piercing at least $n$ line segments. By definition, these are pairwise disjoint. Consider the copy $q\in\mathcal{P}_p$ of this probe. Observe that $q$ pierces at least $n$ pairwise disjoint line segments in $\mathcal{L}_p$. Denote the set of these segments as $S$. Then, the set of line segments $\lbrace d_q\rbrace\cup S$ forms an induced copy of a star $K_{1,n}$ in $G_{n+1}$.\qed   
+\end{prf}
+
+\begin{thm}
+Let $n\in\N$, $n\geq 2$. Then, $G_{n+1}$ contains an induced copy of $P_n$.
+\end{thm}
+\begin{prf}
+We prove the existence of an induced copy of $P_n$ in $G_{n+1}$ by induction on $n$. Observe that in each step we choose a diagonal of some probe from $\mathcal{P}_{n-1}$ as the new line segment we add to our path in step $n$.
+
+Launch the induction with $n=2$. Consider $G_2$. We have just one probe $p$ in $\mathcal{P}_1$, i.e. just one diagonal $d_p$ that intersects the copy $l^\prime$ of the line segment $l$ in $\mathcal{L}_1$ in $\mathcal{L}_p$. $Q_n = (l^\prime ,d_p)$ is an induced copy of $P_2$.
+
+For the induction step, let $Q_n$ be an induced copy of $P_n$ in $G_n$ for some fixed $n\in\N$, $n\geq 2$, and construct an induced copy $Q_{n+1}$ of $P_{n+1}$ as follows. Let $q$ denote the probe in $\mathcal{P}_{n-1}$ we chose the diagonal $d_q$ that we use as the last vertex in our path $Q_n$ from. Then, the upper probe $u_q$ in $q$ is a probe in $\mathcal{P}_n$. Now choose an arbitrary probe $p\in\mathcal{P}_n$. Let $Q_n^\prime$ denote the copy of $Q_n$ in $\mathcal{L}_p$. Note that $Q_n^\prime$ is an induced copy of $P_n$ as well. Consider a copy $u_q^\prime$ in $\mathcal{P}_p$ of the probe $u_q$. Its diagonal $d$ intersects the copy of $d_q$ but no other vertex of $\mathcal{L}_p$. Thus, $Q_{n+1}=Q_{n}^\prime d$ is an induced copy of $P_{n+1}$ in $G_{n+1}$.\qed
+\end{prf}
+
+Finally, there exists an inductive proof showing that actually for every tree $T$ we can find an intersection graph $G_k$ for some $k\in\N$ that contains an induced copy of $T$. Therefore, let us define a sequence of trees $T_1, T_2, \dots$ where $T_1$ is the tree on one vertex and for all $i\in\N$ let $T_{i+1}$ be obtained from $T_i$ by adding a leaf to each vertex of $T_i$. Denote the vertices of $T_i$ by $t_1, t_2,\dots ,t_{2^i}$, where $t_{2^{i-1}+j}$ is the leaf we added to $t_j$ when constructing $T_i$.
+
+\begin{thm}\label{t1ls}
+Let $k\in\N$. The graph $G_k$ contains an induced copy of $T_k$.
+\end{thm}
+
+\begin{prf}
+We shall prove a stronger statement. We claim that $T_k\subseteq_I G_k$ for some $k\in\N$ and that for each vertex $t\in V(T)$ there exists a probe $p\in\mathcal{P}_k$ containing exactly $t$ but no other vertex from $V(T)$. The proof goes by induction on $k\in\N$. Before the induction starts, let us introduce a notation. Denote the copy of $T_k$ with $C_k$ and its vertices with $c_1^k, c_2^k, \dots , c_{2^k}^k$.
+
+To launch the induction let $k=1$. The tree $T_1$ consists of one single vertex $t_1$. Thus, by defining $c_1^1$ to be the single vertex in $G_1$ we found an induced copy of $T_1$ in $G_1$. Observe that the only probe in $\mathcal{P}_1$ pierces $c_1^1$.
+
+Now let $k>1$ and suppose the statement holds for all $1\leq k^\prime <k$, $k^\prime\in\N$. By the induction hypothesis there exists an induced copy $C_{k-1}$ of $T_{k-1}$ in $G_{k-1}$. Consider $G_k$ and choose one of the $p_{k-1}$ induced copies of $G_{k-1}$. Call it $G_{k-1}^\prime$. Let $c_1^k, c_2^k,\dots , c_{2^{k-1}}^k$ be the copies of the vertices of $C_{k-1}$ in $G_{k-1}^\prime$. Also by induction hypothesis, for each vertex $c_i^{k-1}$, $i\in [2^{k-1}]$, there exists a probe $p_{c_i^{k-1}}\in\mathcal{P_{k-1}}$ containing $c_i^{k-1}$ but no other vertex of $C_{k-1}$. Let $q_i:=q_{c_i^{k-1}}$ denote the copy of this probe in $G_{k-1}^\prime$. Observe that $q_i$ contains $c_i^k$ but no other vertex $c_j^k$, $j\in [2^{k-1}]$, $i\neq j$. Then, we can choose the diagonal of $q_i$ as the leaf $c_{2^{k-1}+i}^k$ because it crosses $c_i^k$ but none of the other vertices, i.e. in the intersection graph $G_k$, $c_{2^{k-1}+i}^k$ is only adjacent to $c_i^k$. Since the probes $q_i$, $i\in [2^{k-1}]$, are pairwise disjoint by the definition of probes, the vertices $c_{2^{k-1}+i}^k$, $i\in [2^{k-1}]$, are pairwise non-adjacent as well. Thus, $C_k$ is an induced tree in $G_k$. Furthermore, with the new probes $u_{q_i}$ and $l_{q_i}$ in $\mathcal{P}_k$ we have one, $u_{q_i}$, that contains only $c_i^k$ and one, $l_{q_i}$, that only contains $c_{2^{k-1}+i}^k$ of the vertices in $C_k$. \qed
+\end{prf}
+
+\begin{cor}
+For every tree $T$, there is a $k\in\N$ such that $T\subseteq_I G_k$.
+\end{cor}
+\begin{prf}
+Let $T$ be a tree. Denote its radius by $r$ and let $v\in V(T)$ be a vertex such that the distance between $v$ and a vertex $u\in V(T)\setminus \lbrace v\rbrace$ is at most $r$. Define $k=\max_{u\in V(T)\setminus \lbrace v\rbrace} (dist(v,u)+\delta (u))$. Then $T$ is an induced subgraph of $T_k$ and therefore $T\subseteq_I G_k$ holds by theorem \ref{t1ls}.\qed
+\end{prf}

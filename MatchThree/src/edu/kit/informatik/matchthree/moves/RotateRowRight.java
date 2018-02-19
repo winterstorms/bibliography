@@ -23,7 +23,7 @@ public class RotateRowRight implements Move {
      * Creates a new move that rotates the provided row right.
      * 
      * @param rowIndex the index of the row to rotate
-     * @throws BoardDimensionException if parameter is not valid for any board
+     * @throws BoardDimensionException if rowIndex specifies row with negative index
      */
     public RotateRowRight(int rowIndex) throws BoardDimensionException {
         if (rowIndex < 0) throw new BoardDimensionException("Rows with a negative index do not exist on any board.");
