@@ -1,4 +1,4 @@
-Let $G$ be a graph and denote its chromatic number by $\chi (G)$ and its clique number by $\omega (G)$. For a graph $H$ define the family of graphs not inducing $H$ as a subgraph as $\textit{Forb}(H)$. For which $H$ can we find a function $f$ such that $\chi (G)\leq f(\omega (G))$ holds for every graph $G\in\textit{Forb}(H)$? I.e., by the notation in \ref{d1}, we want to find a bounding function for $\textit{Forb}(H)$. If $f$ exists, let us call $H$ $\chi $-bounding. Observe that if $H$ is $\chi $-bounding, $H$ must be acyclic. That is because of a result by Erd\H{o}s and Hajnal in \cite{EH66} showing the existence of graphs with arbitrarily high girth and chromatic number. Thus, if $H$ contains a cycle, we can always find a graph $G$ with girth greater than the longest cycle in $H$ and a large chromatic number. Therefore, it is impossible to find a bounding function for $\textit{Forb}(H)$. For every other graph the statement may hold. Indeed, Gyárfás \cite{Gy75} and Sumner \cite{Su81} independently conjectured that the it is true for every forest.
+Let $G$ be a graph and denote its chromatic number by $\chi (G)$ and its clique number by $\omega (G)$. For a graph $H$ define the family of graphs not inducing $H$ as a subgraph as $\textit{Forb}(H)$. For which $H$ can we find a function $f$ such that $\chi (G)\leq f(\omega (G))$ holds for every graph $G\in\textit{Forb}(H)$? I.e., by the notation in \ref{d1}, we want to find a bounding function for $\textit{Forb}(H)$. If $f$ exists, let us call $H$ $\chi $-bounding. Observe that if $H$ is $\chi $-bounding, $H$ must be acyclic. That is because of a result by Erd\H{o}s and Hajnal in \cite{EH66} showing the existence of graphs with arbitrarily high girth and chromatic number. Thus, if $H$ contains a cycle, we can always find a graph $G$ with girth greater than the longest cycle in $H$ and a large chromatic number. Therefore, it is impossible to find a bounding function for $\textit{Forb}(H)$. For every other graph the statement may hold. Indeed, Gyárfás \cite{Gy75} and Sumner \cite{Su81} independently conjectured that it is true for every forest.
 
 \begin{con}[Gyárfás \cite{Gy75}, Sumner \cite{Su81}]\label{c1cr}
 Every forest $F$ is $\chi$-bounding.
@@ -18,7 +18,17 @@ Let $F$ be a $\chi$-bounding forest with bounding function $f$. Assume, there ex
 To show the other direction, let $F$ be a forest with connected components $T_1, T_2,\dots ,T_k$ where $\textit{Forb}	(T_i)$ is $\chi$-boundedwith bounding function $f_{T_i}$. Assume, $F$ is not $\chi$-bounding. Then, there exists an $\omega\in\N$ such that for all $m\in\N$ there exists a $G\in\textit{Forb}(F)$ with $\omega (G)=\omega$ and $\chi (G)> m$. Choose a graph $G$ with $\chi (G)>\max_{i\in [k]}f_{T_i}(\omega)$. Since $G\in\textit{Forb}(F)$ there exists an $i\in [k]$ such that $G\in\textit{Forb}(T_i)$. This contradicts the assumption that $T_i$ is $\chi$-bounding.\qed
 \end{prf}
 
-It might be interesting to note that the conjecture becomes a rather simple problem in the case of general subgraphs instead of induced subgraphs. There exists a proof by Gyárfás, Szemeredi and Tuza from 1980 \cite{GST80} showing that a labeled tree $T$ on $k$ vertices is a subgraph of any graph with chromatic number at least $k$. A \textit{labeled} graph is a graph with an assignment of labels, often represented by integers, to its vertices. When talking about a labeled graph $G$ without defining an explicit labeling, we refer to a graph labeled such that each vertex has a unique label. Usually each vertex has a label $i\in [\vert V(G)\vert ]$. A pair of labeled graphs is isomorphic if there exists a graph isomorphism that also heeds the assigned labels besides the structure of the graph.
+Let $\mathcal{H}$ be a set of graphs and let $\textit{Forb}(\mathcal{H})$ be the family of graphs forbidding any graph in $\mathcal{H}$ as induced subgraph. The conjecture \ref{c1cr} covers only cases where $\vert\mathcal{H}\vert =1$.
+Now consider a family $\textit{Forb}(\mathcal{H})$ with $\vert\mathcal{H}\vert >1$. Note that every finite set containing a forest is $\chi$-bounding under the assumption that conjecture \ref{c1cr} is true and if $\mathcal{H}$ is finite and $\chi$-bounding it must contain a forest because of the result by Erd\"os and Hajnal \cite{EH66}. If $\mathcal{H}$ does not contain a forest, it has to be infinite. Thus, considering infinite sets of cycles is the next obvious step. In 1985, Gyárfás made three more conjectures (later published in \cite{Gy87}) concerning the relation between the chromatic number of a graph and the length of cycles it induces:
+
+\begin{enumerate}[(i)]
+\item The family of graphs with no induced cycle of odd length is $\chi$-bounded.
+\item Let $l\in\N$. The family of graphs with no induced cycle of length at least $l$ is $\chi$-bounded.
+\item Let $l\in\N$. The family of graphs with no induced cycle of odd length at least $l$ is $\chi$-bounded.
+\end{enumerate}
+Observe that the third conjecture implies the first two but since they were stated and proven independently each seems to be worth a nomination on its own. Chudnovsky, Scott and Seymour dealt with these conjectures in a series of papers including three (\cite{SS14}, \cite{CSS15} and \cite{CSSS17}) in which they are proving them.
+\\[2ex]
+Returning to the case were $\vert\mathcal{H}\vert =1$, it might be interesting to note that the conjecture becomes a rather simple problem in the case of general subgraphs instead of induced subgraphs. There exists a proof by Gyárfás, Szemeredi and Tuza from 1980 \cite{GST80} showing that a labeled tree $T$ on $k$ vertices is a subgraph of any graph with chromatic number at least $k$. A \textit{labeled} graph is a graph with an assignment of labels, often represented by integers, to its vertices. When talking about a labeled graph $G$ without defining an explicit labeling, we refer to a graph labeled such that each vertex has a unique label. Usually each vertex has a label $i\in [\vert V(G)\vert ]$. A pair of labeled graphs is isomorphic if there exists a graph isomorphism that also heeds the assigned labels besides the structure of the graph.
 
 An obvious consequence of this theorem is that the family of graphs that do not contain $T$ as a subgraph is $\chi$-bounded and for the bounding function $f$ holds $f(\omega )\equiv k$.
 
@@ -36,14 +46,15 @@ A graph $G$ with $\chi (G) = k$ contains every tree $T$ on $k$ vertices as a sub
 \begin{prf}
 A tree $T$ on $k$ vertices can be seen as a labeled tree on $k$ vertices. Thus, $T\subseteq G$ holds by theorem \ref{t3cr}.\qed
 \end{prf}
-Even though many tried to prove the Gyárfas-Sumner conjecture in over forty years there are only some trees found to be $\chi$-bounding so far. Here is a list of them as stated by Chudnovsky, Scott and Seymour in \cite{CSP17} including the cases they proved in the same paper:
+
+The actual Gyárfas-Sumner conjecture remains open. Even though many tried to prove the conjecture in over forty years there are only some trees found to be $\chi$-bounding so far. Here is a list of them as stated by Chudnovsky, Scott and Seymour in \cite{CSS17} including the cases they proved in the same paper:
 
 \begin{itemize}
 \item trees of radius at most two (Kierstead and Penrice \cite{Ki94}),
 \item trees obtained from a tree with radius at most two by subdividing every edge incident to the root exactly once (Kierstead and Zhu \cite{Ki04}),
 \item subdivisions of stars (direct result of the topological version of the Gyárfás-Sumner conjecture proved in \cite{Sc97}: for every tree $T$ there is a function $f$ such that $\chi (G)\leq f(\omega (G))$ for every graph $G$ not inducing any subdivision of $T$.),
-\item trees obtained by adding one vertex to a subdivided star including e.g. two-legged caterpillars (Chudnovsky, Scott and Seymour \cite{CSP17}),
-\item trees obtained from a sudivided star and a star by adding a path joining their centers (Chudnovsky, Scott and Seymour \cite{CSP17}).
+\item trees obtained by adding one vertex to a subdivided star including e.g. two-legged caterpillars (Chudnovsky, Scott and Seymour \cite{CSS17}),
+\item trees obtained from a sudivided star and a star by adding a path joining their centers (Chudnovsky, Scott and Seymour \cite{CSS17}).
 \end{itemize} 
 
 To gain an idea of how these proofs work I want to present some of them since they also serve as basis for the results of this thesis. The two following theorems proved by Gyárfás in \cite{Gy87} show that the families of graphs $\textit{Forb}(K_{1,n})$ and $\textit{Forb}(P_n)$ are $\chi$-bounded and even provide a lower bound to the bounding function in the first case.
@@ -64,12 +75,12 @@ The family of graphs $\textit{Forb}(P_n)$ is $\chi$-bounded with bounding functi
 Let $n\in\N$ be fixed and prove the claim by induction on $\omega (G)$. Consider the base case for $\omega (G) =1$. Then, $\chi (G) = 1$ and the theorem trivially holds.
 
 Suppose the theorem holds for all graphs $G^\prime\in\textit{Forb}(P_n)$ with $\omega (G^\prime ) \leq t$ for some $t\geq 1$, i.e. $(n-1)^{t-1}$ is a bounding function for them. Let $G\in\textit{Forb}(P_n)$ with $\omega (G) = t + 1$. Now, assume that $\chi (G) > (n-1)^{\omega - 1}$. We shall reach a contradiction by constructing an induced path $Q_n=(q_1,q_2,\dots ,q_n)$ in $G$. To do this, we will define subgraphs $G_i$ of $G$ with $q_i\in V(G_i)$ for all $i\in [n]$, such that $V(G_1)\supseteq V(G_2)\supseteq \dots\supseteq V(G_n)$ and each $G_i$ satisfies the following properties:
-\begin{enumerate}
+\begin{enumerate}[(i)]
 \item $G_i$ is connected;
 \item $\chi (G_i) > (n-i)(n-1)^{t-1}$;
 \item for $1\leq j<i$ and $v\in V(G_i)$ $q_jv$ is an edge in $G$ if and only if $i=j+1$ and $v = q_i$.
 \end{enumerate}
-Let $G_1$ be a connected component of $G$ with $\chi (G_1) >(n-1)^t$ and let $q_1$ be any vertex of $G_1$. For $i>1$ assume that $G_1,G_2,\dots , G_{i-1}$ and $q_1,q_2,\dots , q_{i-1}$ are already defined and satisfy the wanted properties. Let $A$ denote the neighborhood of $q_{i-1}$ in $G_{i-1}$ and  let $B=V(G_{i-1})\setminus (A\cup\{q_{i-1}\})$. The graph $G[A]$ induced by $A$ in $G$ satisfies $\omega (G[A])\leq t$ because a greater clique and $q_{i-1}$ would induce a clique greater than $t+1$ in $G$. Thus, we have $\chi (G[A])\leq (n-1)^{t-1}$ by induction hypothesis.
+Let $G_1$ be a connected component of $G$ with $\chi (G_1) >(n-1)^t$ and let $q_1$ be any vertex of $G_1$. For $i>1$ assume that $G_1,G_2,\dots , G_{i-1}$ and $q_1,q_2,\dots , q_{i-1}$ are already defined and satisfy the wanted properties. Let $A$ denote the neighborhood of $q_{i-1}$ in $G_{i-1}$ and let $B=V(G_{i-1})\setminus (A\cup\{q_{i-1}\})$. The graph $G[A]$ induced by $A$ in $G$ satisfies $\omega (G[A])\leq t$ because a greater clique and $q_{i-1}$ would induce a clique greater than $t+1$ in $G$. Thus, we have $\chi (G[A])\leq (n-1)^{t-1}$ by induction hypothesis.
 
 Assume, $B\neq\emptyset$. Observe that $\chi (G_{i-1})\leq \chi (G[A]) + \chi (G[B])$ since proper colorings of $G[A]$ and $G[B]$ in distinct colors and assigning $q_i$ any color used in $V(G[B])$ define a proper coloring of $G_{i-1}$. Thus, \[\chi (G[B])\geq \chi (G_{i-1})-\chi (G[A])>(n-i+1)(n-1)^{t-1}-(n-1)^{t-1}=(n-i)(n-1)^{t-1}.\]
 Therefore, there exists a connected component $H$ of $G[B]$ with $\chi (H)>(n-i)(n-1)^{t-1}$. Recall, that $G_{i-1}$ is connected, i.e. there also exists a $q_i\in A$ such that $V(H)\cup \{q_i\}$ induces a connected subgraph, which we choose as $G_i$. Then,  $G_i$ obviously satisfies $(i)$ and $(ii)$. Since the only edge between $V(Q_{i-2})$ and $V(G_{i-1})$ is $q_{i-1}q_{i-2}$, there is no edge at all between $V(Q_{i-2})$ and $q_i$ and by definition the edge $q_{i-1}q_i$ exists. Thus, $(iii)$ is satisfied as well. 
@@ -136,3 +147,9 @@ By the definition of $B$, we find sets $X^\prime\subseteq X$ and $Y^\prime\subse
 \begin{note}
 It is a direct implication of this theorem that the family $\textit{Forb}(T,K_{n,n})$ is $\chi$-bounded. This can be easily seen by replacing the directed graph $G$ by the corresponding undirected graph $G^\prime$.
 \end{note}
+
+I want to finish this chapter with a motivation for considering an oriented version of the Gyárfás-Sumner conjecture even if that is not part of this thesis. Before looking at specific cases note that we are only considering trees for which conjecture \ref{c1cr} is true. There actually exist some results for oriented stars and oriented $P_4$. Aboulker et al. \cite{Ab16} conjectured that every oriented star is $\chi$-bounding and proved the cases for $S_{k,0}$, $S_{0,l}$ and $S_{1,1}$ where $S_{k,l}$ denotes an oriented star with $k$ outgoing edges and $l$ edges pointing to the center vertex. 
+
+Next, observe that all paths on less vertices are stars and therefore included in the first case. Let $or(P_4)$ denote the set of all pairwise non-isomorphic $P_4s$. Then, $or(P_4)$ contains only four elements:
+
+For oriented $P_4$ Aboulker et al. \cite{Ab16} conjectured that only $P^+(2,1)$ and $P^-(2,1)$ are $\chi$-bounding. Chudnosky, Scott and Seymour \cite{CSS17b} extended these results and showed that both conjectures are indeed true but there is not much more known. 
