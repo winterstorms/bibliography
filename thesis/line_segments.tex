@@ -1,7 +1,9 @@
-Besides the Mycielskian construction we can obtain triangle-free graphs of arbitrarily large chromatic number also from the following construction by Pawlik et al. \cite{Paw14} using intersection graphs of line segments in an axis-aligned rectangle. As mentioned in a paper by Felsner et al. \cite{Fe18} the construction of Burling graphs results in exactly the same set of graphs. They state that the  construction of these graphs actually traces back to the PhD thesis by Burling himself \cite{Bu65}. Since the result is the same regardless of the construction, it is enough to consider one to exclude all constructions as candidates for disproving the Gyárfás-Sumner conjecture. This chapter will prove that for all trees $T$ the family of graphs obtained by these constructions indeed contains many that induce $T$.
+Besides the Mycielskian construction we also obtain triangle-free graphs of arbitrarily large chromatic number from the following construction by Pawlik et al. \cite{Paw14} using intersection graphs of line segments in an axis-aligned rectangle in the $\mathbb{R}^2$. As mentioned in a paper by Felsner et al. \cite{Fe18} the construction of Burling graphs results in exactly the same family of graphs. They state that the construction of these graphs actually traces back to the PhD Thesis by Burling himself \cite{Bu65}. Since the result is the same regardless of the construction, it is enough to consider one to exclude all constructions as candidates for disproving the Gyárfás-Sumner conjecture. We will look at both constructions and then prove that for all trees $T$ the family of graphs obtained by these constructions indeed contains infinitely many graphs that induce $T$.
+
+Before proving 
 
 \begin{defn}
-Let $R$ be an axis-aligned rectangle with boundaries $[a,b]\times [c,d]$ and $\mathcal{L}$ a family of line segments contained in the interior of $R$. A probe $P$ is a rectangle $[a^\prime ,b]\times [c^\prime ,d^\prime]$ with the following properties:
+Let $R$ be an axis-aligned rectangle in the $\mathbb{R}^2$ with boundaries $[a,b]\times [c,d]$ and $\mathcal{L}$ a family of line segments contained in the interior of $R$. A probe $P$ in $R$ is a rectangle $[a^\prime ,b]\times [c^\prime ,d^\prime]$ with the following properties:
 \begin{enumerate}[(i)]
 \item $a<a^\prime < b$ and $c<c^\prime <d^\prime < d$
 \item no line segment in $\mathcal{L}$ intersects the left boundary of $P$
@@ -11,33 +13,71 @@ Let $R$ be an axis-aligned rectangle with boundaries $[a,b]\times [c,d]$ and $\m
 We call the rectangle $[a^\prime ,b^\prime ]\times [c^\prime ,d^\prime]$ with the maximal $b^\prime$, such that no line segment intersects it, the root of $P$.
 \end{defn}
 
+Let $R$ be an axis-aligned rectangle with a non-empty interior. Let $(s_i)_{i\in\N}$ and $(p_i)_{i\in\N}$ be sequences inductively defined by setting $s_1=p_1=1$, $s_{i+1}=(p_i+1)s_i+p_i^2$ and $p_{i+1}=2p_i^2$. For each $k\in\N$, we then define a family $\mathcal{L}_k$ of $s_k$ line segments and a set $\mathcal{P}_k$ of $p_k$ probes in $R$ as follows. Let $\mathcal{L}_1$ contain an arbitrary non-horizontal line segment in $R$ and choose any rectangle in $R$ that shares its right boundary with $R$ and intersects the line segment with its lower and upper bound as the probe in $\mathcal{P}_1$. Now suppose $k\geq 2$ for the inductive step. To construct $\mathcal{L}_k$ draw $\mathcal{L}_{k-1}$ in $R$ and for each probe $p\in\mathcal{P}_{k-1}$ place another copy $\mathcal{L}_p$ of $\mathcal{L}_{k-1}$ with probes $\mathcal{P}_{p}$ in the root of $p$. Note that the probes in $\mathcal{P}_{p}$ are not extending to the right boundary of $R$ but instead end at the right boundary of the root of $p$. Afterwards, for each $p\in\mathcal{P}_{k-1}$ and every $q\in\mathcal{P}_{p}$ draw the diagonal $d_q$ of $q$, i.e. a line segment from its bottom-left corner to its upper-right corner. The diagonal $d_q$ crosses all segments intersecting $q$ but no other. Then, $\mathcal{L}_k$ contains the line segments from the $p_{k-1} + 1$ copies of $\mathcal{L}_{k-1}$ and the $p_{k-1}^2$ diagonals, i.e. $\vert \mathcal{L}_k\vert =(p_{k-1} + 1)s_{k-1}+p_{k-1}^2=s_k$. 
+
+Now we want to construct $\mathcal{P}_k$. For each $p\in\mathcal{P}_{k-1}$ and every $q\in\mathcal{P}_{p}$ let $\mathcal{S}(p)$ be the set of line segments in $\mathcal{L}_{k-1}$ intersecting $p$ and $\mathcal{S}_p(q)$ the segments in $\mathcal{L}_k$ intersecting $q$. For each such $q$ we add two probes to $\mathcal{P}_k$. We place the first one, the upper probe $u_q$, close to the top of $q$, such that the diagonal $d_q$ but no other segment in $\mathcal{S}_p(q)$ intersects it and choose the second probe, the lower probe $l_q$, close to the bottom of $q$ such that it contains all segments in $\mathcal{S}_p(q)$ but not $d_q$. Then, both probes end at the right boundary of $R$. Since line segments intersecting $p$ are pairwise disjoint by the induction hypothesis, and since we placed the line segments in $\mathcal{S}_p$ in a way that they do not cross any segment in $p$ as well, $\mathcal{S}(p)\cup \lbrace d_q\rbrace$ and $\mathcal{S}(p)\cup\mathcal{L}_p(q)$ are both independent sets, i.e. both $u_q$ and $l_q$ are proper probes. Finally, observe that $\vert \mathcal{P}_k\vert = 2p_{k-1}^2=p_k$.
+
+Let $G_k$ denote the intersection graph of the line segments in $\mathcal{L}_k$, i.e. each vertex in $G_k$ represents a line segment of $\mathcal{L}_k$ and two vertices are adjacent if and only if the corresponding line segments intersect each other.\\
+
+As mentioned before, the construction by Burling as presented in \cite{Fe18} results in the same family of graphs. For each $k\in\N$, construct the Burling graph $B_k$ and a corresponding set of stable sets $S(B_k)$ as follows. Let $B_1$ be the graph on a single vertex and let $S(B_1)$ contain the only stable set on one vertex in $B_1$. For $k\geq 2$, consider a copy $H$ of $B_{k-1}$ which we think of as the original copy and one further copy $H_S$ of $B_{k-1}$ for each stable set $S\in S(B_{k-1})$. Let $S(H_S)$ denote the copy of $S(H)$ in $H_S$. Furthermore, for each copy $H_S$ and stable set $X\in S(H_S)$ add another vertex $v_{S,X}$ adjacent to all vertices in $X$ but no other vertex. Denote the graph obtained from a copy $H_S$ and added new vertices for each stable set $X\in S(H_S)$ as $H_S^{\prime}$. Then, define the graph $B_k$ as $B_k=H\cup\bigcup_{S\in S(B_k)} H_S^{\prime}$. Its set of stable sets $S(B_k)$ consists of two sets for each $S\in S(H)$ and $X\in S(H_S)$, namely $S\cup \lbrace v_{S,X}\rbrace$ and $S\cup X$. Note that both sets are stable in $B_k$.
+
+\begin{lemma}
+The families of graphs obtained by the two constructions are the same, i.e. $\lbrace G_k :k\in\N\rbrace=\lbrace B_k :k\in\N\rbrace$. 
+\end{lemma}
+\begin{prf}
+We shall show that $G_k$ and $B_k$ are isomorphic under an isomorphism $\varphi_k$ for all $k\in\N$ by induction on $k$. The idea is to define a bijection $f_k:\mathcal{P}_k\to S(B_k)$ between the probes in $\mathcal{P}_k$ and the stable sets in $S(B_k)$ in each step such that the images of the vertices corresponding to the line segments in a probe $p\in\mathcal{P}_k$ under $\varphi_k$ are exactly the vertices in $f_k(p)$. We then use these maps to define an isomorphism between $G_{k+1}$ and $B_{k+1}$.
+
+For $k=1$, $G_1$ and $B_1$ are graphs on a single vertex and thus isomorphic with isomorphism $\varphi_1$. Define a bijection $f_1:\mathcal{P}_1\to S(B_1)$ that maps the one probe in $\mathcal{P}_k$ to the one stable set in $S(B_k)$.
+
+Suppose $k\geq 2$, $G_{k-1}$ and $B_{k-1}$ are isomorphic, and the bijection $f_{k-1}$ between $P_{k-1}$ and $S(B_{k-1})$ exists as wanted. We extend the isomorphism to pairs of copies $(\mathcal{L}_p, H_{f(p)})$ of $G_{k-1}$ and $B_{k-1}$ respectively for all probes $p\in\P_{k-1}$ and thus covering all copies of $G_{k-1}$ in $G_k$ and $B_{k-1}$ in $B_{k}$. We do this by setting $\varphi_k (v^\prime)=u^\prime$ if and only if $v^\prime\in \mathcal{L}_p$ is the copy of a vertex $v\in G_{k-1}$ and $u^\prime$ is the copy of $\varphi_{k-1}(v)\in H_{f(p)}$. Then, we map the remaining vertices according to the bijection between $\mathcal{P}_k$ and $S(B_k)$: for each $p\in\mathcal{P}_{k-1}$ and $q\in\mathcal{P}_p$ ($q$ is the copy of some probe $q^\prime\in\mathcal{P}_{k-1}$) map the vertex corresponding to $d_q\in V(G_{k-1})$ to the vertex $v_{S,X}\in B_{k-1}$ where $S=f(p)$ and $X$ is the copy of $f(q^\prime)$ in $S(H_S)$. That yields an isomorphism $\varphi_k$ between $G_k$ and $B_k$ since the images of the neighbors of $d_q$ are the neighbors of $v_{S,X}$ in $B_k$. Finally, define $f_k:\mathcal{P}_k\to S(B_k)$ as $f(u_q)= S\cup \lbrace v_{S,X}\rbrace$ and $f(l_q)= S\cup X$.\qed
+\end{prf}
+
+Since both constructions yield the same family of graphs, let us call it $\mathcal{LG}$, it is enough to consider just the Burling graphs for the following proofs. The results hold for both constructions. First, we want to assert that the graphs are indeed triangle-free and that we can find graphs of arbitrarily large chromatic number in $\mathcal{LG}$.
+
+
+\begin{thm}[Felsner et al. \cite{Fe18}]
+All graphs in $\mathcal{LG}=\lbrace B_k :k\in\N\rbrace$ are triangle-free.
+\end{thm}
+
+\begin{prf}
+We prove this by induction on $k$. The graph $B_1$ is trivially triangle-free. For each $k\geq 2$, the graph $B_k$ is triangle-free since $B_{k-1}$ is triangle-free by inductive hypothesis and the neighborhood of every vertex $v_{S,X}$ we introduce in $B_k$ is a stable set.\qed
+\end{prf}
+
+\begin{thm}[Felsner et al. \cite{Fe18}]\label{t2ls}
+For all $k\in\N$, the graph $B_k$ has chromatic number $\chi (B_k)$ at least $k$.
+\end{thm}
+
+\begin{prf}
+We show this by proving a stronger statement by induction on $k$. For any proper coloring $c$ of $B_k$, there exists a stable set $S\in S(B_k)$ such that $c$ uses at least $k$ colors on the vertices in $S$.
+
+This is again trivial for $k=1$. Now, suppose $k\geq 2$ and $c$ is a proper coloring of $B_k$. By induction hypothesis, there exists a stable set $S\in S(B_{k-1})$ $c$ uses at least $k-1$ colors on. Also by inductive hypothesis, there exists a stable set $X\in S(H_S)$ $c$ uses at least $k-1$ colors on. If $c$ uses at least $k$ colors on $(S\cup X)\in S(B_k)$, we are done. Otherwise, $c$ uses the same $k-1$ colors on $S$ and $X$. Since $v_{S,X}$ is adjacent to each vertex in $X$, it is colored in a color not used on a vertex in $S$ and thus $c$ uses at least $k$ colors on $S\cup\lbrace v_{S,X}\rbrace$.\qed 
+\end{prf}
+
+\begin{comment}
 \begin{thm}[Pawlik et al. \cite{Paw14}]
 For every $k\in\N$ exists a family $\mathcal{L}$ of line segments in the plane with no three pairwise intersecting segments and $\chi (G)\geq k$, where $G$ is the intersection graph of $\mathcal{L}$.
 \end{thm}
 
 \begin{prf}
-Let $R$ be an axis-aligned rectangle with a non-empty interior. Let $(s_i)_{i\in\N}$ and $(p_i)_{i\in\N}$ be sequences inductively defined by setting $s_1=p_1=1$, $s_{i+1}=(p_i+1)s_i+p_i^2$ and $p_{i+1}=2p_i^2$. For every $k\in\N$ we now construct a family $\mathcal{L}_k$ of $s_k$ line segments, such that no three are pairwise intersecting, and a family $\mathcal{P}_k$ of $p_k$ pairwise disjoint probes in $R$, such that for every proper coloring $c$ of $\mathcal{L}_k$ there is a probe $P\in\mathcal{P}_k$ for which $c$ uses at least $k$ colors on the line segments of $\mathcal{L}_k$ intersecting $P$, by induction on $k$. Then, the corresponding intersection graph $G_k$ for $\mathcal{L}_k$ is triangle-free and $\chi (G)\geq k$.
+ For every $k\in\N$ we now construct a family $\mathcal{L}_k$ of $s_k$ line segments, such that no three are pairwise intersecting, and a family $\mathcal{P}_k$ of $p_k$ pairwise disjoint probes in $R$, such that for every proper coloring $c$ of $\mathcal{L}_k$ there is a probe $P\in\mathcal{P}_k$ for which $c$ uses at least $k$ colors on the line segments of $\mathcal{L}_k$ intersecting $P$, by induction on $k$. Then, the corresponding intersection graph $G_k$ for $\mathcal{L}_k$ is triangle-free and $\chi (G)\geq k$.
 
 For the base case $k=1$ consider an arbitrary non-horizontal line segment in $R$. Let $\mathcal{L}_1$ just contain this segment and choose any rectangle in $R$ that shares its right boundary with $R$ and intersects the line segment with its lower and upper bound as the probe $p$ in $\mathcal{P}_1$. $G_1$ is obviously triangle-free and $p$ uses exactly one color on the segment it contains.
 
 For the induction step, consider a given rectangle $R$ and families $\mathcal{L}_k$ and $\mathcal{P}_k$ for a fixed $k\in\N$. To construct $\mathcal{L}_{k+1}$ draw $\mathcal{L}_k$ in $R$ and for each probe $p\in\mathcal{P}_k$ place another copy $\mathcal{L}_p$ of $\mathcal{L}_k$ with probes $\mathcal{P}_{p}$ in the root of $p$. Afterwards, for each $p\in\mathcal{P}_k$ and every $q\in\mathcal{P}_{p}$ draw the diagonal $d_q$ of $q$, i.e. a line segment from its bottom-left corner to its upper-right corner. $d_q$ crosses all segments intersecting $q$ but no other. Then, $\mathcal{L}_k$ consists of the segments from the $p_k + 1$ copies of $\mathcal{L}_k$ and the $p_k^2$ diagonals, i.e. $\vert \mathcal{L}_{k+1}\vert =(p_k + 1)s_k+p_k^2=s_{k+1}$. Since the copies of $\mathcal{L}_k$ are triangle-free and disjoint and $d_q$ intersects only the segments in $q$, an independent set of segments, $\mathcal{L}_{k+1}$ is also triangle-free.
 
-Now we want to construct $\mathcal{P}_{k+1}$. For each $p\in\mathcal{P}_k$ and every $q\in\mathcal{P}_{p}$ let $\mathcal{L}(p)$ be the set of segments in $\mathcal{P}_k$ intersecting $p$ and $\mathcal{L}_p(q)$ the segments in $\mathcal{L}(p)$ intersecting $q$. We add two probes to $\mathcal{P}_{k+1}$. We place the first one, the upper probe $u_q$, close to the top of $q$, such that it pierces the diagonal $d_q$ but no other segment in $\mathcal{L}_p(q)$ and choose the second probe, the lower probe $l_q$, close to the bottom of $q$ such that it pierces all segments in $\mathcal{L}_p(q)$ but not $d_q$. Then, both probes end at the right boundary of $R$. By the induction hypothesis and the way we placed $\mathcal{L}_p$, $\mathcal{L}(p)\cup \lbrace d_q\rbrace$ and $\mathcal{L}(p)\cup\mathcal{L}_p(q)$ are both independent sets, i.e. both $u_q$ and $l_q$ are proper probes. Finally, observe that $\vert \mathcal{P}_{k+1}\vert = 2p_k^2=p_{k+1}$.
+Now we want to construct $\mathcal{P}_{k+1}$. For each $p\in\mathcal{P}_k$ and every $q\in\mathcal{P}_{p}$ let $\mathcal{L}(p)$ be the set of segments in $\mathcal{P}_k$ intersecting $p$ and $\mathcal{L}_p(q)$ the segments in $\mathcal{L}(p)$ intersecting $q$. We add two probes to $\mathcal{P}_{k+1}$. We place the first one, the upper probe $u_q$, close to the top of $q$, such that the diagonal $d_q$ but no other segment in $\mathcal{L}_p(q)$ intersects it and choose the second probe, the lower probe $l_q$, close to the bottom of $q$ such that it contains all segments in $\mathcal{L}_p(q)$ but not $d_q$. Then, both probes end at the right boundary of $R$. By the induction hypothesis and the way we placed $\mathcal{L}_p$, $\mathcal{L}(p)\cup \lbrace d_q\rbrace$ and $\mathcal{L}(p)\cup\mathcal{L}_p(q)$ are both independent sets, i.e. both $u_q$ and $l_q$ are proper probes. Finally, observe that $\vert \mathcal{P}_{k+1}\vert = 2p_k^2=p_{k+1}$.
 
 Let $c$ be a coloring of $\mathcal{L}_{k+1}$. Consider the restriction of $c$ to the original copy of $\mathcal{L}_k$. By the induction hypothesis, there exists a probe $p\in\mathcal{P}_k$ for which $c$ needs $k$ colors to paint the line segments in $p$. Now, consider the copy $\mathcal{L}_p$ of $\mathcal{L}_k$ in the root of $p$. Again, by induction hypothesis, there is a probe $q\in\mathcal{P}_p$ that uses $k$ colors on the segments in $\mathcal{L}_p$ intersecting $q$. If the colors used by $c$ in $p$ and $q$ are different, at least $k+1$ colors are used on the segments pierced by the lower probe $l_q$. Otherwise, $d_q$ has a different color than the colors used in $p$ and $q$ and thus, $c$ uses $k+1$ colors on the segments pierced by the upper probe $u_q$.\qed
 \end{prf}
-
+\end{comment}
 Similar to the construction of triangle-free graphs of large chromatic number by Mycielski, there exist rather simple proofs showing that such graphs provided by the construction above contain induced copies of stars and paths as well.
-
-\begin{note}
-If we denote the intersection graph obtained from the family of line segments $\mathcal{L}_k$ in step $k$ of the construction above as $G_k$, it is easy to see that $G_{k+1}$ contains an induced copy of $G_k$. With this knowledge it is enough to prove the existence of an induced copy of a tree $T$ in some $G_k$ since it then is not a suitable candidate to disprove the conjecture as it is contained in a graph of arbitrarily large chromatic number.
-\end{note}
+First, note that $B_{k+1}$ contains an induced copy of $B_k$ for all $k\in\N$. This follows directly from the construction. With this knowledge it is enough to prove the existence of an induced copy of a tree $T$ in some $B_k$. Then $T$ is no suitable candidate to disprove the conjecture as it is contained in a graph of arbitrarily large chromatic number.
 
 \begin{thm}
-Let $n\in\N$. Then, $G_{n+1}$ contains an induced copy of $K_{1,n}$.
+Let $n\in\N$. Then, $B_{n+1}$ contains an induced copy of $K_{1,n}$.
 \end{thm}
 \begin{prf}
-Let $n\in\N$ be fixed and consider $G_n$. For any coloring $c$ of $\mathcal{L}_n$ there is a probe for which $c$ uses $n$ colors on the pierced line segments. Thus, there exists a probe $p$ in $\mathcal{P}_n$ piercing at least $n$ line segments. By definition, these are pairwise disjoint. Consider the copy $q\in\mathcal{P}_p$ of this probe. Observe that $q$ pierces at least $n$ pairwise disjoint line segments in $\mathcal{L}_p$. Denote the set of these segments as $S$. Then, the set of line segments $\lbrace d_q\rbrace\cup S$ forms an induced copy of a star $K_{1,n}$ in $G_{n+1}$.\qed   
+Let $n\in\N$ be fixed and consider $B_n$. By Theorem \ref{t2ls}, there exists a stable set $S\in S(B_n)$ such that any proper coloring $c$ of $B_n$ uses at least $n$ colors on the vertices in $S$. Then $S$ has at least size $n$. Consider the copy $X\in S(H_S)$ of $S$ in $H_S$. By definition, $X$ is a stable set and contains at least $n$ vertices. Thus, the vertex set $X\cup \lbrace v_{S,X}\rbrace$ induces a copy of $K_{1,n}$ in $B_k$.\qed   
 \end{prf}
 
 \begin{thm}
