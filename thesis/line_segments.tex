@@ -1,7 +1,5 @@
 Besides the Mycielskian construction we also obtain triangle-free graphs of arbitrarily large chromatic number from the following construction by Pawlik et al. \cite{Paw14} using intersection graphs of line segments in an axis-aligned rectangle in the $\mathbb{R}^2$. As mentioned in a paper by Felsner et al. \cite{Fe18} the construction of Burling graphs results in exactly the same family of graphs. They state that the construction of these graphs actually traces back to the PhD Thesis by Burling himself \cite{Bu65}. Since the result is the same regardless of the construction, it is enough to consider one to exclude all constructions as candidates for disproving the Gyárfás-Sumner conjecture. We will look at both constructions and then prove that for all trees $T$ the family of graphs obtained by these constructions indeed contains infinitely many graphs that induce $T$.
 
-Before proving 
-
 \begin{defn}
 Let $R$ be an axis-aligned rectangle in the $\mathbb{R}^2$ with boundaries $[a,b]\times [c,d]$ and $\mathcal{L}$ a family of line segments contained in the interior of $R$. A probe $P$ in $R$ is a rectangle $[a^\prime ,b]\times [c^\prime ,d^\prime]$ with the following properties:
 \begin{enumerate}[(i)]
@@ -10,12 +8,30 @@ Let $R$ be an axis-aligned rectangle in the $\mathbb{R}^2$ with boundaries $[a,b
 \item no line segment in $\mathcal{L}$ ends in $P$ or on the boundary on $P$
 \item line segments in $\mathcal{L}$ intersecting $P$ are pairwise disjoint
 \end{enumerate}
-We call the rectangle $[a^\prime ,b^\prime ]\times [c^\prime ,d^\prime]$ with the maximal $b^\prime$, such that no line segment intersects it, the root of $P$.
+We call the rectangle $[a^\prime ,b^\prime ]\times [c^\prime ,d^\prime]$ with the maximal $b^\prime$, such that no line segment intersects it, the root of $P$. Figure \ref{f1ls} contains an example for a rectangle $R$ with a family of line segments and two probes.
 \end{defn}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{probe}
+\end{center}
+\caption{Illustration of line segments, probes and roots in a rectangle R}
+\label{f1ls}
+\end{figure}
+
 
 Let $R$ be an axis-aligned rectangle with a non-empty interior. Let $(s_i)_{i\in\N}$ and $(p_i)_{i\in\N}$ be sequences inductively defined by setting $s_1=p_1=1$, $s_{i+1}=(p_i+1)s_i+p_i^2$ and $p_{i+1}=2p_i^2$. For each $k\in\N$, we then define a family $\mathcal{L}_k$ of $s_k$ line segments and a set $\mathcal{P}_k$ of $p_k$ probes in $R$ as follows. Let $\mathcal{L}_1$ contain an arbitrary non-horizontal line segment in $R$ and choose any rectangle in $R$ that shares its right boundary with $R$ and intersects the line segment with its lower and upper bound as the probe in $\mathcal{P}_1$. Now suppose $k\geq 2$ for the inductive step. To construct $\mathcal{L}_k$ draw $\mathcal{L}_{k-1}$ in $R$ and for each probe $p\in\mathcal{P}_{k-1}$ place another copy $\mathcal{L}_p$ of $\mathcal{L}_{k-1}$ with probes $\mathcal{P}_{p}$ in the root of $p$. Note that the probes in $\mathcal{P}_{p}$ are not extending to the right boundary of $R$ but instead end at the right boundary of the root of $p$. Afterwards, for each $p\in\mathcal{P}_{k-1}$ and every $q\in\mathcal{P}_{p}$ draw the diagonal $d_q$ of $q$, i.e. a line segment from its bottom-left corner to its upper-right corner. The diagonal $d_q$ crosses all segments intersecting $q$ but no other. Then, $\mathcal{L}_k$ contains the line segments from the $p_{k-1} + 1$ copies of $\mathcal{L}_{k-1}$ and the $p_{k-1}^2$ diagonals, i.e. $\vert \mathcal{L}_k\vert =(p_{k-1} + 1)s_{k-1}+p_{k-1}^2=s_k$. 
 
 Now we want to construct $\mathcal{P}_k$. For each $p\in\mathcal{P}_{k-1}$ and every $q\in\mathcal{P}_{p}$ let $\mathcal{S}(p)$ be the set of line segments in $\mathcal{L}_{k-1}$ intersecting $p$ and $\mathcal{S}_p(q)$ the segments in $\mathcal{L}_k$ intersecting $q$. For each such $q$ we add two probes to $\mathcal{P}_k$. We place the first one, the upper probe $u_q$, close to the top of $q$, such that the diagonal $d_q$ but no other segment in $\mathcal{S}_p(q)$ intersects it and choose the second probe, the lower probe $l_q$, close to the bottom of $q$ such that it contains all segments in $\mathcal{S}_p(q)$ but not $d_q$. Then, both probes end at the right boundary of $R$. Since line segments intersecting $p$ are pairwise disjoint by the induction hypothesis, and since we placed the line segments in $\mathcal{S}_p$ in a way that they do not cross any segment in $p$ as well, $\mathcal{S}(p)\cup \lbrace d_q\rbrace$ and $\mathcal{S}(p)\cup\mathcal{L}_p(q)$ are both independent sets, i.e. both $u_q$ and $l_q$ are proper probes. Finally, observe that $\vert \mathcal{P}_k\vert = 2p_{k-1}^2=p_k$.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=0.75]{diagonal}
+\end{center}
+\caption{Probe $q$ with its diagonal $d_q$ and the two newly created probes $u_q$ and $l_q$}
+\label{f2ls}
+\end{figure}
+
 
 Let $G_k$ denote the intersection graph of the line segments in $\mathcal{L}_k$, i.e. each vertex in $G_k$ represents a line segment of $\mathcal{L}_k$ and two vertices are adjacent if and only if the corresponding line segments intersect each other.\\
 
@@ -29,7 +45,7 @@ We shall show that $G_k$ and $B_k$ are isomorphic under an isomorphism $\varphi_
 
 For $k=1$, $G_1$ and $B_1$ are graphs on a single vertex and thus isomorphic with isomorphism $\varphi_1$. Define a bijection $f_1:\mathcal{P}_1\to S(B_1)$ that maps the one probe in $\mathcal{P}_k$ to the one stable set in $S(B_k)$.
 
-Suppose $k\geq 2$, $G_{k-1}$ and $B_{k-1}$ are isomorphic, and the bijection $f_{k-1}$ between $P_{k-1}$ and $S(B_{k-1})$ exists as wanted. We extend the isomorphism to pairs of copies $(\mathcal{L}_p, H_{f(p)})$ of $G_{k-1}$ and $B_{k-1}$ respectively for all probes $p\in\P_{k-1}$ and thus covering all copies of $G_{k-1}$ in $G_k$ and $B_{k-1}$ in $B_{k}$. We do this by setting $\varphi_k (v^\prime)=u^\prime$ if and only if $v^\prime\in \mathcal{L}_p$ is the copy of a vertex $v\in G_{k-1}$ and $u^\prime$ is the copy of $\varphi_{k-1}(v)\in H_{f(p)}$. Then, we map the remaining vertices according to the bijection between $\mathcal{P}_k$ and $S(B_k)$: for each $p\in\mathcal{P}_{k-1}$ and $q\in\mathcal{P}_p$ ($q$ is the copy of some probe $q^\prime\in\mathcal{P}_{k-1}$) map the vertex corresponding to $d_q\in V(G_{k-1})$ to the vertex $v_{S,X}\in B_{k-1}$ where $S=f(p)$ and $X$ is the copy of $f(q^\prime)$ in $S(H_S)$. That yields an isomorphism $\varphi_k$ between $G_k$ and $B_k$ since the images of the neighbors of $d_q$ are the neighbors of $v_{S,X}$ in $B_k$. Finally, define $f_k:\mathcal{P}_k\to S(B_k)$ as $f(u_q)= S\cup \lbrace v_{S,X}\rbrace$ and $f(l_q)= S\cup X$.\qed
+Suppose $k\geq 2$, $G_{k-1}$ and $B_{k-1}$ are isomorphic, and the bijection $f_{k-1}$ between $\mathcal{P}_{k-1}$ and $S(B_{k-1})$ exists as wanted. We extend the isomorphism to pairs of copies $(\mathcal{L}_p, H_{f(p)})$ of $G_{k-1}$ and $B_{k-1}$ respectively for all probes $p\in \mathcal{P}_{k-1}$ and thus covering all copies of $G_{k-1}$ in $G_k$ and $B_{k-1}$ in $B_{k}$. We do this by setting $\varphi_k (v^\prime)=u^\prime$ if and only if $v^\prime\in \mathcal{L}_p$ is the copy of a vertex $v\in G_{k-1}$ and $u^\prime$ is the copy of $\varphi_{k-1}(v)\in H_{f(p)}$. Then, we map the remaining vertices according to the bijection between $\mathcal{P}_k$ and $S(B_k)$: for each $p\in\mathcal{P}_{k-1}$ and $q\in\mathcal{P}_p$ ($q$ is the copy of some probe $q^\prime\in\mathcal{P}_{k-1}$) map the vertex corresponding to $d_q\in V(G_{k-1})$ to the vertex $v_{S,X}\in B_{k-1}$ where $S=f(p)$ and $X$ is the copy of $f(q^\prime)$ in $S(H_S)$. That yields an isomorphism $\varphi_k$ between $G_k$ and $B_k$ since the images of the neighbors of $d_q$ are the neighbors of $v_{S,X}$ in $B_k$. Finally, define $f_k:\mathcal{P}_k\to S(B_k)$ as $f(u_q)= S\cup \lbrace v_{S,X}\rbrace$ and $f(l_q)= S\cup X$.\qed
 \end{prf}
 
 Since both constructions yield the same family of graphs, let us call it $\mathcal{LG}$, it is enough to consider just the Burling graphs for the following proofs. The results hold for both constructions. First, we want to assert that the graphs are indeed triangle-free and that we can find graphs of arbitrarily large chromatic number in $\mathcal{LG}$.
@@ -74,40 +90,48 @@ Similar to the construction of triangle-free graphs of large chromatic number by
 First, note that $B_{k+1}$ contains an induced copy of $B_k$ for all $k\in\N$. This follows directly from the construction. With this knowledge it is enough to prove the existence of an induced copy of a tree $T$ in some $B_k$. Then $T$ is no suitable candidate to disprove the conjecture as it is contained in a graph of arbitrarily large chromatic number.
 
 \begin{thm}
-Let $n\in\N$. Then, $B_{n+1}$ contains an induced copy of $K_{1,n}$.
+Let $k\in\N$. Then, $B_{k+1}$ contains an induced copy of $K_{1,k}$.
 \end{thm}
 \begin{prf}
-Let $n\in\N$ be fixed and consider $B_n$. By Theorem \ref{t2ls}, there exists a stable set $S\in S(B_n)$ such that any proper coloring $c$ of $B_n$ uses at least $n$ colors on the vertices in $S$. Then $S$ has at least size $n$. Consider the copy $X\in S(H_S)$ of $S$ in $H_S$. By definition, $X$ is a stable set and contains at least $n$ vertices. Thus, the vertex set $X\cup \lbrace v_{S,X}\rbrace$ induces a copy of $K_{1,n}$ in $B_k$.\qed   
+Let $k\in\N$ be fixed and consider $B_k$. By the proof of Theorem \ref{t2ls}, there exists a stable set $S\in S(B_k)$ such that any proper coloring $c$ of $B_k$ uses at least $k$ colors on the vertices in $S$. Then $S$ has at least size $k$. Consider the copy $X\in S(H_S)$ of $S$ in $H_S$. By definition, $X$ is a stable set and contains at least $k$ vertices. Thus, the vertex set $X\cup \lbrace v_{S,X}\rbrace$ induces a copy of $K_{1,k}$ in $B_k$.\qed   
 \end{prf}
 
-\begin{thm}
-Let $n\in\N$, $n\geq 2$. Then, $G_{n+1}$ contains an induced copy of $P_n$.
+\begin{thm}\label{t3ls}
+Let $k\in\N$. Then, $B_{k+1}$ contains an induced copy of $P_k$.
 \end{thm}
 \begin{prf}
-We prove the existence of an induced copy of $P_n$ in $G_{n+1}$ by induction on $n$. Observe that in each step we choose a diagonal of some probe from $\mathcal{P}_{n-1}$ as the new line segment we add to our path in step $n$.
+We prove the existence of an induced copy of $P_k$ in $B_{k+1}$ by induction on $k$. The idea is to construct an induced path $Q_k$ on $k$ vertices by choosing a vertex $v_{S,X}$ for some stable sets $S\in S(B_k)$ and $X\in S(H_S)$ as the vertex we add to our path in step $k$.
 
-Launch the induction with $n=2$. Consider $G_2$. We have just one probe $p$ in $\mathcal{P}_1$, i.e. just one diagonal $d_p$ that intersects the copy $l^\prime$ of the line segment $l$ in $\mathcal{L}_1$ in $\mathcal{L}_p$. $Q_n = (l^\prime ,d_p)$ is an induced copy of $P_2$.
+Launch the induction with $k=1$. Consider $B_1$. We have just one stable set $S$ in $S(B_1)$, i.e. there exists just one vertex $v_{S,X}$ in $B_2$ where $X$ is the copy of $S$ in $S(H_S)$. Define $Q_1=(v_{S,X})$. This is an induced copy of $P_1$  in $B_2$.
 
-For the induction step, let $Q_n$ be an induced copy of $P_n$ in $G_n$ for some fixed $n\in\N$, $n\geq 2$, and construct an induced copy $Q_{n+1}$ of $P_{n+1}$ as follows. Let $q$ denote the probe in $\mathcal{P}_{n-1}$ we chose the diagonal $d_q$ that we use as the last vertex in our path $Q_n$ from. Then, the upper probe $u_q$ in $q$ is a probe in $\mathcal{P}_n$. Now choose an arbitrary probe $p\in\mathcal{P}_n$. Let $Q_n^\prime$ denote the copy of $Q_n$ in $\mathcal{L}_p$. Note that $Q_n^\prime$ is an induced copy of $P_n$ as well. Consider a copy $u_q^\prime$ in $\mathcal{P}_p$ of the probe $u_q$. Its diagonal $d$ intersects the copy of $d_q$ but no other vertex of $\mathcal{L}_p$. Thus, $Q_{n+1}=Q_{n}^\prime d$ is an induced copy of $P_{n+1}$ in $G_{n+1}$.\qed
+For the induction step, let $k\geq 2$ and let $Q_{k-1}$ be an induced path on $k-1$ vertices in $B_k$. We construct an induced path $Q_k$ on $k$ vertices as follows. Let $v=v_{S,X}$ be the last vertex of $Q_{k-1}$. Then, $S^\prime = S\cup \lbrace v\rbrace$ is a stable set in $S(B_k)$. Observe that the copies $H$ and $H_S$ of $B_{k-1}$ are edge-disjoint in $B_k$. Thus, no vertex in $V(Q_{k-1})\setminus\lbrace v\rbrace$ is also an element of $S$. Now consider $B_{k+1}$ and choose an arbitrary stable set $R\in S(B_k)$. Let $Q_{k-1}^\prime$ denote the copy of $Q_{k-1}$ in $H_R$ and let $v^\prime$ denote the copy of $v$. Note that $Q_{k-1}^\prime$ is an induced copy of $P_{k-1}$ as well. Consider the copy of $S^\prime$ in $S(H_R)$, call it $S^{\prime\prime}$. As before no vertex in $V(Q_{k-1}^\prime )\setminus\lbrace v^\prime\rbrace$ is a vertex of $S^{\prime\prime}$. Thus, the vertex $v_{R,S^{\prime\prime}}$ is adjacent to the copy of $v^\prime$ but no other vertex in $Q_{k-1}^\prime$ and $Q_k=Q_{k-1}^\prime v_{R,S^{\prime\prime}}$ is an induced path on $k$ vertices in $B_{k+1}$. See Figure \ref{f3ls} for an illustration.\qed
 \end{prf}
 
-Finally, there exists an inductive proof showing that actually for every tree $T$ we can find an intersection graph $G_k$ for some $k\in\N$ that contains an induced copy of $T$. Therefore, let us define a sequence of trees $T_1, T_2, \dots$ where $T_1$ is the tree on one vertex and for all $i\in\N$ let $T_{i+1}$ be obtained from $T_i$ by adding a leaf to each vertex of $T_i$. Denote the vertices of $T_i$ by $t_1, t_2,\dots ,t_{2^i}$, where $t_{2^{i-1}+j}$ is the leaf we added to $t_j$ when constructing $T_i$.
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{path_ls}
+\end{center}
+\caption{Choice of the vertex added in the inductive step}
+\label{f3ls}
+\end{figure}
+
+Finally, there exists an inductive proof showing that actually for every tree $T$ we can find a Burling graph $B_k$ for some $k\in\N$ that contains an induced copy of $T$. Therefore, let us define a sequence of trees $T_1, T_2, \dots$ where $T_1$ is the tree on one vertex and for all $i\in\N$ let $T_{i+1}$ be obtained from $T_i$ by adding a new vertex only adjacent $t$ for each vertex $t\in T_i$. Note that the following proof works by the same principle as the proof of Theorem \ref{t3ls}.
 
 \begin{thm}\label{t1ls}
-Let $k\in\N$. The graph $G_k$ contains an induced copy of $T_k$.
+Let $k\in\N$. The graph $B_k$ contains an induced copy of $T_k$.
 \end{thm}
 
 \begin{prf}
-We shall prove a stronger statement. We claim that $T_k\subseteq_I G_k$ for some $k\in\N$ and that for each vertex $t\in V(T)$ there exists a probe $p\in\mathcal{P}_k$ containing exactly $t$ but no other vertex from $V(T)$. The proof goes by induction on $k\in\N$. Before the induction starts, let us introduce a notation. Denote the copy of $T_k$ with $C_k$ and its vertices with $c_1^k, c_2^k, \dots , c_{2^k}^k$.
+We shall prove a stronger statement. We claim that $T_k\subseteq_I B_k$ for all $k\in\N$ and that for each vertex $t\in V(T_k)$ there exists a stable set $S_t\in S(B_k)$ containing exactly $t$ but no other vertex from $V(T_k)$. The proof goes by induction on $k$. The idea of the inductive step then is to choose some copy $H_S$ of $B_k$ in $B_{k+1}$, consider an induced copy of $T_k$ in $H_S$ and add the vertices $v_{S,S_t}$ for each $t$ to form an induced copy of $T_{k+1}$.
 
-To launch the induction let $k=1$. The tree $T_1$ consists of one single vertex $t_1$. Thus, by defining $c_1^1$ to be the single vertex in $G_1$ we found an induced copy of $T_1$ in $G_1$. Observe that the only probe in $\mathcal{P}_1$ pierces $c_1^1$.
+To launch the induction let $k=1$. The tree $T_1$ consists of one single vertex $t_1$. Thus, the graph on the single vertex in $B_1$ is an induced copy of $T_1$ in $B_1$. Observe that the stable set in $S(B_1)$ contains this vertex.
 
-Now let $k>1$ and suppose the statement holds for all $1\leq k^\prime <k$, $k^\prime\in\N$. By the induction hypothesis there exists an induced copy $C_{k-1}$ of $T_{k-1}$ in $G_{k-1}$. Consider $G_k$ and choose one of the $p_{k-1}$ induced copies of $G_{k-1}$. Call it $G_{k-1}^\prime$. Let $c_1^k, c_2^k,\dots , c_{2^{k-1}}^k$ be the copies of the vertices of $C_{k-1}$ in $G_{k-1}^\prime$. Also by induction hypothesis, for each vertex $c_i^{k-1}$, $i\in [2^{k-1}]$, there exists a probe $p_{c_i^{k-1}}\in\mathcal{P_{k-1}}$ containing $c_i^{k-1}$ but no other vertex of $C_{k-1}$. Let $q_i:=q_{c_i^{k-1}}$ denote the copy of this probe in $G_{k-1}^\prime$. Observe that $q_i$ contains $c_i^k$ but no other vertex $c_j^k$, $j\in [2^{k-1}]$, $i\neq j$. Then, we can choose the diagonal of $q_i$ as the leaf $c_{2^{k-1}+i}^k$ because it crosses $c_i^k$ but none of the other vertices, i.e. in the intersection graph $G_k$, $c_{2^{k-1}+i}^k$ is only adjacent to $c_i^k$. Since the probes $q_i$, $i\in [2^{k-1}]$, are pairwise disjoint by the definition of probes, the vertices $c_{2^{k-1}+i}^k$, $i\in [2^{k-1}]$, are pairwise non-adjacent as well. Thus, $C_k$ is an induced tree in $G_k$. Furthermore, with the new probes $u_{q_i}$ and $l_{q_i}$ in $\mathcal{P}_k$ we have one, $u_{q_i}$, that contains only $c_i^k$ and one, $l_{q_i}$, that only contains $c_{2^{k-1}+i}^k$ of the vertices in $C_k$. \qed
+Now let $k\geq 2$ and suppose the $B_{k-1}$ contains an induced copy of $T_{k-1}$, call it $Q_{k-1}$. Consider $B_k$ and choose a stable set $S\in S(B_{k-1})$. Then, $H_S$ is an induced copy of $B_{k-1}$ in $B_k$ and thus it contains an induced copy of $T_{k-1}$ as well. We denote it as $Q_{k-1}^\prime$. Let $q_1, q_2,\dots , q_{2^{k-1}}$ be the vertices of $Q_{k-1}^\prime$. By induction hypothesis, for each vertex $q$ in $Q_{k-1}$ there exists a stable set in $S(B_{k-1})$ containing $q$ but no other vertex from $Q_{k-1}$. Thus, there also exists a stable set $S_{q_i}\in S(H_S)$ containing $q_i$ but no other vertex of $Q_{k-1}^\prime$ for each $i\in [2^{k-1}]$. Now choose $v_i=v_{S,S_{q_i}}$ as the new vertex. Observe that it is only adjacent to $q_i$ and no other vertex of $Q_{k-1}^\prime$. Since the vertices $v_i$, $i\in [2^{k-1}]$, are pairwise non-adjacent by definition in the construction of Burling graphs, the graph $Q_k$ induced by the vertex set $V(Q_{k-1}^\prime)\cup \lbrace v_i:i\in [2^{k-1}]\rbrace$ is a tree and by the choice of the new vertices isomorphic to $T_k$. Furthermore, with the stable sets $S\cup \lbrace v_i\rbrace$ and $S\cup S_{q_i}$ in $S(B_k)$ we have one, $S\cup \lbrace v_i\rbrace$, that contains only $v_i$ and one, $S\cup S_{q_i}$, that only contains $q_i$ of the vertices in $Q_k$.\qed
 \end{prf}
 
 \begin{cor}
-For every tree $T$, there is a $k\in\N$ such that $T\subseteq_I G_k$.
+For every tree $T$, there is a $k\in\N$ such that $T\subseteq_I B_k$.
 \end{cor}
 \begin{prf}
-Let $T$ be a tree. Denote its radius by $r$ and let $v\in V(T)$ be a vertex such that the distance between $v$ and a vertex $u\in V(T)\setminus \lbrace v\rbrace$ is at most $r$. Define $k=\max_{u\in V(T)\setminus \lbrace v\rbrace} (dist(v,u)+\delta (u))$. Then $T$ is an induced subgraph of $T_k$ and therefore $T\subseteq_I G_k$ holds by theorem \ref{t1ls}.\qed
+Let $T$ be a tree. Denote its radius by $r$ and let $v\in V(T)$ be a vertex such that the distance between $v$ and a vertex $u\in V(T)\setminus \lbrace v\rbrace$ is at most $r$. Define $k=\max_{u\in V(T)\setminus \lbrace v\rbrace} (dist(v,u)+\delta (u))$. Then $T$ is an induced subgraph of $T_k$ and therefore $T\subseteq_I B_k$ holds by Theorem \ref{t1ls}.\qed
 \end{prf}
