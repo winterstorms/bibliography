@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180308165518" modified="D:20180308165518"/>
+<info created="D:20180308165518" modified="D:20180314141023"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -257,15 +257,16 @@ h
 <layer name="gamma"/>
 <layer name="delta"/>
 <layer name="epsilon"/>
+<layer name="zeta"/>
 <view layers="alpha beta gamma delta epsilon" active="delta"/>
-<path layer="alpha" stroke="black" pen="heavier">
+<path layer="alpha" matrix="1.16667 0 0 1 -85.3333 0" stroke="black" pen="heavier">
 128 576 m
 128 384 l
 512 384 l
 512 576 l
 h
 </path>
-<path layer="beta" matrix="0.869565 0 0 1 66.7826 0" stroke="black" pen="heavier">
+<path layer="beta" matrix="0.782608 0 0 1 111.304 0" stroke="black" pen="heavier">
 512 576
 512 384
 128 384
@@ -285,7 +286,7 @@ h
 480 496
 432 528 u
 </path>
-<use layer="gamma" name="mark/disk(sx)" pos="240 496" size="normal" stroke="black"/>
+<use layer="gamma" matrix="1 0 0 1 24 8" name="mark/disk(sx)" pos="240 496" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="272 448" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="304 448" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="336 480" size="normal" stroke="black"/>
@@ -295,43 +296,31 @@ h
 <use name="mark/disk(sx)" pos="416 432" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="448 464" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="400 464" size="normal" stroke="black"/>
-<text layer="epsilon" transformations="translations" pos="160 544" stroke="black" type="label" width="9.234" height="8.169" depth="0" valign="baseline" size="large">$G$</text>
-<text transformations="translations" pos="256 528" stroke="black" type="label" width="23.436" height="8.173" depth="2.62" valign="baseline" size="large">$G_{i-1}$</text>
-<text transformations="translations" pos="352 528" stroke="black" type="label" width="8.775" height="8.169" depth="0" valign="baseline" size="large">$A$</text>
-<text transformations="translations" pos="432 480" stroke="black" type="label" width="9.496" height="8.169" depth="0" valign="baseline" size="large">$B$</text>
-<text matrix="1 0 0 1 0 4" transformations="translations" pos="224 480" stroke="black" type="label" width="19.392" height="5.151" depth="2.62" valign="baseline" size="large">$q_{i-1}$</text>
-<text matrix="1 0 0 1 4 8" transformations="translations" pos="320 464" stroke="black" type="label" width="8.571" height="5.152" depth="2.32" valign="baseline" size="large">$q_i$</text>
+<text layer="epsilon" matrix="1 0 0 1 -64 8" transformations="translations" pos="160 544" stroke="black" type="label" width="9.234" height="8.169" depth="0" valign="baseline" size="large" style="math">G</text>
+<text matrix="1 0 0 1 24 8" transformations="translations" pos="256 528" stroke="black" type="label" width="23.436" height="8.173" depth="2.62" valign="baseline" size="large" style="math">G_{i-1}</text>
+<text transformations="translations" pos="352 528" stroke="black" type="label" width="8.775" height="8.169" depth="0" valign="baseline" size="large" style="math">A</text>
+<text transformations="translations" pos="432 480" stroke="black" type="label" width="9.496" height="8.169" depth="0" valign="baseline" size="large" style="math">B</text>
+<text matrix="1 0 0 1 32 32" transformations="translations" pos="224 480" stroke="black" type="label" width="19.392" height="5.151" depth="2.62" valign="baseline" size="large" style="math">q_{i-1}</text>
+<text matrix="1 0 0 1 4 8" transformations="translations" pos="320 464" stroke="black" type="label" width="8.571" height="5.152" depth="2.32" valign="baseline" size="large" style="math">q_i</text>
 <path layer="delta" stroke="black" fill="white" pen="heavier">
-240 496 m
+264 504 m
 320 496 l
 </path>
 <path stroke="black" fill="white" pen="heavier">
-240 496 m
+264 504 m
 272 448 l
 </path>
 <path stroke="black" fill="white" pen="heavier">
-240 496 m
+264 504 m
 304 448 l
 </path>
-<path stroke="black" fill="white" pen="heavier">
-240 496 m
+<path stroke="red" fill="white" pen="heavier">
+264 504 m
 336 480 l
 </path>
 <path stroke="black" fill="white" pen="heavier">
-240 496 m
+264 504 m
 368 512 l
-</path>
-<path stroke="black" fill="white" pen="heavier">
-368 512 m
-336 480 l
-</path>
-<path stroke="black" fill="white" pen="heavier">
-336 480 m
-320 496 l
-</path>
-<path stroke="black" fill="white" pen="heavier">
-272 448 m
-304 448 l
 </path>
 <path stroke="black" fill="white" pen="heavier">
 368 416 m
@@ -353,5 +342,43 @@ h
 368 416 m
 448 464 l
 </path>
+<path layer="beta" matrix="0.758621 0 0 1 86.8966 0" stroke="black" pen="heavier">
+360 568 m
+48 568
+48 392
+352 392 c
+</path>
+<path matrix="1.20833 0 0 1 -73.3333 0" stroke="black" pen="heavier">
+352 568 m
+96 568
+96 392
+352 392 c
+</path>
+<path matrix="1.25926 0 0 1 -91.2593 0" stroke="black" pen="heavier">
+352 568 m
+64 568
+64 392
+352 392 c
+</path>
+<use layer="gamma" name="mark/disk(sx)" pos="96 480" size="normal" stroke="black"/>
+<use name="mark/disk(sx)" pos="136 480" size="normal" stroke="black"/>
+<use name="mark/disk(sx)" pos="208 496" size="normal" stroke="black"/>
+<path layer="delta" stroke="red" pen="heavier">
+96 480 m
+136 480 l
+</path>
+<path stroke="red" pen="heavier">
+208 496 m
+264 504 l
+</path>
+<path stroke="red" dash="dashed" pen="heavier">
+136 480 m
+208 496 l
+</path>
+<text layer="epsilon" matrix="1 0 0 1 0 4" transformations="translations" pos="216 520" stroke="black" type="label" width="21.348" height="6.812" depth="2.32" valign="baseline">$G_{i-2}$</text>
+<text transformations="translations" pos="104 504" stroke="black" type="label" width="12.302" height="6.812" depth="1.49" valign="baseline">$G_1$</text>
+<text matrix="1 0 0 1 -4 4" transformations="translations" pos="96 464" stroke="black" type="label" width="8.917" height="4.297" depth="1.93" valign="baseline">$q_1$</text>
+<text matrix="1 0 0 1 -4 4" transformations="translations" pos="136 464" stroke="black" type="label" width="8.917" height="4.297" depth="1.93" valign="baseline">$q_2$</text>
+<text matrix="1 0 0 1 0 4" transformations="translations" pos="200 480" stroke="black" type="label" width="17.962" height="4.294" depth="2.32" valign="baseline">$q_{i-2}$</text>
 </page>
 </ipe>

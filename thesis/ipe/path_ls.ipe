@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180308143317" modified="D:20180308164244"/>
+<info created="D:20180308143317" modified="D:20180314144244"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -258,189 +258,189 @@ h
 <layer name="delta"/>
 <layer name="epsilon"/>
 <view layers="alpha beta gamma delta epsilon" active="epsilon"/>
-<path layer="alpha" stroke="black" pen="heavier">
+<path layer="alpha" matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
 64 512 m
 64 320 l
 256 320 l
 256 512 l
 h
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="black" pen="heavier">
 352 512 m
 352 320 l
 544 320 l
 544 512 l
 h
 </path>
-<path stroke="black" fill="white" pen="heavier" arrow="normal/normal">
+<path matrix="0.75 0 0 1 60 32" stroke="black" fill="white" pen="heavier" arrow="normal/normal">
 272 416 m
 336 416 l
 </path>
-<path layer="beta" matrix="1.04375 0 0 1.23513 -1.09311 -108.091" stroke="black" pen="heavier">
+<path layer="beta" matrix="1.04375 0 0 0.82342 -1.09311 98.606" stroke="black" pen="heavier">
 240 496
 240 432
 160 432
 80 496 u
 </path>
-<path matrix="1.14286 0 0 1.2 -27.4286 -67.2" stroke="black" pen="heavier">
+<path matrix="1.14286 0 0 0.8 -27.4286 125.867" stroke="black" pen="heavier">
 96 432
 80 336
 192 336
 208 400 u
 </path>
-<path matrix="0.923077 0 0 1.11111 18.4615 -53.3333" stroke="black" pen="heavier">
+<path matrix="0.923077 0 0 0.74074 18.4615 135.111" stroke="black" pen="heavier">
 240 480
 240 432
 144 448
 160 480 u
 </path>
-<path matrix="1.05 0 0 1.2 -4.6 -69.6" stroke="black" pen="heavier">
+<path matrix="1.05 0 0 1.01818 -4.6 48.3394" stroke="black" pen="heavier">
 184 400
 184 348
 92 348
 128 380 u
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1.06571 0 0 0.809524 -56.9679 108.952" stroke="black" pen="heavier">
 528 496
 528 432
 416 432
 380 500 u
 </path>
-<path matrix="1.0625 0 0 1.5 -32 -168" stroke="black" pen="heavier">
+<path matrix="1.0625 0 0 1 -64 58.6667" stroke="black" pen="heavier">
 368 416
 368 336
 456 336
 512 376 u
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1.23565 0 0 0.922722 -138.745 59.0265" stroke="black" pen="heavier">
 512 492
 512 436
 436 440 u
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1.13118 0 0 0.713939 -91.9828 155.19" stroke="black" pen="heavier">
 472 412
 472 348
 380 344 u
 </path>
-<use layer="gamma" name="mark/disk(sx)" pos="176 384" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="160 368" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="128 360" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="224 456" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="192 448" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="176 464" size="normal" stroke="black"/>
-<use matrix="1 0 0 1 4 -4" name="mark/disk(sx)" pos="472 448" size="normal" stroke="black"/>
-<use matrix="1 0 0 1 8 0" name="mark/disk(sx)" pos="480 448" size="normal" stroke="black"/>
-<use matrix="1 0 0 1 8 4" name="mark/disk(sx)" pos="492 452" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="500 464" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="420 356" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="460 380" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="224 352" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="512 352" size="normal" stroke="black"/>
-<use matrix="1 0 0 1 0 -4" name="mark/disk(sx)" pos="432 364" size="normal" stroke="black"/>
-<use matrix="1 0 0 1 -32 -12" name="mark/disk(sx)" pos="448 368" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="208 488" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="160 488" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="112 384" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="432 400" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="408 384" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="400 408" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="464 468" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="440 460" size="normal" stroke="black"/>
-<use name="mark/disk(sx)" pos="440 484" size="normal" stroke="black"/>
-<path layer="delta" stroke="black" pen="heavier">
+<use layer="gamma" matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="176 384" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="160 368" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="128 360" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="224 456" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="192 448" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="176 464" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -32 172" name="mark/disk(sx)" pos="472 448" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -24 170.667" name="mark/disk(sx)" pos="480 448" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -28 185.333" name="mark/disk(sx)" pos="492 452" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -36 166.667" name="mark/disk(sx)" pos="500 464" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -16 174.667" name="mark/disk(sx)" pos="420 356" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -48 162.667" name="mark/disk(sx)" pos="460 380" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="224 352" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="512 352" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -4 180" name="mark/disk(sx)" pos="432 364" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -52 162.667" name="mark/disk(sx)" pos="448 368" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="208 488" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 0 170.667" name="mark/disk(sx)" pos="160 488" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -8 170.667" name="mark/disk(sx)" pos="112 384" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="432 400" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="408 384" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="400 408" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="464 468" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="440 460" size="normal" stroke="black"/>
+<use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="440 484" size="normal" stroke="black"/>
+<path layer="delta" matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
 160 488 m
 176 464 l
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
 208 488 m
 224 456 l
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
 208 488 m
 192 448 l
 192 448 l
 </path>
 <path stroke="black" pen="heavier">
-112 384 m
-128 360 l
+104 426.667 m
+128 410.667 l
 </path>
 <path stroke="black" pen="heavier">
-112 384 m
-160 368 l
+104 426.667 m
+160 416 l
 </path>
 <path stroke="black" pen="heavier">
-112 384 m
-176 384 l
+104 426.667 m
+176 426.667 l
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
 176 384 m
 224 352 l
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
 160 368 m
 224 352 l
 224 352 l
 </path>
-<path stroke="black" pen="heavier">
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
 128 360 m
 224 352 l
 </path>
-<path stroke="red" pen="heavier">
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
 440 484 m
 440 460 l
 </path>
-<path stroke="red" pen="heavier">
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
 440 460 m
 464 468 l
 </path>
 <path stroke="red" pen="heavier">
-464 468 m
-500 464 l
+432 482.667 m
+464 476 l
 </path>
-<path stroke="red" pen="heavier">
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
 400 408 m
 408 384 l
 408 384 l
 </path>
-<path stroke="red" pen="heavier">
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
 408 384 m
 432 400 l
 </path>
 <path stroke="red" pen="heavier">
-432 400 m
-460 380 l
+400 437.333 m
+412 416 l
 </path>
 <path stroke="black" pen="heavier">
-460 380 m
-512 352 l
+412 416 m
+480 405.333 l
 </path>
 <path stroke="black" pen="heavier">
-416 356 m
-512 352 l
+396 408 m
+480 405.333 l
 </path>
 <path stroke="black" pen="heavier">
-432 360 m
-512 352 l
+428 422.667 m
+480 405.333 l
 </path>
 <path stroke="black" pen="heavier">
-420 356 m
-512 352 l
+404 412 m
+480 405.333 l
 </path>
-<text layer="epsilon" transformations="translations" pos="80 496" stroke="black" type="label" width="22.656" height="6.812" depth="2.32" valign="baseline">$B_{k-1}$</text>
-<text transformations="translations" pos="368 496" stroke="black" type="label" width="12.459" height="6.812" depth="1.49" valign="baseline">$B_k$</text>
-<text transformations="translations" pos="132 476" stroke="black" type="label" width="9.091" height="6.808" depth="0" valign="baseline">$H$</text>
-<text transformations="translations" pos="208 440" stroke="black" type="label" width="6.683" height="6.808" depth="0" valign="baseline">$S$</text>
-<text transformations="translations" pos="96 400" stroke="black" type="label" width="14.053" height="6.812" depth="1.49" valign="baseline">$H_S$</text>
-<text transformations="translations" pos="164 388" stroke="black" type="label" width="9.036" height="6.808" depth="0" valign="baseline">$X$</text>
-<text transformations="translations" pos="232 352" stroke="black" type="label" width="19.613" height="4.29" depth="2.85" valign="baseline">$v_{S,X}$</text>
-<text transformations="translations" pos="412 472" stroke="black" type="label" width="9.091" height="6.808" depth="0" valign="baseline">$H$</text>
-<text transformations="translations" pos="476 452" stroke="black" type="label" width="9.478" height="7.49" depth="0" valign="baseline">$S^\prime$</text>
-<text transformations="translations" pos="432 368" stroke="black" type="label" width="11.775" height="7.49" depth="0" valign="baseline">$S^{\prime\prime}$</text>
-<text transformations="translations" pos="372 400" stroke="black" type="label" width="14.817" height="6.812" depth="1.49" valign="baseline">$H_R$</text>
-<text transformations="translations" pos="520 352" stroke="black" type="label" width="23.896" height="4.29" depth="2.85" valign="baseline">$v_{R,S^{\prime\prime}}$</text>
-<text transformations="translations" pos="452 472" stroke="black" type="label" width="22.976" height="6.812" depth="2.32" valign="baseline">$Q_{k-1}$</text>
-<text transformations="translations" pos="416 404" stroke="black" type="label" width="22.976" height="7.491" depth="3.65" valign="baseline">$Q_{k-1}^{\prime}$</text>
-<text transformations="translations" pos="496 464" stroke="black" type="label" width="5.187" height="4.289" depth="0" valign="baseline">$v$</text>
-<text matrix="1 0 0 1 0 -4" transformations="translations" pos="456 372" stroke="black" type="label" width="7.982" height="7.49" depth="0" valign="baseline">$v^{\prime}$</text>
+<text layer="epsilon" transformations="translations" pos="80 496" stroke="black" type="label" width="22.656" height="6.812" depth="2.32" valign="baseline" style="math">B_{k-1}</text>
+<text matrix="1 0 0 1 -32 0" transformations="translations" pos="368 496" stroke="black" type="label" width="12.459" height="6.812" depth="1.49" valign="baseline" style="math">B_k</text>
+<text matrix="1 0 0 1 0 12" transformations="translations" pos="132 476" stroke="black" type="label" width="9.091" height="6.808" depth="0" valign="baseline" style="math">H</text>
+<text matrix="1 0 0 1 -4 24" transformations="translations" pos="208 440" stroke="black" type="label" width="6.683" height="6.808" depth="0" valign="baseline" style="math">S</text>
+<text matrix="1 0 0 1 0 40" transformations="translations" pos="96 400" stroke="black" type="label" width="14.053" height="6.812" depth="1.49" valign="baseline" style="math">H_S</text>
+<text matrix="1 0 0 1 0 44" transformations="translations" pos="164 388" stroke="black" type="label" width="9.036" height="6.808" depth="0" valign="baseline" style="math">X</text>
+<text matrix="1 0 0 1 -12 44" transformations="translations" pos="232 352" stroke="black" type="label" width="19.613" height="4.29" depth="2.85" valign="baseline" style="math">v_{S,X}</text>
+<text matrix="1 0 0 1 -28 12" transformations="translations" pos="412 472" stroke="black" type="label" width="9.091" height="6.808" depth="0" valign="baseline" style="math">H</text>
+<text matrix="1 0 0 1 -4 32" transformations="translations" pos="476 452" stroke="black" type="label" width="9.478" height="7.49" depth="0" valign="baseline" style="math">S^\prime</text>
+<text matrix="1 0 0 1 -52 40" transformations="translations" pos="432 368" stroke="black" type="label" width="11.775" height="7.49" depth="0" valign="baseline" style="math">S^{\prime\prime}</text>
+<text matrix="1 0 0 1 -36 28" transformations="translations" pos="372 400" stroke="black" type="label" width="14.817" height="6.812" depth="1.49" valign="baseline" style="math">H_R</text>
+<text matrix="1 0 0 1 -44 44" transformations="translations" pos="520 352" stroke="black" type="label" width="23.896" height="4.29" depth="2.85" valign="baseline" style="math">v_{R,S^{\prime\prime}}</text>
+<text matrix="1 0 0 1 -36 16" transformations="translations" pos="452 472" stroke="black" type="label" width="22.976" height="6.812" depth="2.32" valign="baseline" style="math">Q_{k-1}</text>
+<text matrix="1 0 0 1 -44 40" transformations="translations" pos="416 404" stroke="black" type="label" width="22.976" height="7.491" depth="3.65" valign="baseline" style="math">Q_{k-1}^{\prime}</text>
+<text matrix="1 0 0 1 -28 8" transformations="translations" pos="496 464" stroke="black" type="label" width="5.187" height="4.289" depth="0" valign="baseline" style="math">v</text>
+<text matrix="1 0 0 1 -44 48" transformations="translations" pos="456 372" stroke="black" type="label" width="7.982" height="7.49" depth="0" valign="baseline" style="math">v^{\prime}</text>
 </page>
 </ipe>
