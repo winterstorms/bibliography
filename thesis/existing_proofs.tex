@@ -1,4 +1,4 @@
-For a graph $H$ define the family of graphs not containing an induced subgraph isomorphic to $H$ as $\textit{Forb}(H)$. For which $H$ can we find a function $f$ such that $\chi (G)\leq f(\omega (G))$ holds for every graph $G\in\textit{Forb}(H)$? I.e., by the notation in \ref{d1}, we want to find a bounding function for $\textit{Forb}(H)$. If $f$ exists, let us call $H$ $\chi $-bounding. Observe that if $H$ is $\chi $-bounding, $H$ must be acyclic. That is because of a result by Erd\H{o}s and Hajnal in \cite{EH66} showing the existence of graphs with arbitrarily high girth and chromatic number. Thus, if $H$ contains a cycle, we can always find a graph $G$ with girth greater than the longest cycle in $H$ and a large chromatic number. Therefore, it is impossible to find a bounding function for $\textit{Forb}(H)$. For every acyclic graph $H^\prime$ the family $\mathcal{F}(H^\prime )$ may be $\chi$-bounded. Indeed, Gyárfás \cite{Gy75} and Sumner \cite{Su81} independently conjectured that it is true for every forest.
+For a graph $H$ define the family of graphs not containing an induced subgraph isomorphic to $H$ as $\textit{Forb}(H)$. For which $H$ can we find a function $f$ such that $\chi (G)\leq f(\omega (G))$ holds for every graph $G\in\textit{Forb}(H)$? I.e., by the notation in \ref{d1}, we want to find a bounding function for $\textit{Forb}(H)$. If $f$ exists, let us call $H$ $\chi $-bounding. Observe that if $H$ is $\chi $-bounding, $H$ must be acyclic. That is because of a result by Erd\H{o}s and Hajnal in \cite{EH66} showing the existence of graphs with arbitrarily large girth and chromatic number. Thus, if $H$ contains a cycle, we can always find a graph $G$ with girth greater than the longest cycle in $H$ and a large chromatic number. Therefore, it is impossible to find a bounding function for $\textit{Forb}(H)$. For every acyclic graph $H^\prime$ the family $\mathcal{F}(H^\prime )$ may be $\chi$-bounded. Indeed, Gyárfás \cite{Gy75} and Sumner \cite{Su81} independently conjectured that it is true for every forest.
 
 \begin{con}[Gyárfás \cite{Gy75}, Sumner \cite{Su81}]\label{c1cr}
 Every forest $F$ is $\chi$-bounding.
@@ -46,7 +46,7 @@ Now let $k>1$ and suppose the statement holds for all $1\leq k^\prime <k$. Consi
 A graph $G$ with $\chi (G) = k$ contains every tree $T$ on $k$ vertices as a subgraph. 
 \end{cor}
 \begin{prf}
-A tree $T$ on $k$ vertices can be seen as a labeled tree on $k$ vertices. Thus, $T\subseteq G$ holds by theorem \ref{t3cr}.\qed
+A tree $T$ on $k$ vertices can be seen as a labeled tree on $k$ vertices. Thus, $T\subseteq G$ holds by Theorem \ref{t3cr}.\qed
 \end{prf}
 
 \begin{cor}
@@ -56,7 +56,28 @@ For a tree $T$, the family $\mathcal{F}$ of graphs not containing $T$ as a subgr
 The chromatic number of any graph $G\in\mathcal{F}$ is at most $\vert T\vert$ by Corollary \ref{c1cr}.\qed
 \end{prf}
 
-The actual Gyárfas-Sumner conjecture remains open. Even though many tried to prove the conjecture for over forty years, there are only some trees found to be $\chi$-bounding so far. Here is a list of them as stated by Chudnovsky, Scott and Seymour in \cite{CSS17} including the cases they proved in the same paper.
+The actual Gyárfas-Sumner conjecture for induced subgraphs remains open. Even though many tried to prove the conjecture for over forty years, there are only some trees found to be $\chi$-bounding so far. 
+
+Note that finding a counterexample for the Gyárfas-Sumner conjecture is not easy either. As the following result shows, considering a random large graph and a tree $T$ does not work since the graph contains an induced subgraph isomorphic to $T$ with asymptotic probability $1$. For our purpose, a \textit{random} graph is a graph where each edge is independently determined to be present with probability $\frac{1}{2}$. For a graph property $P$ let $\mathcal{P}$ denote the family of graphs with this property. Let $G$ be a random graph on $n$ vertices. We say \textit{almost all graphs} have property $P$ if $Prob(G\in\mathcal{P})\xlongrightarrow{{n\to\infty}} 1$.
+\begin{thm}
+Let $T$ be a tree. Almost all graphs contain an induced subgraph isomorphic to $T$.
+\end{thm}
+\begin{prf}
+Let $T$ be a tree on $k$ vertices and $G$ be a random graph on $n\geq k$ vertices. Observe that a vertex set $H\subseteq V(G)$ of size $k$ induces a graph isomorphic to $T$ with a strictly positive probability $p$ since all edges between vertices in $H$ are present with probabilitiy $\frac{1}{2}$. For the probability of $G$ containing an induced subgraph isomorphic to $T$ then holds:
+\begin{equation*}
+\begin{split}
+\textit{Prob}(T\subseteq_I G) &= 1-\textit{Prob}(T\nsubseteq_I G)\\
+&=1-\textit{Prob}(G[H]\not\approx T \hspace{0.4em}\forall H\subseteq V(G), \vert H\vert =k)\\
+&=1-\prod_{H\in {V\choose k}}\textit{Prob}(G[H]\not\approx T)\\
+&=1-\prod_{H\in {V\choose k}} (1-p)\\
+&=1-(1-p)^{n\choose k}\xlongrightarrow{{n\to\infty}} 1
+\end{split}
+\end{equation*}
+\qed
+\end{prf}
+Thus, we require a special construction to find a graph without an induced subgraph isomorphic to $T$ but with an arbitrarily large chromatic number and therefore many vertices. As mentioned in the introduction, we consider two constructions in Chapters \ref{secMy} and \ref{secLS}.
+
+Continuing with the proofs that already exist, here is a list of them as stated by Chudnovsky, Scott and Seymour in \cite{CSS17} including the cases they proved in the same paper.
 
 \begin{thm}\label{t3cr}
 The following trees are $\chi$-bounding:
@@ -184,15 +205,27 @@ The base case for $v(T)=1$ is trivial since a tree on one vertex is induced in e
 
 Now suppose that $g(m^\prime ,n^\prime ,T^\prime )$ exists for all $m^\prime ,n^\prime \in\N$ and for all trees $T^\prime$ with $v(T^\prime )\leq s$. Let $T$ be a tree on $s+1$ vertices. We define a function $g(m^\prime ,n^\prime ,T)$ for all $m^\prime ,n^\prime\in\N$ so that $(\ast)$ holds as follows. Choose a leaf $l$ of $T$, which is adjacent to a vertex $u$ of $T$, and let $T^\prime = T- \{l\}$. Let $\sigma =$ \textit{in} if the edge between $l$ and $u$ points to $u$ and $\sigma = $ \textit{out} otherwise. Define $g(m^\prime ,n^\prime ,T) = 2(g(m^\prime ,n^\prime ,T^\prime )(s-1)+s)B$, where $B=B(n^\prime ,n^\prime ,s)$. We now show that $g(m^\prime ,n^\prime ,T)$ satisfies $(\ast)$. Let $G=(V,E)$ be a graph such that $\chi (G)\geq g(m^\prime ,n^\prime ,T)$, and suppose $G$ contains neither $K_{m^\prime}$ nor $K_{n^\prime ,n^\prime}$. We claim that $G$ induces $T$.
 
-Let $W=\{v\in V:\delta^\sigma (v) <sB\}$. Then, by Lemma \ref{l2cr}, $\chi (G[W]) < 2sB$. Let $G^\prime = G[V^\prime ]$, where $V^\prime = V-W$. Since $\chi (G)\geq 2(g(m^\prime ,n^\prime ,T^\prime )(s-1)+s)B$ we need at least $2g(m^\prime ,n^\prime ,T^\prime )(s-1)B + 1$ colors for the vertices in $V^\prime$ in every proper coloring of $G^\prime$, i.e. $(\ast\ast)$ $\chi (G^\prime )\geq 2g(m^\prime ,n^\prime ,T^\prime )(s-1)B + 1$. Next, construct a rooted $s$-uniform hypergraph $H=(V^\prime ,F,r)$ with the same set of vertices as $G^\prime$. An $s$-subset $S$ of $V^\prime$ is an edge of $H$ if and only if $T^\prime\approx G[S]$. Let $\phi$ be an isomorphism from $T^\prime$ to $G[S]$ and let $r_S$ be the image of $u$ under $\phi$. Note that in a proper coloring $c$ of $H$ no color class induces $T$. Thus, we can apply the induction hypothesis to each subgraph $H_C$ induced in $G$ by a color class $C\subseteq V^\prime$ in $H$. Then, $\chi (H_C)\leq g(m^\prime ,n^\prime ,T^\prime )$ for each color class $C$. The union of all color classes contains every vertex in $V^\prime$. Thus, by coloring the vertices of each color class with its own set of colors, we get $\chi (G^\prime )\leq \chi (H)g(m^\prime ,n^\prime ,T^\prime )$. Together with $(\ast\ast)$, this yields $2(s-1)B +1\leq \chi (H)$.
+Let $W=\{v\in V:\delta^\sigma (v) <sB\}$. Then, by Lemma \ref{l2cr}, $\chi (G[W]) < 2sB$. Let $G^\prime = G[V^\prime ]$, where $V^\prime = V-W$. Since $\chi (G)\geq 2(g(m^\prime ,n^\prime ,T^\prime )(s-1)+s)B$ we need at least $2g(m^\prime ,n^\prime ,T^\prime )(s-1)B + 1$ colors for the vertices in $V^\prime$ in every proper coloring of $G^\prime$, i.e. $(\ast\ast)$ $\chi (G^\prime )\geq 2g(m^\prime ,n^\prime ,T^\prime )(s-1)B + 1$.
 
-By Lemma \ref{l3cr} $b(H)\geq B$ holds. Then, there exists a vertex $r\in V^\prime$ and a set of edges of $H$ $Y = \{S_1,S_2,\dots ,S_B\}$ with $r(S_i)=r$ for all $i\in [B]$ and $S_i\cap S_j=\{r\}$ for all $1\leq i<j\leq B$. Let $S_i=\{r,y_i^1,\dots ,y_i^{s-1}\}$. Then, $\vert \bigcup_{i\in [B]} S_i\vert =1 +(s-1)B$. There are at most $(s-1)B$ vertices from $\bigcup_{i\in [B]} S_i$ in $N^\sigma (r)$. Thus, we find a set $X\subseteq N^\sigma (r)$ with $\vert X\vert =B$ and $X\cap S_i =\emptyset$ for all $i\in [B]$ because $\vert N^\sigma (r)\vert\geq sB$. Define the function $C:X\times Y\to [s]$ by setting $c(x,S_i)=s$ if $x$ is not adjacent to any vertex in $S_i-\{r\}$ and otherwise $c(x,S_i)=j$, $1\leq j\leq s-1$, where $j$ is the least index such that $x$ is adjacent to $y_i^j$. This is well-defined since $j$ can be at most $s-1$.
+Next, construct a rooted $s$-uniform hypergraph $H=(V^\prime ,F,r)$ with the same set of vertices as $G^\prime$. An $s$-subset $S$ of $V^\prime$ is an edge of $H$ if and only if $T^\prime\approx G[S]$. Let $\phi$ be an isomorphism from $T^\prime$ to $G[S]$ and let $r_S$ be the image of $u$ under $\phi$. Note that in a proper coloring $c$ of $H$ no color class induces $T$. Thus, we can apply the induction hypothesis to each subgraph $H_C$ in $G$ that is induced by the vertices of a color class $C\subseteq V^\prime$ in $H$. Then, $\chi (H_C)\leq g(m^\prime , n^\prime , T^\prime )$ for each color class $C$. The union of all color classes contains every vertex in $V^\prime$. Thus, by coloring the vertices of each color class with its own set of colors, we get $\chi (G^\prime )\leq \chi (H)g(m^\prime ,n^\prime ,T^\prime )$. Together with $(\ast\ast)$, this yields $2(s-1)B +1\leq \chi (H)$.
 
-By the definition of $B$, we find sets $X^\prime\subseteq X$ and $Y^\prime\subseteq Y$ with $\vert X^\prime\vert = \vert Y^\prime\vert =n^\prime$ such that $c(x,y)=\alpha$ for all $(x,y)\in X^\prime\times Y^\prime$ and a color $\alpha\in [s]$. If $\alpha\neq s$, then $X^\prime\cup\{y_i^\alpha :S_i\in Y^\prime\}$ contains $K_{n^\prime ,n^\prime}$, which contradicts the choice of $G$. Thus, $\alpha = s$. Let $x\in X^\prime$. Then, $x$ is not adjacent to any vertex in $S_i - \{r\}$ for any $S_i\in Y^\prime$ and $x$ is a $\sigma$-neighbor of $r$. Since $T^\prime\approx G[S_i]$ by an isomorphism mapping $u$ to $r$, $G[S_i\cup\{r\}]\approx T$.\qed
+By Lemma \ref{l3cr} $b(H)\geq B$ holds. Then, there exists a vertex $r\in V^\prime$ and a set of hyperedges of $H$, $Y = \{S_1,S_2,\dots ,S_B\}$, with $r(S_i)=r$ for all $i\in [B]$ and $S_i\cap S_j=\{r\}$ for all $1\leq i<j\leq B$. Let $S_i=\{r,y_i^1,\dots ,y_i^{s-1}\}$. Then, $\vert \bigcup_{i\in [B]} S_i\vert =1 +(s-1)B$. There are at most $(s-1)B$ vertices from $\bigcup_{i\in [B]} S_i$ in $N^\sigma (r)$ since $r\in \bigcup_{i\in [B]} S_i$ is not a neighbor of itself. Thus, we find a set $X\subseteq N^\sigma (r)$ with $\vert X\vert =B$ and $X\cap S_i =\emptyset$ for all $i\in [B]$ because $\vert N^\sigma (r)\vert\geq sB$. See Figure \ref{f4cr} for an illustration. 
+
+Define the function $C:X\times Y\to [s]$ by setting $c(x,S_i)=s$ if $x$ is not adjacent to any vertex in $S_i-\{r\}$ and otherwise $c(x,S_i)=j$, $1\leq j\leq s-1$, where $j$ is the least index such that $x$ is adjacent to $y_i^j$. This is well-defined since $j$ can be at most $s-1$.
+
+By the definition of $B$, we find sets $X^\prime\subseteq X$ and $Y^\prime\subseteq Y$ with $\vert X^\prime\vert = \vert Y^\prime\vert =n^\prime$ such that $c(x,y)=\alpha$ for all $(x,y)\in X^\prime\times Y^\prime$ and a color $\alpha\in [s]$. If $\alpha\neq s$, then $X^\prime\cup\{y_i^\alpha :S_i\in Y^\prime\}$ contains $K_{n^\prime ,n^\prime}$, which contradicts the choice of $G$. Thus, $\alpha = s$. Let $x\in X^\prime$. Then, $x$ is not adjacent to any vertex in $S_i \setminus \{r\}$ for any $S_i\in Y^\prime$ and $x$ is a $\sigma$-neighbor of $r$. Since $T^\prime\approx G[S_i]$ by an isomorphism mapping $u$ to $r$, $G[S_i\cup\{r\}]\approx T$.\qed
 \end{prf}
 
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{kierstead_roedl_1}
+\end{center}
+\caption{Hyperedges from $Y$ and vertex set $X$}
+\label{f4cr}
+\end{figure}
+
 \begin{note}
-It is a direct implication of this theorem that the family $\textit{Forb}(T,K_{n,n})$ is $\chi$-bounded. This can be easily seen by replacing the directed graph $G$ by the corresponding undirected graph $G^\prime$.
+It is a direct implication of this theorem that the family $\textit{Forb}(T,K_{n,n})$ is $\chi$-bounded. This can be easily seen by replacing the directed graph $G$ by the underlying undirected graph $G^\prime$.
 \end{note}
 
 We finish this chapter with a motivation for considering an oriented version of the Gyárfás-Sumner conjecture even if that is not part of this thesis. An oriented graph $H$ is $\chi$-bounding if there exists a bounding function $f:\N\to\N$ such that any oriented graph $G$ that contains a subgraph isomorphic to $H$ has chromatic number $\chi (G)\leq f(\omega (G))$, where in this case $\omega (G)$ denotes the size of the largest oriented clique in $G$. Before looking at specific cases note that we are only considering trees for which we know Conjecture \ref{c1cr} to be true. There actually exist some results for oriented stars and oriented $P_4$. Aboulker et al. \cite{Ab16} conjectured that every oriented star is $\chi$-bounding and proved the cases for $S_{k,0}$, $S_{0,l}$ and $S_{1,1}$ where $S_{k,l}$ denotes an oriented star with $k$ outgoing edges and $l$ edges pointing to the center vertex. 
