@@ -1,10 +1,28 @@
 Finding a counterexample for the Gyárfás-Sumner conjecture implies constructing a family $\mathcal{F}$ of graphs such that $\mathcal{F}\subseteq\textit{Forb}(T)$ for some tree $T$ but there is no bounding function for $\mathcal{F}$. Mycielski's construction of triangle-free graphs with high chromatic number \cite{My55} may provide such a family. The goal of this chapter is to eliminate the family of graphs obtained by the Mycielskian construction as candidate for disproving the Gyárfás-Sumner conjecture by showing that in each of these families we find infinitly many graphs containing an induced copy of $T$ for all trees $T$.
 
 \begin{defn}
-Let $G=(V,E)$ be a graph. Its \textit{Mycielskian graph} $\mu(G)$ is defined as the graph $G^\prime=(V\cup U\cup\{w\}, E^\prime)$, where $G^\prime [V]$ is isomorphic to $G$, the set $U$ contains a vertex $u_i$ for every vertex $v_i\in V$, $i\in [\vert V\vert]$, such that $V\cap U=\emptyset$, and $w\notin V\cup U$ is an additional vertex. In addition to the edges of the subgraph isomorphic to $G$, for each $u_i\in U$, $i\in [\vert V\vert]$, $E^\prime$ contains edges from $u_i$ to every vertex in $N_G(v_i)$ and an edge $\lbrace u_i ,w\rbrace$. 
+Let $G=(V,E)$ be a graph. Its \textit{Mycielskian graph} $\mu(G)$ is defined as the graph $G^\prime=(V\cup U\cup\{w\}, E^\prime)$, where $G^\prime [V]$ is isomorphic to $G$, the set $U$ contains a vertex $u_i$ for every vertex $v_i\in V$, $i\in [\vert V\vert]$, such that $V\cap U=\emptyset$, and $w\notin V\cup U$ is an additional vertex. In addition to the edges of the subgraph isomorphic to $G$, for each $u_i\in U$, $i\in [\vert V\vert]$, $E^\prime$ contains edges from $u_i$ to every vertex in $N_G(v_i)$ and an edge $\lbrace u_i ,w\rbrace$. Figure \ref{f1my} shows an example for the construction of a Mycielskian graph for a graph $G$.
 \end{defn}
-Mycielski's construction provides a sequence of graphs $G_0,G_1, G_2,\dots $ starting with $G_0=K_2$, where $G_k = \mu (G_{k-1})$, $k\in\N$, and let $G_k=(V_k,E_k)$. Let us denote the family of graphs in this sequence as $\mathcal{M}$. First, we state some properties of a graph $G_k$. Let us denote the set of copies of the vertices in $V_{k-1}$ as $U_k$ and the one additional vertex as $w_k$. For each vertex $v\in V_{k-1}$ we refer to the vertex $u\in U_k$ that is adjacent to exactly the vertices in $N_{G_{k-1}}(v)$ as the copy of $v$ in $G_k$. By the construction, the set $U_k$ is a stable set. Thus, together with the vertex $w_k$ the vertices in $U_k$ induce a star $K_{1, \vert U_k\vert}$ in $G_k$.
-Second, observe that the neighborhood of each vertex we add, is a stable set.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{mycielskian}
+\end{center}
+\caption{Graph $G$ and its Mycielskian graph $\mu (G)$}
+\label{f1my}
+\end{figure}
+
+Mycielski's construction provides a sequence of graphs $G_0, G_1, G_2,\dots $ starting with $G_0=K_2$, where $G_k = \mu (G_{k-1})$, $k\in\N$, and let $G_k=(V_k,E_k)$. Let us denote the family of graphs in this sequence as $\mathcal{M}$. See Figure \ref{f2my} for an illustration of the first three graphs of the sequence. 
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{mycielskian_sequence}
+\end{center}
+\caption{First three graphs of the graph sequence obtained by Mycielski's construction}
+\label{f2my}
+\end{figure}
+
+First, we state some properties of a graph $G_k$. Let us denote the set of copies of the vertices in $V_{k-1}$ as $U_k$ and the one additional vertex as $w_k$. For each vertex $v\in V_{k-1}$ we refer to the vertex $u\in U_k$ that is adjacent to exactly the vertices in $N_{G_{k-1}}(v)$ as the copy of $v$ in $G_k$. By the construction, the set $U_k$ is a stable set. Thus, together with the vertex $w_k$ the vertices in $U_k$ induce a star $K_{1, \vert U_k\vert}$ in $G_k$. Furthermore, observe that the neighborhood of each vertex we add, is a stable set.
 
 With these facts in mind, we obtain the following two theorems which Myvielski proved as part of his construction.
 
@@ -30,8 +48,16 @@ Last, note that this construction indeed provides a family of graphs worthy to l
 For all $n\in\N$ there exists a graph $G_k\in\mathcal{M}$ that contains an induced subgraph isomorphic to $K_{n,n}$.
 \end{lemma}
 \begin{prf}
-Consider a graph $G_k\in\mathcal{M}$ such that $U_k$ has size at least $n$. Choose a subset $X\subseteq U_k$ of size $n$. Then, the vertex $w_k$ is adjacent to every vertex in $X$. Let $w_k^{i}$, $i\in [n-1]$, denote copy of $w_k$ in $U_{k+i}$. Then, each $w_k^{i}$, $i\in [n-1]$, is adjacent to the neighbors of $w_k$, including all verticces in $X$, and the vertices $w_k^{i}$, $i\in [n-1]$, form a stable set $S$ in $G_{k+n-1}$. Thus, the vertices in $S\cup X$ induce a $K_{n,n}$ in $G_{k+n-1}$.\qed
+Consider a graph $G_k\in\mathcal{M}$ such that $U_k$ has size at least $n$. Choose a subset $X\subseteq U_k$ of size $n$. Then, the vertex $w_k$ is adjacent to every vertex in $X$. Let $w_k^{i}$, $i\in [n]$, denote copy of $w_k$ in $U_{k+i}$. Then, each $w_k^{i}$, $i\in [n]$, is adjacent to the neighbors of $w_k$, including all vertices in $X$. Look at Figure \ref{f3my} for a visualization of the chosen vertices. The vertices $w_k^{i}$, $i\in [n]$, form a stable set $S$ in $G_{k+n}$ since $w_k$ is not adjacent to any of them. Thus, the vertices in $S\cup X$ induce a $K_{n,n}$ in $G_{k+n}$.\qed
 \end{prf}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{induced_knn}
+\end{center}
+\caption{Part of an induced subgraph of $G_{k+n}$ isomorphic to a $K_{n,n}$}
+\label{f3my}
+\end{figure}
 
 As mentioned at the beginning of this chapter, our goal is to show that for each tree $T$, there exists a graph $G_k\in\mathcal{M}$ containing an induced subgraph isomorphic to $T$. Then, all graphs in $\mathcal{M}$ with a higher index contain an induced copy of $T$ as well and thus, it is not possible to use $\mathcal{M}$ aas counterexample for Conjecture \ref{c1cr}.
 We start with two proofs by induction proving the existence of induced subgraphs isomorphic to paths and caterpillars in graphs of $\mathcal{M}$. For $k\in\N$ denote the copy of $w_k$ in $U_{k+1}$ as $w_k^1$ as in the proof of Lemma \ref{l1my} . Let $Q_n =(w_1^1 ,w_2^1 ,\dots ,w_n^1)$ be the path through the first $n$ such vertices. 
@@ -68,14 +94,24 @@ If not, we have $d>2$. Every vertex in $P$ is adjacent to no more than $d$ leave
 
 For the base case let $i=1$. The vertices in $N_1=U_{k+1}$ form a stable set  and are adjacent to $w_{k+1}$ by definition of $U_{k+1}$. Therefore, they are adjacent to $w^1_{k+1}$ as well. Thus, $S_1$ induces a subgraph isomorphic to a star $K_{1,\vert N_1\vert}$, i.e. $G_{k+n}[S_1]$ is an induced tree.
 
-Now let $1<i\leq n$. By the inductive hypothesis, $S_{i-1}$ is an induced tree, i.e. from the vertices in $S_{i-1}$ the vertices in $N_{i-1}$ are only adjacent to $w_{k+i-1}^1$. Observe that $(S_{i-1}\setminus \lbrace w_{k+i-1}^1\rbrace )\subseteq V_{k+i-1}$. Consider $N_i\subseteq U_{k+i}$. By the definition of vertices in $U_{k+i}$, vertices in $N_i$ do not have an edge to any vertex from $S_{i-1}\setminus \lbrace w_{k+i-1}^1\rbrace$ since the vertices in $N_{i-1}$ do not have them. Furthermore, $N_i\cup\lbrace w_{k+i-1}^1\rbrace \subseteq U_{k+i}$ is a stable set by definition but each vertex in this set has an edge to $w_{k+i}$ and therefore $w_{k+i}^1$. What is left to show, is that $w_{k+i}^1$ is not adjacent to any vertex in $S_{i-1}\setminus \lbrace w_{k+i-1}^1\rbrace$. That is easy to see, since $(S_{i-1}\setminus \lbrace w_{k+i-1}^1\rbrace )\cap U_{k+i}=\emptyset$. Thus, the vertices in $S_i$ induce a tree in $G_{k+i+1}$.
+Now let $1<i\leq n$. By the induction hypothesis, $S_{i-1}$ is an induced tree, i.e. from the vertices in $S_{i-1}$ the vertices in $N_{i-1}$ are only adjacent to $w_{k+i-1}^1$. Observe that $(S_{i-1}\setminus \lbrace w_{k+i-1}^1\rbrace )\subseteq V_{k+i-1}$. Consider $N_i\subseteq U_{k+i}$. By the definition of vertices in $U_{k+i}$, vertices in $N_i$ do not have an edge to any vertex from $S_{i-1}\setminus \lbrace w_{k+i-1}^1\rbrace$ since the vertices in $N_{i-1}$ do not have them. Furthermore, $N_i\cup\lbrace w_{k+i-1}^1\rbrace \subseteq U_{k+i}$ is a stable set by definition but each vertex in this set has an edge to $w_{k+i}$ and therefore $w_{k+i}^1$. What is left to show, is that $w_{k+i}^1$ is not adjacent to any vertex in $S_{i-1}\setminus \lbrace w_{k+i-1}^1\rbrace$. That is easy to see, since $(S_{i-1}\setminus \lbrace w_{k+i-1}^1\rbrace )\cap U_{k+i}=\emptyset$. Thus, the vertices in $S_i$ induce a tree in $G_{k+i+1}$.
 
 By mapping $p_j$ to the vertices of $w^1_{k+j}$ and the leaves adjacent to the vertex $p_j$ to a vertex from $N_j$, $j\in [n]$, we obtain an induced subgraph of $G_{k+n+1}$ that is isomorphic to $T$.\qed
 \end{prf}
 
 After stating the proofs for some special cases of trees, there is actually a slightly different approach that proves that for all trees $T$ we can find a graph $G\in\mathcal{M}$ containing an induced subgraph isomorphic to $T$. Therefore, we need to introduce the concept of a rooted tree first. A \textit{rooted} tree $T$ is a tree in which one vertex $r\in T$ is set to be the \textit{root} of $T$. Then, the \textit{parent} of a vertex $v\in T$ is the vertex adjacent to it in the path from $v$ to the root. All vertices of $T$ except the root have a unique parent. We call a vertex $u\in T$ a \textit{child} of $v$ if $v$ is its parent.
 
-Second, we want to order the vertices $v_1, v_2, \dots , v_n$ of a rooted tree on $n$ vertices in a certain way. An order of the vertices is called \textit{in-order} if it can be obtained by the following procedure. Let $v_1$ be the root of $T$ and for each $i\in [n-1]$ choose $v_{i+1}$ as a child of $v_i$ that has not been assigned yet. If there is no such child left, consider the previous vertices in decreasing order and choose a child of them if possible. Observe that each vertex except $v_1$ is a child of a vertex with a smaller index.
+Second, we want to order the vertices $v_1, v_2, \dots , v_n$ of a rooted tree on $n$ vertices in a certain way. An order of the vertices is called \textit{in-order} if it can be obtained by the following procedure. Let $v_1$ be the root of $T$ and for each $i\in [n-1]$ choose $v_{i+1}$ as a child of $v_i$ that has not been assigned yet. If there is no such child left, consider the previous vertices in decreasing order and choose a child of them if possible. Observe that each vertex except $v_1$ is a child of a vertex with a smaller index. An example of a rooted tree with an inorder vertex ordering is displayed in Figure \ref{f4my}.\\
+
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{inorder}
+\end{center}
+\caption{Rooted tree $T$ on $11$ vertices with root $r$ and vertex order that is inorder}
+\label{f4my}
+\end{figure}
+
 
 \begin{thm}
 Let $T$ be tree. Then, there exists a $G\in\mathcal{M}$ containing an induced subgraph isomorphic to $T$.

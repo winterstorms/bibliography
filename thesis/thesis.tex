@@ -20,6 +20,7 @@
 \graphicspath{{images/}}
 \usepackage{latexsym}
 \usepackage{amsmath,amssymb,amsthm}
+\usepackage{extarrows}
 
 \usepackage[shortlabels]{enumitem}
 \usepackage{cite}
@@ -89,69 +90,75 @@
     \vspace*{1.5cm}
 
     Due Date
-    \vspace*{4.5cm}
+    \vspace*{4cm}
 
-
-    Advisor: Name of Advisor \\[1cm]
+	Reviewer: Prof. Maria Axenovich\\
+    Advisor: Yelena Yuditsky \\[1cm]
     Faculty of Mathematics \\[1cm]
 		Karlsruhe Institute of Technology
   \end{center}
 \end{titlepage}
 
 Abstract
-\newpage
+  \newpage
   % Inhaltsverzeichnis
   \tableofcontents
 
-\newpage
+  \newpage
  
 
 
   % Ab sofort Seitenzahlen in der Kopfzeile anzeigen
   \pagestyle{headings}
 
-\section{Introduction}
-\input{intro}
-\newpage
-\section{Basic Concepts}
-\input{basics_new}
-\newpage 
-\section{Current State of Research}
-
-\input{existing_proofs}
-\newpage
-\section{Induced trees in Mycielskian graphs}
-\input{mycielski}
+  \section{Introduction}\label{secIntro}
+  \input{intro}
   \newpage
-\section{Intersection Graph of Line Segments}
-\input{line_segments}
-\newpage
+  
+  \section{Basic Concepts}\label{secBC}
+  \input{basics_new}
+  \newpage 
+  
+  \section{Current State of Research}\label{secCR}
+  \input{existing_proofs}
+  \newpage
+  
+  \section{Mycielskian graphs}\label{secMy}
+  \input{mycielski}
+  \newpage
+  
+  \section{Intersection Graph of Line Segments}\label{secLS}
+  \input{line_segments}
+  \newpage
+  
+  \section{Conclusion}\label{secConc}
+  \input{conclusion}
+  \newpage
 
 
-
-\listoffigures
-\newpage
+  \listoffigures
+  \newpage
   % Literaturverzeichnis (beginnt auf einer ungeraden Seite)
-%\begin{thebibliography}{Lam00}
-%\end{thebibliography}
+  %\begin{thebibliography}{Lam00}
+  %\end{thebibliography}
  
-\bibliography{/Users/Frithjof/Documents/studium/ba/arbeit/bib/refs.bib}
-\bibliographystyle{ieeetr}
+  \bibliography{/Users/Frithjof/Documents/studium/ba/arbeit/bib/refs.bib}
+  \bibliographystyle{ieeetr}
       
   % ggf. hier Tabelle mit Symbolen 
   % (kann auch auf das Inhaltsverzeichnis folgen)
 
-\newpage
+  \newpage
   
- \thispagestyle{empty}
+  \thispagestyle{empty}
 
 
-\vspace*{8cm}
+  \vspace*{8cm}
 
 
-\section*{Declaration}
+  \section*{Declaration}
 
-%Hiermit versichere ich, dass ich diese Arbeit selbständig verfasst und keine anderen, %als die angegebenen Quellen und Hilfsmittel benutzt, die wörtlich oder inhaltlich %übernommenen Stellen als solche kenntlich gemacht und die Satzung des Karlsruher %Instituts für Technologie zur Sicherung guter wissenschaftlicher Praxis in der jeweils %gültigen Fassung beachtet habe. 
+  %Hiermit versichere ich, dass ich diese Arbeit selbständig verfasst und keine anderen,  %als die angegebenen Quellen und Hilfsmittel benutzt, die wörtlich oder inhaltlich %übernommenen Stellen als solche kenntlich gemacht und die Satzung des Karlsruher %Instituts für Technologie zur Sicherung guter wissenschaftlicher Praxis in der jeweils %gültigen Fassung beachtet habe. 
 I hereby declare that I have written this thesis independently and did not use sources or means other than those specified in the text
 %, identified literally or substantively adopted passages,
  and respected the statutes of the Karlruhe Institute of Technology for protection of good scientific practice in its valid version.
@@ -161,7 +168,7 @@ I hereby declare that I have written this thesis independently and did not use s
 
 
 
-\noindent
+  \noindent
 Karlsruhe, the Date \\[5ex]
 
 % Unterschrift (handgeschrieben)

@@ -35,7 +35,15 @@ Now we want to construct $\mathcal{P}_k$. For each $p\in\mathcal{P}_{k-1}$ and e
 
 Let $G_k$ denote the intersection graph of the line segments in $\mathcal{L}_k$, i.e. each vertex in $G_k$ represents a line segment of $\mathcal{L}_k$ and two vertices are adjacent if and only if the corresponding line segments intersect each other.\\
 
-As mentioned before, the construction by Burling as presented in \cite{Fe18} results in the same family of graphs. For each $k\in\N$, construct the Burling graph $B_k$ and a corresponding set of stable sets $S(B_k)$ as follows. Let $B_1$ be the graph on a single vertex and let $S(B_1)$ contain the only stable set on one vertex in $B_1$. For $k\geq 2$, consider a copy $H$ of $B_{k-1}$ which we think of as the original copy and one further copy $H_S$ of $B_{k-1}$ for each stable set $S\in S(B_{k-1})$. Let $S(H_S)$ denote the copy of $S(H)$ in $H_S$. Furthermore, for each copy $H_S$ and stable set $X\in S(H_S)$ add another vertex $v_{S,X}$ adjacent to all vertices in $X$ but no other vertex. Denote the graph obtained from a copy $H_S$ and added new vertices for each stable set $X\in S(H_S)$ as $H_S^{\prime}$. Then, define the graph $B_k$ as $B_k=H\cup\bigcup_{S\in S(B_k)} H_S^{\prime}$. Its set of stable sets $S(B_k)$ consists of two sets for each $S\in S(H)$ and $X\in S(H_S)$, namely $S\cup \lbrace v_{S,X}\rbrace$ and $S\cup X$. Note that both sets are stable in $B_k$.
+As mentioned before, the construction by Burling as presented in \cite{Fe18} results in the same family of graphs. For each $k\in\N$, construct the Burling graph $B_k$ and a corresponding set of stable sets $S(B_k)$ as follows. Let $B_1$ be the graph on a single vertex and let $S(B_1)$ contain the only stable set on one vertex in $B_1$. For $k\geq 2$, consider a copy $H$ of $B_{k-1}$ which we think of as the original copy and one further copy $H_S$ of $B_{k-1}$ for each stable set $S\in S(B_{k-1})$. Let $S(H_S)$ denote the copy of $S(H)$ in $H_S$. Furthermore, for each copy $H_S$ and stable set $X\in S(H_S)$ add another vertex $v_{S,X}$ adjacent to all vertices in $X$ but no other vertex. Denote the graph obtained from a copy $H_S$ and added new vertices for each stable set $X\in S(H_S)$ as $H_S^{\prime}$. Then, define the graph $B_k$ as $B_k=H\cup\bigcup_{S\in S(B_k)} H_S^{\prime}$. Its set of stable sets $S(B_k)$ consists of two sets for each $S\in S(H)$ and $X\in S(H_S)$, namely $S\cup \lbrace v_{S,X}\rbrace$ and $S\cup X$. Note that both sets are stable in $B_k$. Refer to Figure \ref{f4ls} for an illustration of the first three Burling graphs.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=1]{burling}
+\end{center}
+\caption{The first three Burling graphs with added vertices in the copies colored red}
+\label{f4ls}
+\end{figure}
 
 \begin{lemma}
 The families of graphs obtained by the two constructions are the same, i.e. $\lbrace G_k :k\in\N\rbrace=\lbrace B_k :k\in\N\rbrace$. 
@@ -56,7 +64,7 @@ All graphs in $\mathcal{LG}=\lbrace B_k :k\in\N\rbrace$ are triangle-free.
 \end{thm}
 
 \begin{prf}
-We prove this by induction on $k$. The graph $B_1$ is trivially triangle-free. For each $k\geq 2$, the graph $B_k$ is triangle-free since $B_{k-1}$ is triangle-free by inductive hypothesis and the neighborhood of every vertex $v_{S,X}$ we introduce in $B_k$ is a stable set.\qed
+We prove this by induction on $k$. The graph $B_1$ is trivially triangle-free. For each $k\geq 2$, the graph $B_k$ is triangle-free since $B_{k-1}$ is triangle-free by induction hypothesis and the neighborhood of every vertex $v_{S,X}$ we introduce in $B_k$ is a stable set.\qed
 \end{prf}
 
 \begin{thm}[Felsner et al. \cite{Fe18}]\label{t2ls}
@@ -66,7 +74,7 @@ For all $k\in\N$, the graph $B_k$ has chromatic number $\chi (B_k)$ at least $k$
 \begin{prf}
 We show this by proving a stronger statement by induction on $k$. For any proper coloring $c$ of $B_k$, there exists a stable set $S\in S(B_k)$ such that $c$ uses at least $k$ colors on the vertices in $S$.
 
-This is again trivial for $k=1$. Now, suppose $k\geq 2$ and $c$ is a proper coloring of $B_k$. By induction hypothesis, there exists a stable set $S\in S(B_{k-1})$ $c$ uses at least $k-1$ colors on. Also by inductive hypothesis, there exists a stable set $X\in S(H_S)$ $c$ uses at least $k-1$ colors on. If $c$ uses at least $k$ colors on $(S\cup X)\in S(B_k)$, we are done. Otherwise, $c$ uses the same $k-1$ colors on $S$ and $X$. Since $v_{S,X}$ is adjacent to each vertex in $X$, it is colored in a color not used on a vertex in $S$ and thus $c$ uses at least $k$ colors on $S\cup\lbrace v_{S,X}\rbrace$.\qed 
+This is again trivial for $k=1$. Now, suppose $k\geq 2$ and $c$ is a proper coloring of $B_k$. By induction hypothesis, there exists a stable set $S\in S(B_{k-1})$ $c$ uses at least $k-1$ colors on. Also by induction hypothesis, there exists a stable set $X\in S(H_S)$ $c$ uses at least $k-1$ colors on. If $c$ uses at least $k$ colors on $(S\cup X)\in S(B_k)$, we are done. Otherwise, $c$ uses the same $k-1$ colors on $S$ and $X$. Since $v_{S,X}$ is adjacent to each vertex in $X$, it is colored in a color not used on a vertex in $S$ and thus $c$ uses at least $k$ colors on $S\cup\lbrace v_{S,X}\rbrace$.\qed 
 \end{prf}
 
 \begin{comment}
@@ -115,7 +123,7 @@ For the induction step, let $k\geq 2$ and let $Q_{k-1}$ be an induced path on $k
 \label{f3ls}
 \end{figure}
 
-Finally, there exists an inductive proof showing that actually for every tree $T$ we can find a Burling graph $B_k$ for some $k\in\N$ that contains an induced copy of $T$. Therefore, let us define a sequence of trees $T_1, T_2, \dots$ where $T_1$ is the tree on one vertex and for all $i\in\N$ let $T_{i+1}$ be obtained from $T_i$ by adding a new vertex only adjacent $t$ for each vertex $t\in T_i$. Note that the following proof works by the same principle as the proof of Theorem \ref{t3ls}.
+Finally, there exists an inductive proof showing that actually for every tree $T$ we can find a Burling graph $B_k$ for some $k\in\N$ that contains an induced copy of $T$. Therefore, let us define a sequence of trees $T_1, T_2, \dots$ where $T_1$ is the tree on one vertex and for all $i\in\N$ let $T_{i+1}$ be obtained from $T_i$ by adding a new vertex only adjacent $t$ for each vertex $t\in T_i$. Thus, $T_i$ is atree on $2^{i-1}$ vertices. Note that the following proof works by the same principle as the proof of Theorem \ref{t3ls}.
 
 \begin{thm}\label{t1ls}
 Let $k\in\N$. The graph $B_k$ contains an induced copy of $T_k$.
@@ -126,7 +134,7 @@ We shall prove a stronger statement. We claim that $T_k\subseteq_I B_k$ for all 
 
 To launch the induction let $k=1$. The tree $T_1$ consists of one single vertex $t_1$. Thus, the graph on the single vertex in $B_1$ is an induced copy of $T_1$ in $B_1$. Observe that the stable set in $S(B_1)$ contains this vertex.
 
-Now let $k\geq 2$ and suppose the $B_{k-1}$ contains an induced copy of $T_{k-1}$, call it $Q_{k-1}$. Consider $B_k$ and choose a stable set $S\in S(B_{k-1})$. Then, $H_S$ is an induced copy of $B_{k-1}$ in $B_k$ and thus it contains an induced copy of $T_{k-1}$ as well. We denote it as $Q_{k-1}^\prime$. Let $q_1, q_2,\dots , q_{2^{k-1}}$ be the vertices of $Q_{k-1}^\prime$. By induction hypothesis, for each vertex $q$ in $Q_{k-1}$ there exists a stable set in $S(B_{k-1})$ containing $q$ but no other vertex from $Q_{k-1}$. Thus, there also exists a stable set $S_{q_i}\in S(H_S)$ containing $q_i$ but no other vertex of $Q_{k-1}^\prime$ for each $i\in [2^{k-1}]$. Now choose $v_i=v_{S,S_{q_i}}$ as the new vertex. Observe that it is only adjacent to $q_i$ and no other vertex of $Q_{k-1}^\prime$. Since the vertices $v_i$, $i\in [2^{k-1}]$, are pairwise non-adjacent by definition in the construction of Burling graphs, the graph $Q_k$ induced by the vertex set $V(Q_{k-1}^\prime)\cup \lbrace v_i:i\in [2^{k-1}]\rbrace$ is a tree and by the choice of the new vertices isomorphic to $T_k$. Furthermore, with the stable sets $S\cup \lbrace v_i\rbrace$ and $S\cup S_{q_i}$ in $S(B_k)$ we have one, $S\cup \lbrace v_i\rbrace$, that contains only $v_i$ and one, $S\cup S_{q_i}$, that only contains $q_i$ of the vertices in $Q_k$.\qed
+Now let $k\geq 2$ and suppose the $B_{k-1}$ contains an induced copy of $T_{k-1}$, call it $Q_{k-1}$. Consider $B_k$ and choose a stable set $S\in S(B_{k-1})$. Then, $H_S$ is an induced copy of $B_{k-1}$ in $B_k$ and thus it contains an induced copy of $T_{k-1}$ as well. We denote it as $Q_{k-1}^\prime$. Let $q_1, q_2,\dots , q_{2^{k-2}}$ be the vertices of $Q_{k-1}^\prime$. By induction hypothesis, for each vertex $q$ in $Q_{k-1}$ there exists a stable set in $S(B_{k-1})$ containing $q$ but no other vertex from $Q_{k-1}$. Thus, there also exists a stable set $S_{q_i}\in S(H_S)$ containing $q_i$ but no other vertex of $Q_{k-1}^\prime$ for each $i\in [2^{k-2}]$. Now choose $v_i=v_{S,S_{q_i}}$ as the new vertex. Observe that it is only adjacent to $q_i$ and no other vertex of $Q_{k-1}^\prime$. Since the vertices $v_i$, $i\in [2^{k-2}]$, are pairwise non-adjacent by definition in the construction of Burling graphs, the graph $Q_k$ induced by the vertex set $V(Q_{k-1}^\prime)\cup \lbrace v_i:i\in [2^{k-2}]\rbrace$ is a tree and by the choice of the new vertices isomorphic to $T_k$. Furthermore, with the stable sets $S\cup \lbrace v_i\rbrace$ and $S\cup S_{q_i}$ in $S(B_k)$ we have one, $S\cup \lbrace v_i\rbrace$, that contains only $v_i$ and one, $S\cup S_{q_i}$, that only contains $q_i$ of the vertices in $Q_k$.\qed
 \end{prf}
 
 \begin{cor}
@@ -135,3 +143,41 @@ For every tree $T$, there is a $k\in\N$ such that $T\subseteq_I B_k$.
 \begin{prf}
 Let $T$ be a tree. Denote its radius by $r$ and let $v\in V(T)$ be a vertex such that the distance between $v$ and a vertex $u\in V(T)\setminus \lbrace v\rbrace$ is at most $r$. Define $k=\max_{u\in V(T)\setminus \lbrace v\rbrace} (dist(v,u)+\delta (u))$. Then $T$ is an induced subgraph of $T_k$ and therefore $T\subseteq_I B_k$ holds by Theorem \ref{t1ls}.\qed
 \end{prf}
+
+
+Considering the construction of Burling graphs it is striking that the graphs grow large very fast because when constructing $B_k$ for some $k\in\N$, $k>1$, we add a lot of copies isomorphic to $B_{k-1}$. In addition, the size of the set of stable sets increases vastly as well. It may be possible to modify the construction while preserving its properties, namely that each graph is triangle-free and we construct graphs of arbitrarily large chromatic number, and obtain graphs not inducing certain trees. The first idea is to simplify the construction by adding just one copy of $B_{k-1}$ when constructing $B_k$.
+
+For $k\in\N$ define $B^\prime_k$ and $S(B^\prime_k)$ as follows. Let $B_1^\prime =B_1$, i.e. a graph on a single vertex and let $S(B_1^\prime )$ contain the stable set on this single vertex.
+
+Now construct $B^\prime_k$ for $k\geq 2$. Let $H$ denote a copy of $B_{k-1}^\prime$ and $S(H)$ a copy of $S(B_{k-1}^\prime )$ for $H$. Take another copy $H^\prime$ of $B_{k-1}^\prime$ with stable sets $S(H^\prime )$. Introduce vertices $v_X$ for every stable set $X\in S(H^\prime )$ and add an edge between $v_X$ and each vertex in $X$ such that $X\cup \{v_X\}$ forms a star. Denote the graph obtained by the vertex introductions as $H^{\prime\prime}$ and define $B_k^\prime =H\cup H^{\prime\prime}$. For every $S\in S(H)$ and $X\in S(H^\prime)$ let $S(B_k^\prime )$ contain two stable sets $S\cup\{v_X\}$ and $S\cup X$.
+
+\begin{thm}
+For all $k\in\N$, the graph $B_k^\prime$ is triangle-free.
+\end{thm}
+\begin{prf}
+This is trivial for $k=1$ and for $k\geq 2$ the neighborhood of the newly introduced vertices form stable sets. Thus, $B_k^\prime$ is triangle-free.\qed
+\end{prf}
+
+\begin{thm}
+For all $k\in\N$, the graph $B_k^\prime$ has chromatic number $\chi (B_k^\prime)\geq k$.
+\end{thm}
+\begin{prf}
+As before, we prove a stronger statement: For all $k\in\N$, there exists a stable set $S\in S(B_k^\prime )$ a proper coloring of $B_k^\prime$ uses at least $k$ colors on.
+
+For $k=1$ this is trivial. For $k\geq 2$, let $c$ be a proper coloring of $B_k^\prime$. By induction hypothesis there exists a stable set $S\in S(H)$ and a stable set $X\in S(H^\prime )$ such that $c$ uses at least $k-1$ colors on each of the two sets. Observe that $S\cap X=\emptyset$. Then, $c$ uses either at least $k$ colors on the stable set $S\cup X\in S(B_k^\prime)$ or exactly the same $k-1$ colors on both. In this case $v_X$ is colored in a color not used in $X$ and $S\cup \{v_X\}\in S(B_k^\prime)$ needs at least $k$ colors.\qed
+\end{prf}
+
+Thus, the properties of the original Burling graphs are maintained. Unfortunately, that is also true for the property that $B_k^\prime$ contains an induced subgraph isomorphic to a tree $T_k$.
+
+\begin{thm}
+Let $k\in\N$. The graph $B_k^\prime$ contains an induced subgraph isomorphic to $T_k$.
+\end{thm}
+\begin{prf}
+Similarly to the proof for the Burling graphs we prove a stronger statement by induction on $k$: For all $k\in\N$ there exists a graph $T$ isomorphic to $T_k$ with $T\subseteq_I B_k^\prime$ and for each vertex $t\in T$ there exists a stable set $S(B_k^\prime )$ containing $t$ but no other vertex from $V(T)$.
+
+For $k=1$, the graphs $B_1^\prime$ and $T_1$ are both graphs on a single vertex and thus isomorphic. Furthermore, the stable set in $S(B_1^\prime)$ contains this vertex.
+
+Now let $k\geq 2$ and consider $B_k^\prime$. The subgraph $H^\prime$ is a copy of $B_{k-1}^\prime$ and contains a subgraph $Q$ isomorphic to $T_{k-1}$ by induction hypothesis.  Let $q_1, q_2,\dots , q_{2^{k-2}}$ denote the vertices of $Q$. By induction hypothesis, for each vertex $q_i\in V(Q)$, $i\in [2^{k-2}]$, there exists a stable set $X\in S(H^\prime)$ containing $q_i$ but no other vertex from $Q$. We choose $v_i=v_X$ as the new vertex. It is only adjacent to $q_i$ but no other vertex of $Q$. Since the vertices $v_i$, $i\in [2^{k-2}]$ form a stable set by the construction, the graph $T$ induced by the vertices in $V(Q)\cup \{v_i:i\in [2^{k-2}]\}$ is a tree and furthermore isomorphic to $T_k$ since for each vertex $q\in Q$ we found exactly one new vertex only adjacent to $q$ as in the definition of $T_k$. Choose a stable set $S\in S(H)$. With the stable sets $S\cup \{v_i\}$ for $v_i$ and $S\cup X$ for $q_i$ we also have a stable sets containing exactly one vertex $t$ of $T$ for all $t\in V(T)$.\qed
+\end{prf}
+
+The second idea is to reduce the number of stable sets in $S(B_k)$ for a Burling graph $B_k$. 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180308143317" modified="D:20180314144244"/>
+<info created="D:20180308143317" modified="D:20180316141311"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -258,6 +258,85 @@ h
 <layer name="delta"/>
 <layer name="epsilon"/>
 <view layers="alpha beta gamma delta epsilon" active="epsilon"/>
+<path layer="delta" matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
+160 488 m
+176 464 l
+</path>
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
+208 488 m
+224 456 l
+</path>
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
+208 488 m
+192 448 l
+192 448 l
+</path>
+<path stroke="black" pen="heavier">
+104 426.667 m
+128 410.667 l
+</path>
+<path stroke="black" pen="heavier">
+104 426.667 m
+160 416 l
+</path>
+<path stroke="black" pen="heavier">
+104 426.667 m
+176 426.667 l
+</path>
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
+176 384 m
+224 352 l
+</path>
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
+160 368 m
+224 352 l
+224 352 l
+</path>
+<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
+128 360 m
+224 352 l
+</path>
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
+440 484 m
+440 460 l
+</path>
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
+440 460 m
+464 468 l
+</path>
+<path stroke="red" pen="heavier">
+432 482.667 m
+464 476 l
+</path>
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
+400 408 m
+408 384 l
+408 384 l
+</path>
+<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
+408 384 m
+432 400 l
+</path>
+<path stroke="red" pen="heavier">
+400 437.333 m
+412 416 l
+</path>
+<path stroke="black" pen="heavier">
+412 416 m
+480 405.333 l
+</path>
+<path stroke="black" pen="heavier">
+396 408 m
+480 405.333 l
+</path>
+<path stroke="black" pen="heavier">
+428 422.667 m
+480 405.333 l
+</path>
+<path stroke="black" pen="heavier">
+404 412 m
+480 405.333 l
+</path>
 <path layer="alpha" matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
 64 512 m
 64 320 l
@@ -347,85 +426,6 @@ h
 <use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="464 468" size="normal" stroke="black"/>
 <use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="440 460" size="normal" stroke="black"/>
 <use matrix="1 0 0 0.666667 -32 170.667" name="mark/disk(sx)" pos="440 484" size="normal" stroke="black"/>
-<path layer="delta" matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
-160 488 m
-176 464 l
-</path>
-<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
-208 488 m
-224 456 l
-</path>
-<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
-208 488 m
-192 448 l
-192 448 l
-</path>
-<path stroke="black" pen="heavier">
-104 426.667 m
-128 410.667 l
-</path>
-<path stroke="black" pen="heavier">
-104 426.667 m
-160 416 l
-</path>
-<path stroke="black" pen="heavier">
-104 426.667 m
-176 426.667 l
-</path>
-<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
-176 384 m
-224 352 l
-</path>
-<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
-160 368 m
-224 352 l
-224 352 l
-</path>
-<path matrix="1 0 0 0.666667 0 170.667" stroke="black" pen="heavier">
-128 360 m
-224 352 l
-</path>
-<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
-440 484 m
-440 460 l
-</path>
-<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
-440 460 m
-464 468 l
-</path>
-<path stroke="red" pen="heavier">
-432 482.667 m
-464 476 l
-</path>
-<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
-400 408 m
-408 384 l
-408 384 l
-</path>
-<path matrix="1 0 0 0.666667 -32 170.667" stroke="red" pen="heavier">
-408 384 m
-432 400 l
-</path>
-<path stroke="red" pen="heavier">
-400 437.333 m
-412 416 l
-</path>
-<path stroke="black" pen="heavier">
-412 416 m
-480 405.333 l
-</path>
-<path stroke="black" pen="heavier">
-396 408 m
-480 405.333 l
-</path>
-<path stroke="black" pen="heavier">
-428 422.667 m
-480 405.333 l
-</path>
-<path stroke="black" pen="heavier">
-404 412 m
-480 405.333 l
-</path>
 <text layer="epsilon" transformations="translations" pos="80 496" stroke="black" type="label" width="22.656" height="6.812" depth="2.32" valign="baseline" style="math">B_{k-1}</text>
 <text matrix="1 0 0 1 -32 0" transformations="translations" pos="368 496" stroke="black" type="label" width="12.459" height="6.812" depth="1.49" valign="baseline" style="math">B_k</text>
 <text matrix="1 0 0 1 0 12" transformations="translations" pos="132 476" stroke="black" type="label" width="9.091" height="6.808" depth="0" valign="baseline" style="math">H</text>
