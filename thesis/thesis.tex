@@ -50,6 +50,11 @@
 \renewenvironment{proof}{{\bfseries Proof}}{\qed}
 \numberwithin{equation}{section} 
 
+\newtheoremstyle{case}{}{}{}{}{}{:}{ }{}
+\theoremstyle{case}
+\newtheorem{case}{Case}
+
+
 % einige Abkuerzungen
 \newcommand{\C}{\mathbb{C}} % komplexe
 \newcommand{\K}{\mathbb{K}} % komplexe
@@ -89,17 +94,26 @@
     Frithjof Marquardt
     \vspace*{1.5cm}
 
-    Due Date
-    \vspace*{4cm}
-
-	Reviewer: Prof. Maria Axenovich\\
-    Advisor: Yelena Yuditsky \\[1cm]
+    2nd April 2018
+    \vspace*{3cm}
+  
+    \begin{tabbing}
+      \hspace*{10em}\= \hspace*{6em} \= \kill % set the tabbings
+      \> Reviewer:\> Prof. Maria Axenovich \\
+      \> Advisor:  \> Yelena Yuditsky\\[0.5cm]
+    \end{tabbing}
+      
     Faculty of Mathematics \\[1cm]
+  
 		Karlsruhe Institute of Technology
   \end{center}
 \end{titlepage}
 
+ %\vspace*{5cm}
+\begin{center}
 Abstract
+\end{center}
+\input{abstract}
   \newpage
   % Inhaltsverzeichnis
   \tableofcontents
@@ -119,15 +133,15 @@ Abstract
   \input{basics_new}
   \newpage 
   
-  \section{Current State of Research}\label{secCR}
+  \section{$\chi$-Bounding Graphs}\label{secCR}
   \input{existing_proofs}
   \newpage
   
-  \section{Mycielskian graphs}\label{secMy}
+  \section{Mycielskian Graphs}\label{secMy}
   \input{mycielski}
   \newpage
   
-  \section{Intersection Graph of Line Segments}\label{secLS}
+  \section{Line Segment Intersection Graphs and Burling Graphs}\label{secLS}
   \input{line_segments}
   \newpage
   
