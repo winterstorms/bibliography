@@ -180,4 +180,37 @@ For $k=1$, the graphs $B_1^\prime$ and $T_1$ are both graphs on a single vertex 
 Now let $k\geq 2$ and consider $B_k^\prime$. The subgraph $H^\prime$ is a copy of $B_{k-1}^\prime$ and contains a subgraph $Q$ isomorphic to $T_{k-1}$ by induction hypothesis.  Let $q_1, q_2,\dots , q_{2^{k-2}}$ denote the vertices of $Q$. By induction hypothesis, for each vertex $q_i\in V(Q)$, $i\in [2^{k-2}]$, there exists a stable set $X\in S(H^\prime)$ containing $q_i$ but no other vertex from $Q$. We choose $v_i=v_X$ as the new vertex. It is only adjacent to $q_i$ but no other vertex of $Q$. Since the vertices $v_i$, $i\in [2^{k-2}]$ form a stable set by the construction, the graph $T$ induced by the vertices in $V(Q)\cup \{v_i:i\in [2^{k-2}]\}$ is a tree and furthermore isomorphic to $T_k$ since for each vertex $q\in Q$ we found exactly one new vertex only adjacent to $q$ as in the definition of $T_k$. Choose a stable set $S\in S(H)$. With the stable sets $S\cup \{v_i\}$ for $v_i$ and $S\cup X$ for $q_i$ we also have a stable sets containing exactly one vertex $t$ of $T$ for all $t\in V(T)$.\qed
 \end{prf}
 
-The second idea is to reduce the number of stable sets in $S(B_k)$ for a Burling graph $B_k$. 
+The second idea is to reduce the number of stable sets in $S(B_k)$ for a Burling graph $B_k$. Obviously, it is not possible to remove a stable set from $S(B_1)$ since the construction would never progress. For $k>1$, removing a stable set from $S(B_k)$ influences the chromatic number of all subsequent graphs. Thus, we do not preserve all properties of the construction as the next theorem shows.
+
+\begin{lemma}\label{l1ls}
+Let $k\in\N$. For each stable set $S\in S(B_k)$ exists a vertex $v\in S$ such that $v\notin S^\prime$ for each other set $S^\prime\in S(B_k)$, $S\neq S^\prime$.
+\end{lemma}
+\begin{prf}
+This is trivial for $k=1$. For $k=2$, let $H$ and $H_S$ denote the copies of $B_{k-1}$ as in the construction of the Burling graphs. For a stable set $S\in S(B_k)$, there exists a stable set $S_h\in S(H)$ and a stable set $X\in S(H_{S_h})$ such that $S=S_h\cup X$ or $S=S_h\cup \{v_{S_h ,X}\}$. In the first case, $X$ contains a vertex $x$ no other stable set in $S(H_{S_h})$ contains by induction hypothesis. Then, from the sets in $S(B_k)$ only $S$ contains $x$. In the second case, $v_{S_h,X}$ is only element of $S$.\qed
+\end{prf}
+
+
+\begin{thm}
+For all $k\in\N$, there exists a proper coloring of $B_k$ using exactly $k$ colors on at most one stable set $S\in S(B_k)$ and no more colors on any other stable set from $S(B_k)$. This stable set is freely choosable.
+\end{thm}
+\begin{prf}
+We proof this by induction on $k$. For $k=1$, $S(B_1)$ contains only one stable set and $c$ uses exactly one color on the vertex in this set. 
+
+Now let $k\geq 2$ and choose a set $S_k\in S(B_k)$ to be colored with $k$ colors.  Then, there exists a stable set $S^\prime\in S(H)$ and a stable set $X^\prime\in S(H_{S^\prime})$ such that $S_k=S^\prime\cup X^\prime$ or $S_k=S^\prime\cup \{v_{S^\prime ,X^\prime}\}$. We shall construct a proper coloring $c$ of $B_k$ that uses exactly $k$ colors on $S_k$ and fewer on each other stable set in $S(B_k)$. 
+
+By induction hypothesis, color $H$ such that $k-1$ colors are used on $S^\prime$ and no other stable set in $S(H)$. Also by induction hypothesis, color $H_{S^\prime}$ such that $k-1$ colors are used on $X^\prime$ and color $H_S$ the same way as $H$ for each other set $S\in S(H)$, $S\neq S^\prime$. Use one of the missing colors for each introduced vertex $v_{S,X}$ for each $S\in S(H)$ including $S^\prime$ and $X\in S(H_S)$ or a $k^{th}$ color if $X$ is the set $c$ uses $k-1$ colors on. Now consider the following cases for a stable set in $S(B_k)$. It has the form $S\cup X$ or $S\cup \{v_{S,X}\}$ for $S\in S(H)$ and $X\in S(H)$.
+\begin{case}
+$X\neq X^\prime$. Then, $c$ uses at most $k-1$ colors on $S$ and fewer on $X$. Thus, $v_{S,X}$ is colored with one of the $k-1$ colors used on $H$ and we need at most $k-1$ colors for $S\cup X$ and $S\cup \{ v_{S,X}\}$.
+\end{case}
+\begin{case}
+$S\neq S^\prime$ and $X= X^\prime$. Then, we need $k-1$ colors for $S\cup X$. Since $c$ uses fewer than $k-1$ colors on $S$, we also need at most $k-1$ colors for $S\cup \{ v_{S,X}\}$.
+\end{case}
+\begin{case}
+$S=S^\prime$ and $X=X^\prime$. Then, $c$ uses exactly $k-1$ colors on $S\cup X$ and $k$ colors on $S\cup \{ v_{S,X}\}$.
+\end{case}
+Thus, $c$ is a proper coloring of $B_k$ as wanted if $S_k=S^\prime\cup \{v_{S^\prime ,X^\prime}\}$. If $S_k=S^\prime\cup X^\prime$, there exists a vertex $x\in X^\prime$ that is only element of $X^\prime$ but no other stable set from $X\in S(H_{S^\prime})$ by Lemma \ref{l1ls}. Then, $x$ is also adjacent to $v_{S^\prime, X^\prime}$ but no other vertex $v_{S^\prime, X}$, $X\in S(H_{S^\prime})$. Thus, by swapping the colors of $v_{S^\prime, X^\prime}$ and $x$, we obtain a proper coloring of $B_k$ that uses exactly $k$ colors on $S_k=S^\prime\cup \{v_{S^\prime ,X^\prime}\}$ and $k-1$ on $S^\prime\cup \{v_{S^\prime ,X^\prime}\}$.\qed
+\end{prf}
+
+Thus, after removing a stable set from $S(B_k)$ for some $k\in\N$, $B_k$ is properly colorable such that we need at most $k-1$ colors for each stable set in $S(B_k)$. This results in proper colorings of $B_{k+1}$ with at most $k$ colors. Furthermore, it is not enough to simply remove one stable set per construction step since we still find induced subgraphs isomorphic to the tree $T_k$ by the way we constructed an embedding, just some steps later.
+
+Note that removing stable sets of $S(B_k^\prime )$ for the modified Burling graphs holds the same problems.
