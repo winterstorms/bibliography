@@ -56,11 +56,11 @@ For $k=1$, $G_1$ and $B_1$ are graphs on a single vertex and thus isomorphic wit
 Suppose $k\geq 2$, $G_{k-1}$ and $B_{k-1}$ are isomorphic, and the bijection $f_{k-1}$ between $\mathcal{P}_{k-1}$ and $S(B_{k-1})$ exists as wanted. We extend the isomorphism to pairs of copies $(\mathcal{L}_p, H_{f(p)})$ of $G_{k-1}$ and $B_{k-1}$ respectively for all probes $p\in \mathcal{P}_{k-1}$ and thus covering all copies of $G_{k-1}$ in $G_k$ and $B_{k-1}$ in $B_{k}$. We do this by setting $\varphi_k (v^\prime)=u^\prime$ if and only if $v^\prime\in \mathcal{L}_p$ is the copy of a vertex $v\in G_{k-1}$ and $u^\prime$ is the copy of $\varphi_{k-1}(v)\in H_{f(p)}$. Then, we map the remaining vertices according to the bijection between $\mathcal{P}_k$ and $S(B_k)$: for each $p\in\mathcal{P}_{k-1}$ and $q\in\mathcal{P}_p$ ($q$ is the copy of some probe $q^\prime\in\mathcal{P}_{k-1}$) map the vertex corresponding to $d_q\in V(G_{k-1})$ to the vertex $v_{S,X}\in B_{k-1}$ where $S=f(p)$ and $X$ is the copy of $f(q^\prime)$ in $S(H_S)$. That yields an isomorphism $\varphi_k$ between $G_k$ and $B_k$ since the images of the neighbors of $d_q$ are the neighbors of $v_{S,X}$ in $B_k$. Finally, define $f_k:\mathcal{P}_k\to S(B_k)$ as $f(u_q)= S\cup \lbrace v_{S,X}\rbrace$ and $f(l_q)= S\cup X$.\qed
 \end{prf}
 
-Since both constructions yield the same family of graphs, let us call it $\mathcal{LG}$, it is enough to consider just the Burling graphs for the following proofs. The results hold for both constructions. First, we want to assert that the graphs are indeed triangle-free and that we can find graphs of arbitrarily large chromatic number in $\mathcal{LG}$.
+Since both constructions yield the same family of graphs, let us call it $\mathcal{B}$, it is enough to consider just the Burling graphs for the following proofs. The results hold for both constructions. First, we want to assert that the graphs are indeed triangle-free and that we can find graphs of arbitrarily large chromatic number in $\mathcal{B}$.
 
 
 \begin{thm}[Felsner et al. \cite{Fe18}]
-All graphs in $\mathcal{LG}=\lbrace B_k :k\in\N\rbrace$ are triangle-free.
+All graphs in $\mathcal{B}=\lbrace B_k :k\in\N\rbrace$ are triangle-free.
 \end{thm}
 
 \begin{prf}
@@ -77,24 +77,16 @@ We show this by proving a stronger statement by induction on $k$. For any proper
 This is again trivial for $k=1$. Now, suppose $k\geq 2$ and $c$ is a proper coloring of $B_k$. By induction hypothesis, there exists a stable set $S\in S(B_{k-1})$ $c$ uses at least $k-1$ colors on. Also by induction hypothesis, there exists a stable set $X\in S(H_S)$ $c$ uses at least $k-1$ colors on. If $c$ uses at least $k$ colors on $(S\cup X)\in S(B_k)$, we are done. Otherwise, $c$ uses the same $k-1$ colors on $S$ and $X$. Since $v_{S,X}$ is adjacent to each vertex in $X$, it is colored in a color not used on a vertex in $S$ and thus $c$ uses at least $k$ colors on $S\cup\lbrace v_{S,X}\rbrace$.\qed 
 \end{prf}
 
-\begin{comment}
-\begin{thm}[Pawlik et al. \cite{Paw14}]
-For every $k\in\N$ exists a family $\mathcal{L}$ of line segments in the plane with no three pairwise intersecting segments and $\chi (G)\geq k$, where $G$ is the intersection graph of $\mathcal{L}$.
-\end{thm}
+Similar to the construction of triangle-free graphs of large chromatic number by Mycielski, before we prove the existence of graphs in $\mathcal{B}$ with an induced subgraph isomorphic to a tree $T$, we prove that for each $n\in\N$ we find a graph $G\in\mathcal{B}$ containing an induced subgraph isomorphic to $K_{n,n}$. If that were not the case, we trivially would have found a counterexample to the Gyárfás-Sumner Conjecture \ref{c1cr} by Theorem \ref{t2cr}.
 
+\begin{lemma}
+For all $n\in\N$ there exists a graph $B\in\mathcal{B}$ that contains an induced subgraph isomorphic to $K_{n,n}$
+\end{lemma}
 \begin{prf}
- For every $k\in\N$ we now construct a family $\mathcal{L}_k$ of $s_k$ line segments, such that no three are pairwise intersecting, and a family $\mathcal{P}_k$ of $p_k$ pairwise disjoint probes in $R$, such that for every proper coloring $c$ of $\mathcal{L}_k$ there is a probe $P\in\mathcal{P}_k$ for which $c$ uses at least $k$ colors on the line segments of $\mathcal{L}_k$ intersecting $P$, by induction on $k$. Then, the corresponding intersection graph $G_k$ for $\mathcal{L}_k$ is triangle-free and $\chi (G)\geq k$.
-
-For the base case $k=1$ consider an arbitrary non-horizontal line segment in $R$. Let $\mathcal{L}_1$ just contain this segment and choose any rectangle in $R$ that shares its right boundary with $R$ and intersects the line segment with its lower and upper bound as the probe $p$ in $\mathcal{P}_1$. $G_1$ is obviously triangle-free and $p$ uses exactly one color on the segment it contains.
-
-For the induction step, consider a given rectangle $R$ and families $\mathcal{L}_k$ and $\mathcal{P}_k$ for a fixed $k\in\N$. To construct $\mathcal{L}_{k+1}$ draw $\mathcal{L}_k$ in $R$ and for each probe $p\in\mathcal{P}_k$ place another copy $\mathcal{L}_p$ of $\mathcal{L}_k$ with probes $\mathcal{P}_{p}$ in the root of $p$. Afterwards, for each $p\in\mathcal{P}_k$ and every $q\in\mathcal{P}_{p}$ draw the diagonal $d_q$ of $q$, i.e. a line segment from its bottom-left corner to its upper-right corner. $d_q$ crosses all segments intersecting $q$ but no other. Then, $\mathcal{L}_k$ consists of the segments from the $p_k + 1$ copies of $\mathcal{L}_k$ and the $p_k^2$ diagonals, i.e. $\vert \mathcal{L}_{k+1}\vert =(p_k + 1)s_k+p_k^2=s_{k+1}$. Since the copies of $\mathcal{L}_k$ are triangle-free and disjoint and $d_q$ intersects only the segments in $q$, an independent set of segments, $\mathcal{L}_{k+1}$ is also triangle-free.
-
-Now we want to construct $\mathcal{P}_{k+1}$. For each $p\in\mathcal{P}_k$ and every $q\in\mathcal{P}_{p}$ let $\mathcal{L}(p)$ be the set of segments in $\mathcal{P}_k$ intersecting $p$ and $\mathcal{L}_p(q)$ the segments in $\mathcal{L}(p)$ intersecting $q$. We add two probes to $\mathcal{P}_{k+1}$. We place the first one, the upper probe $u_q$, close to the top of $q$, such that the diagonal $d_q$ but no other segment in $\mathcal{L}_p(q)$ intersects it and choose the second probe, the lower probe $l_q$, close to the bottom of $q$ such that it contains all segments in $\mathcal{L}_p(q)$ but not $d_q$. Then, both probes end at the right boundary of $R$. By the induction hypothesis and the way we placed $\mathcal{L}_p$, $\mathcal{L}(p)\cup \lbrace d_q\rbrace$ and $\mathcal{L}(p)\cup\mathcal{L}_p(q)$ are both independent sets, i.e. both $u_q$ and $l_q$ are proper probes. Finally, observe that $\vert \mathcal{P}_{k+1}\vert = 2p_k^2=p_{k+1}$.
-
-Let $c$ be a coloring of $\mathcal{L}_{k+1}$. Consider the restriction of $c$ to the original copy of $\mathcal{L}_k$. By the induction hypothesis, there exists a probe $p\in\mathcal{P}_k$ for which $c$ needs $k$ colors to paint the line segments in $p$. Now, consider the copy $\mathcal{L}_p$ of $\mathcal{L}_k$ in the root of $p$. Again, by induction hypothesis, there is a probe $q\in\mathcal{P}_p$ that uses $k$ colors on the segments in $\mathcal{L}_p$ intersecting $q$. If the colors used by $c$ in $p$ and $q$ are different, at least $k+1$ colors are used on the segments pierced by the lower probe $l_q$. Otherwise, $d_q$ has a different color than the colors used in $p$ and $q$ and thus, $c$ uses $k+1$ colors on the segments pierced by the upper probe $u_q$.\qed
+Consider a Burling graph $B_n$. It contains a stable set $S^\prime\in S(B_n)$ of size at least $n$ since there exists a stable set a proper coloring of $B_n$ uses at least $n$ colors on by the proof of Theorem \ref{t2ls}. Choose a subset $S\subseteq S^\prime$ with size $n$.
 \end{prf}
-\end{comment}
-Similar to the construction of triangle-free graphs of large chromatic number by Mycielski, there exist rather simple proofs showing that such graphs provided by the construction above contain induced copies of stars and paths as well.
+
+There exist rather simple proofs showing that such graphs provided by the construction above contain induced copies of stars and paths as well.
 First, note that $B_{k+1}$ contains an induced copy of $B_k$ for all $k\in\N$. This follows directly from the construction. With this knowledge it is enough to prove the existence of an induced copy of a tree $T$ in some $B_k$. Then $T$ is no suitable candidate to disprove the conjecture as it is contained in a graph of arbitrarily large chromatic number.
 
 \begin{thm}
@@ -211,6 +203,6 @@ $S=S^\prime$ and $X=X^\prime$. Then, $c$ uses exactly $k-1$ colors on $S\cup X$ 
 Thus, $c$ is a proper coloring of $B_k$ as wanted if $S_k=S^\prime\cup \{v_{S^\prime ,X^\prime}\}$. If $S_k=S^\prime\cup X^\prime$, there exists a vertex $x\in X^\prime$ that is only element of $X^\prime$ but no other stable set from $X\in S(H_{S^\prime})$ by Lemma \ref{l1ls}. Then, $x$ is also adjacent to $v_{S^\prime, X^\prime}$ but no other vertex $v_{S^\prime, X}$, $X\in S(H_{S^\prime})$. Thus, by swapping the colors of $v_{S^\prime, X^\prime}$ and $x$, we obtain a proper coloring of $B_k$ that uses exactly $k$ colors on $S_k=S^\prime\cup \{v_{S^\prime ,X^\prime}\}$ and $k-1$ on $S^\prime\cup \{v_{S^\prime ,X^\prime}\}$.\qed
 \end{prf}
 
-Thus, after removing a stable set from $S(B_k)$ for some $k\in\N$, $B_k$ is properly colorable such that we need at most $k-1$ colors for each stable set in $S(B_k)$. This results in proper colorings of $B_{k+1}$ with at most $k$ colors. Furthermore, it is not enough to simply remove one stable set per construction step since we still find induced subgraphs isomorphic to the tree $T_k$ by the way we constructed an embedding, just some steps later.
+Thus, after removing a stable set from $S(B_k)$ for some $k\in\N$, $B_k$ is properly colorable such that we need at most $k-1$ colors for each stable set in $S(B_k)$. This results in proper colorings of $B_{k+1}$ with at most $k$ colors and it is not prossible to preserve the property that each $B_k$ has chromatic number at least $k$. Furthermore, it is not enough to simply remove one stable set per construction step since we still find induced subgraphs isomorphic to the tree $T_k$ by the way we constructed an embedding, just some steps later.
 
 Note that removing stable sets of $S(B_k^\prime )$ for the modified Burling graphs holds the same problems.

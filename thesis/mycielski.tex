@@ -45,7 +45,7 @@ Next, observe that if a graph $G_k$, $k\in\N$, contains an induced copy of a gra
 Last, note that this construction indeed provides a family of graphs worthy to look at for disproving Conjecture \ref{c1cr}. As we have shown in Theorem \ref{t2my} and Theorem \ref{t3my}, $\mathcal{M}$ contains triangle-free graphs of arbitrarily high chromatic number. Thus, if it were possible to prove that $\mathcal{M}\subseteq\textit{Forb}(T)$, that would disprove Conjecture \ref{c1cr}. The first idea is to simply apply Theorem \ref{t2cr} to prove that $\mathcal{M}\subseteq\textit{Forb}(T)$. That is not possible as the following lemma shows since for all $n\in\N$ there exists a graph $G_k\in\mathcal{M}$ that contains an induced subgraph isomorphic to $K_{n,n}$. Thus, we need to have a closer look at the construction to decide whether $\mathcal{M}\subseteq\textit{Forb}(T)$. 
 
 \begin{lemma}\label{l1my}
-For all $n\in\N$ there exists a graph $G_k\in\mathcal{M}$ that contains an induced subgraph isomorphic to $K_{n,n}$.
+For all $n\in\N$ there exists a graph $G\in\mathcal{M}$ that contains an induced subgraph isomorphic to $K_{n,n}$.
 \end{lemma}
 \begin{prf}
 Consider a graph $G_k\in\mathcal{M}$ such that $U_k$ has size at least $n$. Choose a subset $X\subseteq U_k$ of size $n$. Then, the vertex $w_k$ is adjacent to every vertex in $X$. Let $w_k^{i}$, $i\in [n]$, denote copy of $w_k$ in $U_{k+i}$. Then, each $w_k^{i}$, $i\in [n]$, is adjacent to the neighbors of $w_k$, including all vertices in $X$. Look at Figure \ref{f3my} for a visualization of the chosen vertices. The vertices $w_k^{i}$, $i\in [n]$, form a stable set $S$ in $G_{k+n}$ since $w_k$ is not adjacent to any of them. Thus, the vertices in $S\cup X$ induce a $K_{n,n}$ in $G_{k+n}$.\qed

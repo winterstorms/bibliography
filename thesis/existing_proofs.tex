@@ -34,7 +34,7 @@ Returning to the case were $\vert\mathcal{H}\vert =1$, it might be interesting t
 
 An obvious consequence of this theorem is that the family of graphs that do not contain $T$ as a subgraph is $\chi$-bounded and for the bounding function $f$ holds $f(\omega )\equiv k$.
 
-\begin{thm}[Gyárfás, Szemeredi, Tuza \cite{GST80}]\label{t3cr}
+\begin{thm}[Gyárfás, Szemeredi, Tuza \cite{GST80}]\label{t4cr}
 Let $k\in\N$ and $G$ be a labeled graph with $\chi (G) = k$. Then, $G$ contains every labeled tree $T$ on $k$ vertices as a subgraph. 
 \end{thm}
 \begin{prf}
@@ -42,23 +42,23 @@ We proof this by induction on $k$. For the base case let $k=1$. A graph $G$ with
 
 Now let $k>1$ and suppose the statement holds for all $1\leq k^\prime <k$. Consider a graph $G$ with $\chi (G) = k$ and a proper coloring $c$ in $k$ colors. Let its vertices be labeled with $1, 2, \dots , k$ according to their color under $c$. Let $T$ be a labeled tree on $k$ vertices. Choose a leaf $p$ of $T$ and call its neighbor $q$. Denote the label of $p$ as $l_p$ and the label of $q$ as $l_q$. Let $A$ be the set of vertices of $G$ with color $l_q$ such that each vertex in $A$ has a neighbor with color $l_p$. The set $A$ is not empty since $\chi (G)=k$. Consider the subgraph $G^\prime$ of $G$ where we remove the vertices of the color class $l_p$ and the vertices of color class $l_q$ that are not in $A$. It is a graph with chromatic number $k-1$ and by induction hypothesis it contains a labeled tree $T^\prime$ isomorphic to $T-\lbrace p\rbrace$. Since the vertex mapped to $q$ under the isomorphism is element of $A$, it has a neighbor $x\in V(G)$ with color $l_p$ and $T^\prime\cup\lbrace x\rbrace$ is isomorphic to $T$.\qed
 \end{prf}
-\begin{cor}\label{c1cr}
+\begin{cor}\label{cor1cr}
 A graph $G$ with $\chi (G) = k$ contains every tree $T$ on $k$ vertices as a subgraph. 
 \end{cor}
 \begin{prf}
-A tree $T$ on $k$ vertices can be seen as a labeled tree on $k$ vertices. Thus, $T\subseteq G$ holds by Theorem \ref{t3cr}.\qed
+A tree $T$ on $k$ vertices can be seen as a labeled tree on $k$ vertices. Thus, $T\subseteq G$ holds by Theorem \ref{t4cr}.\qed
 \end{prf}
 
 \begin{cor}
 For a tree $T$, the family $\mathcal{F}$ of graphs not containing $T$ as a subgraph is $\chi$-bounded with a bounding function $f_T$ satisfying $f_T(\omega )\leq\vert T\vert$.
 \end{cor}
 \begin{prf}
-The chromatic number of any graph $G\in\mathcal{F}$ is at most $\vert T\vert$ by Corollary \ref{c1cr}.\qed
+The chromatic number of any graph $G\in\mathcal{F}$ is at most $\vert T\vert$ by Corollary \ref{cor1cr}.\qed
 \end{prf}
 
-The actual Gyárfas-Sumner conjecture for induced subgraphs remains open. Even though many tried to prove the conjecture for over forty years, there are only some trees found to be $\chi$-bounding so far. 
+The actual Gyárfas-Sumner conjecture, i.e. Conjecture \ref{c1cr}, for induced subgraphs remains open. Even though many tried to prove the conjecture for over forty years, there are only some trees found to be $\chi$-bounding so far. 
 
-Note that finding a counterexample for the Gyárfas-Sumner conjecture is not easy either. As the following result shows, considering a random large graph and a tree $T$ does not work since the graph contains an induced subgraph isomorphic to $T$ with asymptotic probability $1$. For our purpose, a \textit{random} graph is a graph where each edge is independently determined to be present with probability $\frac{1}{2}$. For a graph property $P$ let $\mathcal{P}$ denote the family of graphs with this property. Let $G$ be a random graph on $n$ vertices. We say \textit{almost all graphs} have property $P$ if $Prob(G\in\mathcal{P})\xlongrightarrow{{n\to\infty}} 1$.
+Note that finding a counterexample for Conjecture \ref{c1cr} is not easy either. As the following result shows, considering a random large graph and a tree $T$ does not work since the graph contains an induced subgraph isomorphic to $T$ with asymptotic probability $1$. For our purpose, a \textit{random} graph is a graph where each edge is independently determined to be present with probability $\frac{1}{2}$. For a graph property $P$ let $\mathcal{P}$ denote the family of graphs with this property. Let $G$ be a random graph on $n$ vertices. We say \textit{almost all graphs} have property $P$ if $Prob(G\in\mathcal{P})\xlongrightarrow{{n\to\infty}} 1$.
 \begin{thm}
 Let $T$ be a tree. Almost all graphs contain an induced subgraph isomorphic to $T$.
 \end{thm}
@@ -98,7 +98,7 @@ The following trees are $\chi$-bounding:
 \label{f2cr}
 \end{figure}
 
-See Figure \ref{f2cr} for trees serving as examples for the second, fourth and fifth result. Even if we do not provide the proofs for all these cases, know that the third result is an implication of the topological version of the Gyárfás-Sumner conjecture that has been proved by Scott in \cite{Sc97}. Obviously, the case of subdivided stars is included in the fourth result but since it was proven a long time before the fourth result it is worth a nomination on its own.
+See Figure \ref{f2cr} for trees serving as examples for the second, fourth and fifth result of Theorem \ref{t3cr}. Even if we do not provide the proofs for all these cases, know that the third result is an implication of the topological version of the Gyárfás-Sumner conjecture that has been proved by Scott in \cite{Sc97}. Obviously, the case of subdivided stars is included in the fourth result but since it was proven a long time before the fourth result it is worth a nomination on its own.
 
 \begin{thm}[Scott \cite{Sc97}]
 For each tree $T$, there exists a function $f:\N\to\N$ such that for all graphs $G$ not containing an induced subgraph that is a subdivision of $T$ $\chi (G)\leq f(\omega (G))$.
@@ -146,7 +146,24 @@ Therefore, there exists a connected component $H$ of $G[B]$ with $\chi (H)>(n-i)
 If $B=\emptyset$, $\chi (G_{i-1})\leq \chi (G[A]) + 1$. By property $(ii)$ of $G_{i-1}$, $(n-i+1)(n-1)^{t-1} < (n-1)^{t-1} +1$ holds. Since $n\geq 2$ we have $i=n$ and we choose $q_n$ as any vertex of $A$. Note that $A\neq\emptyset$ by properties $(i)$ and $(ii)$ of $G_{i-1}$. With $G_n=\{q_n\}$ we are done.\qed
 \end{prf}
 
-The following results by Kierstead and Rödl \cite{Ki96} do not prove any cases of the Gyárfás-Sumner conjecture. Nevertheless, they show the existence of a bounding function for the family of graphs $\textit{Forb}(T,K_{n,n})$ not containing an induced subgraph isomorphic to $T$ or $K_{n,n}$ for a tree $T$ and $n\in\N$. Despite being a weaker statement than the conjecture itself it proves quite useful in the following chapters: For proving or disproving the conjecture we only need to consider families of graphs $F$ such that for each $n\in\N$ there exists a $G\in\mathcal{F}$ inducing a $K_{n,n}$.
+
+Observe that if we weaken Conjecture \ref{c1cr} by making more requirements for the graphs that are supposed to contain the induced subgraphs that simplifies certain proofs greatly. Rather than presenting some other proofs concerning cases of the Gyárfás-Sumner conjecture, the next theorem shows that presuming a certain girth and minimum degree in a graph assures the existence of induced subgraphs isomorphic to some trees. 
+
+\begin{thm}
+Let $T$ be a tree on $k\in\N$ vertices with maximum degree $\Delta (T)=d$. A graph $G$ with girth $g$ such that $k+1\leq g<\infty$ and minimum degree $\delta (G)\geq d$ contains an induced subgraph isomorphic to $T$.
+\end{thm}
+\begin{prf}
+We prove this by induction on $k$. If $k=1$, $T$ is a tree on a single vertex. A graph $G$ with girth $2\leq g<\infty$ has at least one vertex. Choose any vertex in $G$. The graph induced by this vertex is isomorphic to $T$.
+
+For $k\geq 2$, $T$ is a tree on at least $2$ vertices. Thus, we choose a leaf $l$ of $T$ and call the vertex that $l$ is adjacent to $u$. Let $G$ be a graph with girth $k+1\leq g<\infty$ and minimum degree $\delta (G)\geq d$. Now consider $T^\prime = T-\{l\}$. The graph $T^\prime$ is a tree on $k-1$ vertices with maximum degree still at most $d$. By induction hypothesis holds $T^\prime\subseteq_I G$. Let $\varphi$ be the map, that embeds $T^\prime$ in $G$. Since $\delta (G)\geq d$ and $u$ has degree at most $d-1$ in $T^\prime$, we find a vertex $v\in V(G)$ adjacent to $\varphi (u)$ that is not part of the embedding of $T^\prime$ in $G$ with $\varphi$. Then,
+\[\varphi^\prime :V(T)\to V(G), \varphi^\prime (w)=\begin{cases}v&\text{if }w=l,\\ \varphi (w) &\text{otherwise}\end{cases}\]
+defines an embedding of $T$ in $G$. To verify that $\varphi^\prime (T)$ is indeed an induced subgraph we need to show that $v$ is not adjacent to any vertex from $\varphi (T^\prime )$ except $\varphi (u)$.
+
+Assume it were and call the vertex $v$ is adjacent to $x$. Then, there exists a path in $G$ with endpoints $v$ and $x$ containing only edges from the embedding of $T^\prime$ because $T^\prime$ is connected. Together with the edge $\{v,x\}$ this path forms a cycle in $G$ on at most $k$ vertices since $T$ has $k$ vertices. This contradicts $g\geq k+1$. Thus, $\varphi^\prime (T)$ induces a subgraph isomorphic to $T$ in $G$.\qed
+\end{prf}
+
+
+The following results by Kierstead and Rödl \cite{Ki96} do not prove any cases of the Gyárfás-Sumner conjecture either. Nevertheless, they show the existence of a bounding function for the family of graphs $\textit{Forb}(T,K_{n,n})$ not containing an induced subgraph isomorphic to $T$ or $K_{n,n}$ for a tree $T$ and $n\in\N$. Despite being a weaker statement than the conjecture itself it proves quite useful in the following chapters: For proving or disproving the conjecture we only need to consider families of graphs $F$ such that for each $n\in\N$ there exists a $G\in\mathcal{F}$ inducing a $K_{n,n}$.
 
 Before presenting their main theorem, we need to prove three preliminary lemmas. They use some hypergraph theory in their proofs, so we want to introduce it as well. Let $H=(V,E)$ be a hypergraph. A hypergraph $G=(V,E^\prime)$ is a \textit{covering hypergraph} by $H$ if for every edge $e\in E$ there exists an edge $e^\prime\in E^\prime$ such that $e^\prime\subseteq e$. 
 
@@ -195,7 +212,7 @@ For all $m,n\in\N$ and all oriented trees $T$, there exists a function $f=f(m,n,
 \end{thm}
 
 \begin{prf}
-Let $G$ be an oriented graph. If $\omega (G)\geq m^\prime$, where $m^\prime = R(m,m)$, then $G$ contains $TK_m$. To see this, consider a clique of size $m^\prime$. Order the vertices of an oriented clique of size $m^\prime$ as $v_1,v_2,\dots v_{m^\prime}$ and choose a coloring $c$ with $c((v_i,v_j))=1$ if $i<j$ and $c((v_i, v_j))=2$ otherwise. By definition of the Ramsey number, we find a monochromatic clique of size $m$. The vertices in this clique induce a transitive tournament in $G$.
+Let $G$ be an oriented graph. Observe that if $\omega (G)\geq m^\prime$, where $m^\prime = R(m,m)$, then $G$ contains $TK_m$. To see this, consider a clique of size $m^\prime$. Order the vertices of an oriented clique of size $m^\prime$ as $v_1,v_2,\dots v_{m^\prime}$ and choose a coloring $c$ with $c((v_i,v_j))=1$ if $i<j$ and $c((v_i, v_j))=2$ otherwise. By definition of the Ramsey number, we find a monochromatic clique of size $m$. The vertices in this clique induce a transitive tournament in $G$.
 
 Second, note that if $G$ does not contain a clique of size $m^\prime$ but a $K_{n^\prime , n^\prime}$, where $n^\prime = R(m^\prime , B(n,n,2))$, $G$ induces a $DK_{n,n}$. Denote the parts of the $K_{n^\prime , n^\prime}$ as $A$ and $B$. We find stable sets of size $B(n,n,2)$ in both $A$ and $B$ again by the definition of the Ramsey number. After coloring all edges that point from $A$ to $B$ in the first color and all edges pointing from $B$ to $A$ in the second color, we obtain a monochromatic $K_{n,n}$ by definition of $B(n,n,2)$. Its vertices induce a $DK_{n,n}$ in $G$. 
 
