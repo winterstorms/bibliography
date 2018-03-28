@@ -1,4 +1,4 @@
-For a graph $H$ define the family of graphs not containing an induced subgraph isomorphic to $H$ as $\textit{Forb}(H)$. For which $H$ can we find a function $f$ such that $\chi (G)\leq f(\omega (G))$ holds for every graph $G\in\textit{Forb}(H)$? I.e., by the notation in \ref{d1}, we want to find a bounding function for $\textit{Forb}(H)$. If $f$ exists, let us call $H$ $\chi $-bounding. Observe that if $H$ is $\chi $-bounding, $H$ must be acyclic. That is because of a result by Erd\H{o}s and Hajnal in \cite{EH66} showing the existence of graphs with arbitrarily large girth and chromatic number. Thus, if $H$ contains a cycle, we can always find a graph $G$ with girth greater than the longest cycle in $H$ and a large chromatic number. Therefore, it is impossible to find a bounding function for $\textit{Forb}(H)$. For every acyclic graph $H^\prime$ the family $\mathcal{F}(H^\prime )$ may be $\chi$-bounded. Indeed, Gyárfás \cite{Gy75} and Sumner \cite{Su81} independently conjectured that it is true for every forest.
+For a graph $H$ define the family of graphs not containing an induced subgraph isomorphic to $H$ as $\text{Forb}(H)$. For which $H$ can we find a function $f$ such that $\chi (G)\leq f\big(\omega (G)\big)$ holds for every graph $G\in$ Forb($H$)? I.e., by the notation in \ref{d1}, we want to find a bounding function for $\text{Forb}(H)$. If $f$ exists, let us call $H$ $\chi $-bounding. Observe that if $H$ is $\chi $-bounding, $H$ must be acyclic. That is because of a result by Erd\H{o}s and Hajnal in \cite{EH66} showing the existence of graphs with arbitrarily large girth and chromatic number. Thus, if $H$ contains a cycle, we can always find a graph $G$ with girth greater than the longest cycle in $H$ and a large chromatic number. Therefore, it is impossible to find a bounding function for $\text{Forb}(H)$. For every acyclic graph $H^\prime$ the family $\text{Forb}(H^\prime )$ may be $\chi$-bounded. Indeed, Gyárfás \cite{Gy75} and Sumner \cite{Su81} independently conjectured that it is true for every forest.
 
 \begin{con}[Gyárfás \cite{Gy75}, Sumner \cite{Su81}]\label{c1cr}
 Every forest $F$ is $\chi$-bounding.
@@ -11,13 +11,13 @@ A forest $F$ is $\chi$-bounding if and only if all its connected components are 
 \end{thm}
 
 \begin{prf}
-Let $F$ be a $\chi$-bounding forest with a bounding function $f$. Assume there exists a connected component $T$ of $F$ that is not $\chi$-bounding. Then, for all functions $g:\N\to\N$ there exist an $\omega\in\N$ and a graph $G\in \textit{Forb}(T)$ with $\omega (G)=\omega$ and $\chi (G)>g(\omega)$ by Definition \ref{d1}. Now let $g:=f$. Since any graph in $\textit{Forb}(T)\subseteq\textit{Forb}(F)$, there exist an $\omega\in\N$ and a graph $G\in\textit{Forb}(F)$ with $\omega (G) =\omega $ and $\chi (G)>f(\omega )$. This is a contradiction to $F$ being $\chi$-bounding.
+Let $F$ be a $\chi$-bounding forest with a bounding function $f$. Assume there exists a connected component $T$ of $F$ that is not $\chi$-bounding. Then, for all functions $g:\N\to\N$ there exist an $\omega\in\N$ and a graph $G\in \text{Forb}(T)$ with $\omega (G)=\omega$ and $\chi (G)>g(\omega)$ by Definition \ref{d1}. Now let $g:=f$. Since any graph in $\text{Forb}(T)\subseteq\text{Forb}(F)$, there exist an $\omega\in\N$ and a graph $G\in\text{Forb}(F)$ with $\omega (G) =\omega $ and $\chi (G)>f(\omega )$. This is a contradiction to $F$ being $\chi$-bounding.
 
-To show the other direction, let $F$ be a forest with connected components $T_1, T_2,\dots ,T_k$ where $\textit{Forb}	(T_i)$ is $\chi$-bounded with a bounding function $f_i$, $i\in [k]$. Assume, $F$ is not $\chi$-bounding, i.e. for all functions $g:\N\to\N$ there exist an $\omega\in\N$ and a graph $G\in \textit{Forb}(F)$ with $\omega (G)=\omega$ and $\chi (G)>g(\omega)$. Let $g$ be a function with $g(\omega )\geq\max_{i\in [k]}f_i(\omega )$ for all $\omega\in\N$ and choose a graph $G\in\textit{Forb}(F)$ with $\chi (G)>g(\omega)$. Then, there exists an $i\in [k]$ such that $G\in\textit{Forb}(T_i)$ and $\chi (G)>g(\omega )\geq f_i(\omega )$. This contradicts the assumption that $T_i$ is $\chi$-bounding.\qed
+To show the other direction, let $F$ be a forest with connected components $T_1, T_2,\dots ,T_k$ where $\text{Forb}(T_i)$ is $\chi$-bounded with a bounding function $f_i$, $i\in [k]$. Assume, $F$ is not $\chi$-bounding, i.e. for all functions $g:\N\to\N$ there exist an $\omega\in\N$ and a graph $G\in \text{Forb}(F)$ with $\omega (G)=\omega$ and $\chi (G)>g(\omega)$. Let $g$ be a function with $g(\omega )\geq\max_{i\in [k]}f_i(\omega )$ for all $\omega\in\N$ and choose a graph $G\in\text{Forb}(F)$ with $\chi (G)>g(\omega)$. Then, there exists an $i\in [k]$ such that $G\in\text{Forb}(T_i)$ and $\chi (G)>g(\omega )\geq f_i(\omega )$. This contradicts the assumption that $T_i$ is $\chi$-bounding.\qed
 \end{prf}
 
-Let $\mathcal{H}$ be a set of graphs and let $\textit{Forb}(\mathcal{H})$ be the family of graphs forbidding any graph in $\mathcal{H}$ as an induced subgraph. The Conjecture \ref{c1cr} covers only cases where $\vert\mathcal{H}\vert =1$.
-Now consider a family $\textit{Forb}(\mathcal{H})$ with $\vert\mathcal{H}\vert >1$. Note that every finite set containing a forest is $\chi$-bounding under the assumption that Conjecture \ref{c1cr} is true and if $\mathcal{H}$ is finite and $\chi$-bounding it must contain a forest because of the result by Erd\H{o}s and Hajnal \cite{EH66}. If $\mathcal{H}$ does not contain a forest, it has to be infinite. Thus, considering infinite sets of cycles is the next obvious step. In 1985, Gyárfás made three more conjectures (later published in \cite{Gy87}) concerning the relation between the chromatic number of a graph and the length of cycles it induces.
+Let $\mathcal{H}$ be a set of graphs and let $\text{Forb}(\mathcal{H})$ be the family of graphs forbidding any graph in $\mathcal{H}$ as an induced subgraph. The Conjecture \ref{c1cr} covers only cases where $\vert\mathcal{H}\vert =1$.
+Now consider a family $\text{Forb}(\mathcal{H})$ with $\vert\mathcal{H}\vert >1$. Note that every finite set containing a forest is $\chi$-bounding under the assumption that Conjecture \ref{c1cr} is true and if $\mathcal{H}$ is finite and $\chi$-bounding it must contain a forest because of the result by Erd\H{o}s and Hajnal \cite{EH66}. If $\mathcal{H}$ does not contain a forest, it has to be infinite. Thus, considering infinite sets of cycles is the next obvious step. In 1985, Gyárfás made three more conjectures (later published in \cite{Gy87}) concerning the relation between the chromatic number of a graph and the length of cycles it induces.
 \begin{con}[Gyárfás \cite{Gy87}]
 The following three statements hold.
 \begin{enumerate}[(i)]
@@ -32,7 +32,7 @@ Observe that the third conjecture implies the first two but since they were stat
 
 Returning to the case were $\vert\mathcal{H}\vert =1$, it might be interesting to note that the conjecture becomes a rather simple problem in the case of general subgraphs instead of induced subgraphs. There exists a proof of an even stronger result by Gyárfás, Szemeredi and Tuza from 1980 \cite{GST80}. They show that a labeled tree $T$ on $k$ vertices is a subgraph of any labeled graph with chromatic number at least $k$. A \textit{labeled} graph is a graph with an assignment of labels, often represented by integers, to its vertices. When talking about a labeled graph $G$ without defining an explicit labeling, we refer to a graph labeled such that each vertex has a unique label. Usually each vertex has a label $i\in [\vert V(G)\vert ]$. A pair of labeled graphs is isomorphic if there exists a graph isomorphism that also heeds the assigned labels besides the structure of the graph.
 
-An obvious consequence of this theorem is that the family of graphs that do not contain $T$ as a subgraph is $\chi$-bounded and for the bounding function $f$ holds $f(\omega )\equiv k$.
+An obvious consequence of this theorem is that the family of graphs that do not contain $T$ as a subgraph is $\chi$-bounded and for the bounding function $f$ holds $f(\omega )= k$ for all $\omega\in\N$.
 
 \begin{thm}[Gyárfás, Szemeredi, Tuza \cite{GST80}]\label{t4cr}
 Let $k\in\N$ and $G$ be a labeled graph with $\chi (G) = k$. Then, $G$ contains every labeled tree $T$ on $k$ vertices as a subgraph. 
@@ -63,17 +63,20 @@ Note that finding a counterexample for Conjecture \ref{c1cr} is not easy either.
 Let $T$ be a tree. Almost all graphs contain an induced subgraph isomorphic to $T$.
 \end{thm}
 \begin{prf}
-Let $T$ be a tree on $k$ vertices and $G$ be a random graph on $n\geq k$ vertices. Observe that a vertex set $H\subseteq V(G)$ of size $k$ induces a graph isomorphic to $T$ with a strictly positive probability $p$ since all edges between vertices in $H$ are present with probabilitiy $\frac{1}{2}$. For the probability of $G$ containing an induced subgraph isomorphic to $T$ then holds:
+Let $T$ be a tree on $k$ vertices and $G$ be a random graph on $n\geq k$ vertices. First, observe that a vertex set $H\subseteq V(G)$ of size $k$ induces a graph isomorphic to $T$ with a strictly positive probability $p$ since all edges between vertices in $H$ are present with probabilitiy $\frac{1}{2}$. 
+
+Second, let $S$ denote a maximal set of subsets of $V(G)$ such that each set in $S$ has size $k$ and the elements of $S$ are pairwise disjoint. Thus, the probabilities for each set in $S$ to induce a subgraph isomorphic to $T$ are independent. Then, we have $\vert S\vert =\lfloor \frac{n}{k}\rfloor$ and for the probability of $G$ containing an induced subgraph isomorphic to $T$ holds:
 \begin{equation*}
 \begin{split}
 \textit{Prob}(T\subseteq_I G) &= 1-\textit{Prob}(T\nsubseteq_I G)\\
 &=1-\textit{Prob}(G[H]\not\approx T \hspace{0.4em}\forall H\subseteq V(G), \vert H\vert =k)\\
-&=1-\prod_{H\in {V\choose k}}\textit{Prob}(G[H]\not\approx T)\\
-&=1-\prod_{H\in {V\choose k}} (1-p)\\
-&=1-(1-p)^{n\choose k}\xlongrightarrow{{n\to\infty}} 1
+&\geq 1-\textit{Prob}(G[H]\not\approx T \hspace{0.4em}\forall H\in S)\\
+&=1-\prod_{H\in S}\textit{Prob}(G[H]\not\approx T)\\
+&=1-\prod_{H\in S} (1-p)\\
+&=1-(1-p)^{\lfloor\frac{n}{k}\rfloor}\xlongrightarrow{{n\to\infty}} 1
 \end{split}
 \end{equation*}
-\qed
+Since a probability is at most $1$ by definition, this proves the claim.\qed
 \end{prf}
 Thus, we require a special construction to find a graph without an induced subgraph isomorphic to $T$ but with an arbitrarily large chromatic number and therefore many vertices. As mentioned in the introduction, we consider two constructions in Chapters \ref{secMy} and \ref{secLS}.
 
@@ -81,13 +84,13 @@ Continuing with the proofs that already exist, here is a list of them as stated 
 
 \begin{thm}\label{t3cr}
 The following trees are $\chi$-bounding:
-\begin{itemize}
+\begin{enumerate}[(1)]
 \item trees of radius at most two (Kierstead and Penrice \cite{Ki94}),
 \item trees obtained from a tree with radius at most two by subdividing every edge incident to the root exactly once (Kierstead and Zhu \cite{Ki04}),
 \item subdivisions of stars (Scott \cite{Sc97}),
 \item trees obtained by adding one vertex to a subdivided star (Chudnovsky, Scott and Seymour \cite{CSS17}),
 \item trees obtained from a sudivided star and a star by adding a path joining their centers (Chudnovsky, Scott and Seymour \cite{CSS17}).
-\end{itemize} 
+\end{enumerate} 
 \end{thm}
 
 \begin{figure}[ht]
@@ -98,32 +101,40 @@ The following trees are $\chi$-bounding:
 \label{f2cr}
 \end{figure}
 
-See Figure \ref{f2cr} for trees serving as examples for the second, fourth and fifth result of Theorem \ref{t3cr}. Even if we do not provide the proofs for all these cases, know that the third result is an implication of the topological version of the Gyárfás-Sumner conjecture that has been proved by Scott in \cite{Sc97}. Obviously, the case of subdivided stars is included in the fourth result but since it was proven a long time before the fourth result it is worth a nomination on its own.
+See Figure \ref{f2cr} for trees serving as examples for the second, fourth and fifth result of Theorem \ref{t3cr}. Even if we do not provide the proofs for all these cases, know that the third result is an implication of the topological version of the Gyárfás-Sumner conjecture that has been proved by Scott in \cite{Sc97}.
 
-\begin{thm}[Scott \cite{Sc97}]
-For each tree $T$, there exists a function $f:\N\to\N$ such that for all graphs $G$ not containing an induced subgraph that is a subdivision of $T$ $\chi (G)\leq f(\omega (G))$.
+\begin{thm}[Scott \cite{Sc97}]\label{t5cr}
+For each tree $T$, there exists a function $f:\N\to\N$ such that for all graphs $G$ not containing an induced subgraph that is a subdivision of $T$ $\chi (G)\leq f\big(\omega (G)\big)$.
 \end{thm}
 
-If $T$ is a subdivision of a star, every graph that is a subdivision of $T$ contains an induced copy of $T$. Thus, no graph in $\textit{Forb}(T)$ contains an induced subgraph that is a subdivision of $T$. This proves the third result in Theorem \ref{t3cr}.\\
+\newpage
+\begin{cor}
+Let $T$ be a subdivision of a star. Then, $\text{Forb}(T)$ is $\chi$-bounded.
+\end{cor}
+\begin{prf}
+If $T$ is a subdivision of a star, every graph that is a subdivision of $T$ contains an induced copy of $T$. Thus, no graph in $\text{Forb}(T)$ contains an induced subgraph that is a subdivision of $T$. This proves the claim by Theorem \ref{t5cr}.\qed
+\end{prf}
 
-Instead of presenting the proofs for the other results, we now consider the cases of stars and paths. First, they provide an approach for proving some cases of the conjecture and second, they may serve as a reference for some results following in the other chapters of this thesis. The two following theorems proved by Gyárfás in \cite{Gy87} show that the families of graphs $\textit{Forb}(K_{1,n})$ and $\textit{Forb}(P_n)$ are $\chi$-bounded and even provide a lower bound on the bounding function in the first case.
+Obviously, the case of subdivided stars is included in the fourth result but since it was proven a long time before the fourth result it is worth a nomination on its own.
 
-\begin{thm}[Gyárfás \cite{Gy87}] The family of graphs $\textit{Forb}(K_{1,n})$ is $\chi$-bounded for all fixed $n \in\N$, $n\geq 2$, with a bounding function $f_n$ satisfying \[\dfrac{R(n,\omega + 1) - 1}{n-1}\leq f_n(\omega )\leq R(n,\omega ).\] 
+Instead of presenting the proofs for the other results, we now consider the cases of stars and paths. First, they provide an approach for proving some cases of the conjecture and second, they may serve as a reference for some results following in the other chapters of this thesis. The two following theorems proved by Gyárfás in \cite{Gy87} show that the families of graphs $\text{Forb}(K_{1,n})$ and $\text{Forb}(P_n)$ are $\chi$-bounded and even provide a lower bound on the bounding function in the first case.
+
+\begin{thm}[Gyárfás \cite{Gy87}] The family of graphs $\text{Forb}(K_{1,n})$ is $\chi$-bounded for all fixed $n \in\N$, $n\geq 2$, with a bounding function $f_n$ satisfying \[\frac{R(n,\omega + 1) - 1}{n-1}\leq f_n(\omega )\leq R(n,\omega ).\] 
 \end{thm}
 \begin{prf}
 We prove the lower bound first. By definition of the Ramsey number, there is a graph on $R(n,\omega + 1) - 1$ vertices that contains no stable set of $n$ vertices and no clique of $\omega + 1$ vertices. Let $G$ be such a graph. Then, $G$ does not contain a $K_{1,n}$, since its leaves would form a stable set of $n$ vertices. Additionally, $\chi (G)\geq |V(G)| /(n-1)$ holds because every color class is a stable set. This gives the lower bound.
 
-To prove the upper bound, let $G \in\textit{Forb} (K_{1,n})$ and $\omega (G) = \omega$. Assume, there exists a vertex $v\in V(G)$ with degree $R(n,\omega)$. Then, the neighborhood of $v$ either contains a stable set of $n$ vertices or a clique of $\omega$ vertices. In the first case, the stable set and $v$ would induce a $K_{1,n}$ in $G$. The second case contradicts $\omega (G) = \omega$. Thus, the maximum degree $\Delta (G)$ of $G$ is less than $R(n,\omega)$, i.e. a greedy coloring of $G$ yields $\chi (G)\leq\Delta (G) + 1\leq R(n,\omega)$.\qed
+To prove the upper bound, let $G \in\text{Forb} (K_{1,n})$ and $\omega (G) = \omega$. Assume, there exists a vertex $v\in V(G)$ with degree $R(n,\omega)$. Then, the neighborhood of $v$ either contains a stable set of $n$ vertices or a clique of $\omega$ vertices. In the first case, the stable set and $v$ would induce a $K_{1,n}$ in $G$. The second case contradicts $\omega (G) = \omega$. Thus, the maximum degree $\Delta (G)$ of $G$ is less than $R(n,\omega)$, i.e. a greedy coloring of $G$ yields $\chi (G)\leq\Delta (G) + 1\leq R(n,\omega)$.\qed
 \end{prf}
 
-\begin{thm}[Gyárfás \cite{Gy87}]
-For all fixed $n\in\N$, $n\geq 2$, the family of graphs $\textit{Forb}(P_n)$ is $\chi$-bounded with a bounding function $f_n(\omega )\leq (n-1)^{\omega - 1}$.
+\begin{thm}[Gyárfás \cite{Gy87}]\label{t5cr}
+For all fixed $n\in\N$, $n\geq 2$, the family of graphs $\text{Forb}(P_n)$ is $\chi$-bounded with a bounding function $f_n(\omega )\leq (n-1)^{\omega - 1}$.
 \end{thm}
 
 \begin{prf}
 Let $n\in\N$ be fixed let $G$ be a graph with $\omega (G)=\omega$ such that $P_n\nsubseteq_I G$. We prove that $\chi (G)\leq (n-1)^{\omega -1}$ by induction on $\omega (G)$. Consider the base case for $\omega (G) =1$. Then, $\chi (G) = 1$ and the theorem trivially holds.
 
-Suppose the theorem holds for all graphs $G^\prime\in\textit{Forb}(P_n)$ with $\omega (G^\prime ) \leq t$ for some $t\geq 1$, i.e. $(n-1)^{t-1}$ is a bounding function for them. Let $G\in\textit{Forb}(P_n)$ with $\omega (G) = t + 1$. Now, assume that $\chi (G) > (n-1)^{\omega - 1}$. We shall reach a contradiction by constructing an induced path $Q_n=(q_1,q_2,\dots ,q_n)$ in $G$. To do this, we will define subgraphs $G_i$ of $G$ with $q_i\in V(G_i)$ for all $i\in [n]$, such that $V(G_1)\supseteq V(G_2)\supseteq \dots\supseteq V(G_n)$ and each $G_i$ satisfies the following properties:
+Suppose the theorem holds for all graphs $G^\prime\in\text{Forb}(P_n)$ with $\omega (G^\prime ) \leq t$ for some $t\geq 1$, i.e. $(n-1)^{t-1}$ is a bounding function for them. Let $G\in\text{Forb}(P_n)$ with $\omega (G) = t + 1$. Now, assume that $\chi (G) > (n-1)^{\omega - 1}$. We shall reach a contradiction by constructing an induced path $Q_n=(q_1,q_2,\dots ,q_n)$ in $G$. To do this, we will define subgraphs $G_i$ of $G$ with $q_i\in V(G_i)$ for all $i\in [n]$, such that $V(G_1)\supseteq V(G_2)\supseteq \dots\supseteq V(G_n)$ and each $G_i$ satisfies the following properties:
 \begin{enumerate}[(i)]
 \item $G_i$ is connected,
 \item $\chi (G_i) > (n-i)(n-1)^{t-1}$,
@@ -147,7 +158,23 @@ If $B=\emptyset$, $\chi (G_{i-1})\leq \chi (G[A]) + 1$. By property $(ii)$ of $G
 \end{prf}
 
 
-Observe that if we weaken Conjecture \ref{c1cr} by making more requirements for the graphs that are supposed to contain the induced subgraphs that simplifies certain proofs greatly. Rather than presenting some other proofs concerning cases of the Gyárfás-Sumner conjecture, the next theorem shows that presuming a certain girth and minimum degree in a graph assures the existence of induced subgraphs isomorphic to some trees. 
+Observe that if we weaken Conjecture \ref{c1cr} by making more requirements for the graphs that are supposed to contain the induced subgraphs that simplifies certain proofs greatly. Even if we are not able to prove a case for the conjecture, the next theorem shows that limiting the maximum number of neighbors two vertices in a graph may share yields a result for caterpillar trees. For a tree $T$ let us denote the family of graphs that do not contain an induced subgraph isomorphic to $T$ and for any pair of vertices the number of shared neighbors is at most $s$ by $\text{Forb}_s(T)$. Then, the theorem gives us a bounding function for $\text{Forb}_s(T)$ if $T$ is a caterpillar. Furthermore, let $\mathcal{C}(k,d,n)$ denote the family of caterpillar trees $T$ on $k$ vertices with maximum degree $d$ such that the path containing exactly the vertices of degree at least two has length $n$.
+
+\begin{thm}
+Let $T\in \mathcal{C}(k,d,n)$. Then, $\text{Forb}_s(T)$ is $\chi$-bounded with a bounding function $f$ satisfying $f\big(\omega (G)\big)\leq R\big( ( k-1) s+d, \omega (G) \big) +3+ ( n-1) ^{\omega (G)-1}$, where $\omega (G)$ denotes the size of the largest clique in $G$.
+\end{thm}
+
+\begin{prf}
+Let $T\in \mathcal{C}(k,d,n)$ and let $P=(p_1,p_2,\dots ,p_n)$ be the path in $T$ that contains exactly the vertices of degree at least two. Consider a graph $G$ with chromatic number $\chi (G)\geq R\big( ( k-1) s+d, \omega \big) +3+ (n-1)^{\omega (G)-1}$, where $\omega =\omega (G)$. Let the vertex set $V_1=\{v\in V(G):d(v)\geq R\big( ( k-1) s+d, \omega \big)+2 \}$ contain the vertices in $G$ with degree at least $R\big( ( k-1) s+d, \omega \big)+2$ and let $V_2=V(G)\setminus V_1$. Observe that $G$ is properly colorable by a proper coloring of $G[V_1]$ and a proper coloring of $G[V_2]$ in distinct colors. The induced subgraph $G[V_2]$ has a maximum degree of at most $R\big( ( k-1) s+d, \omega \big)+2$ and $G[V_2]$ is greedily colorable with $R\big( ( k-1) s+d, \omega \big)+3$ colors. Thus, $\chi (G[V_1])\geq (n-1)^{\omega (G)-1}$ because otherwise $\chi (G)\leq \chi (G[V_1]) +\chi (G[V_2])$ contradicts the choice of $G$.
+
+We then find an induced subgraph $H$ isomorphic to $P$ in $G[V_1]$ by Theorem \ref{t5cr}. Let $\varphi :V(P)\to V(H)$ denote an isomorphism between $P$ and $H$. Denote the vertices of $H$ as $(h_1, h_2,\dots , h_n)$ such that $\varphi (p_i) =h_i$, $i\in [n]$. 
+Let $l_i$, $i\in\N$, denote the number of leaves of $P$, each vertex $p_i$ is adjacent to. Observe that $0\leq l_i\leq d$ for all $i\in [n]$.
+Each vertex in $H$ has degree at least $R\big( ( k-1) s+d, \omega \big)+2$, i.e. there exist at least $R\big( ( k-1) s+d, \omega \big)$ neighbors not in $H$ for each $h_i$, $i\in [n] $. Then, there exists a stable set $S_i$ of $(k-1)s+d$ neighbors not in $H$ for each $h_i$, $i\in [n] $ since otherwise together with $h_i$ we find a clique of size $\omega +1$ contradicting the choice of $G$. Define an empty vertex set $H^\prime$. Since two vertices in $G$ share at most $s$ neighbors, we subsequently choose $l_i$ neighbors for $h_i$ from $S_i$ that are not adjacent to any other vertex of $H$ or already chosen vertices in $H^\prime$ and add them to $H^\prime$. For $h_i$, $i\in [n]$, we have at most $(k-1-l_i)s\leq (k-1)s$ neighbors in $S_i$ that are also adjacent to a vertex from $V(H)$ or $H^\prime$. This leaves at least $d$ neighbors in $S_i$ not adjacent to any already chosen vertex which we add to the vertex set $H^\prime$. Then, $H^\prime$ is a stable set. Each vertex $p_i$ is adjacent to $l_i$ leaves of $T$. Thus, mapping each such leaf to a neighbor of $h_i$ that is in $H^\prime$ yields an isomorphism between $T$ and an induced subgraph of $G$.\qed
+\end{prf}
+
+
+Rather than presenting some other proofs concerning cases of the Gyárfás-Sumner conjecture, we pursue a different approach. Now, we require a certain girth and minimum degree for a grap $G$ instead of limiting the maximum number of shared neighbors. This assures the existence of induced subgraphs in $G$ isomorphic to some trees.
+\newpage
 
 \begin{thm}
 Let $T$ be a tree on $k\in\N$ vertices with maximum degree $\Delta (T)=d$. A graph $G$ with girth $g$ such that $k+1\leq g<\infty$ and minimum degree $\delta (G)\geq d$ contains an induced subgraph isomorphic to $T$.
@@ -155,15 +182,14 @@ Let $T$ be a tree on $k\in\N$ vertices with maximum degree $\Delta (T)=d$. A gra
 \begin{prf}
 We prove this by induction on $k$. If $k=1$, $T$ is a tree on a single vertex. A graph $G$ with girth $2\leq g<\infty$ has at least one vertex. Choose any vertex in $G$. The graph induced by this vertex is isomorphic to $T$.
 
-For $k\geq 2$, $T$ is a tree on at least $2$ vertices. Thus, we choose a leaf $l$ of $T$ and call the vertex that $l$ is adjacent to $u$. Let $G$ be a graph with girth $k+1\leq g<\infty$ and minimum degree $\delta (G)\geq d$. Now consider $T^\prime = T-\{l\}$. The graph $T^\prime$ is a tree on $k-1$ vertices with maximum degree still at most $d$. By induction hypothesis holds $T^\prime\subseteq_I G$. Let $\varphi$ be the map, that embeds $T^\prime$ in $G$. Since $\delta (G)\geq d$ and $u$ has degree at most $d-1$ in $T^\prime$, we find a vertex $v\in V(G)$ adjacent to $\varphi (u)$ that is not part of the embedding of $T^\prime$ in $G$ with $\varphi$. Then,
+For $k\geq 2$, $T$ is a tree on at least $2$ vertices. Thus, we choose a leaf $l$ of $T$ and call the vertex that $l$ is adjacent to $u$. Let $G$ be a graph with girth $k+1\leq g<\infty$ and minimum degree $\delta (G)\geq d$. Now consider $T^\prime = T-\{l\}$. The graph $T^\prime$ is a tree on $k-1$ vertices with maximum degree still at most $d$. By induction hypothesis, $T^\prime\subseteq_I G$. Let $\varphi$ be the map, that embeds $T^\prime$ in $G$. Since $\delta (G)\geq d$ and $u$ has degree at most $d-1$ in $T^\prime$, we find a vertex $v\in V(G)$ adjacent to $\varphi (u)$ that is not part of the embedding of $T^\prime$ in $G$ with $\varphi$. Then,
 \[\varphi^\prime :V(T)\to V(G), \varphi^\prime (w)=\begin{cases}v&\text{if }w=l,\\ \varphi (w) &\text{otherwise}\end{cases}\]
 defines an embedding of $T$ in $G$. To verify that $\varphi^\prime (T)$ is indeed an induced subgraph we need to show that $v$ is not adjacent to any vertex from $\varphi (T^\prime )$ except $\varphi (u)$.
 
 Assume it were and call the vertex $v$ is adjacent to $x$. Then, there exists a path in $G$ with endpoints $v$ and $x$ containing only edges from the embedding of $T^\prime$ because $T^\prime$ is connected. Together with the edge $\{v,x\}$ this path forms a cycle in $G$ on at most $k$ vertices since $T$ has $k$ vertices. This contradicts $g\geq k+1$. Thus, $\varphi^\prime (T)$ induces a subgraph isomorphic to $T$ in $G$.\qed
 \end{prf}
 
-
-The following results by Kierstead and Rödl \cite{Ki96} do not prove any cases of the Gyárfás-Sumner conjecture either. Nevertheless, they show the existence of a bounding function for the family of graphs $\textit{Forb}(T,K_{n,n})$ not containing an induced subgraph isomorphic to $T$ or $K_{n,n}$ for a tree $T$ and $n\in\N$. Despite being a weaker statement than the conjecture itself it proves quite useful in the following chapters: For proving or disproving the conjecture we only need to consider families of graphs $F$ such that for each $n\in\N$ there exists a $G\in\mathcal{F}$ inducing a $K_{n,n}$.
+The following results by Kierstead and Rödl \cite{Ki96} do not prove any cases of the Gyárfás-Sumner conjecture either. Nevertheless, they show the existence of a bounding function for the family of graphs $\text{Forb}(T,K_{n,n})$ not containing an induced subgraph isomorphic to $T$ or $K_{n,n}$ for a tree $T$ and $n\in\N$. Despite being a weaker statement than the conjecture itself it proves quite useful in the following chapters: For proving or disproving the conjecture we only need to consider families of graphs $F$ such that for each $n\in\N$ there exists a $G\in\mathcal{F}$ inducing a $K_{n,n}$.
 
 Before presenting their main theorem, we need to prove three preliminary lemmas. They use some hypergraph theory in their proofs, so we want to introduce it as well. Let $H=(V,E)$ be a hypergraph. A hypergraph $G=(V,E^\prime)$ is a \textit{covering hypergraph} by $H$ if for every edge $e\in E$ there exists an edge $e^\prime\in E^\prime$ such that $e^\prime\subseteq e$. 
 
@@ -214,15 +240,15 @@ For all $m,n\in\N$ and all oriented trees $T$, there exists a function $f=f(m,n,
 \begin{prf}
 Let $G$ be an oriented graph. Observe that if $\omega (G)\geq m^\prime$, where $m^\prime = R(m,m)$, then $G$ contains $TK_m$. To see this, consider a clique of size $m^\prime$. Order the vertices of an oriented clique of size $m^\prime$ as $v_1,v_2,\dots v_{m^\prime}$ and choose a coloring $c$ with $c((v_i,v_j))=1$ if $i<j$ and $c((v_i, v_j))=2$ otherwise. By definition of the Ramsey number, we find a monochromatic clique of size $m$. The vertices in this clique induce a transitive tournament in $G$.
 
-Second, note that if $G$ does not contain a clique of size $m^\prime$ but a $K_{n^\prime , n^\prime}$, where $n^\prime = R(m^\prime , B(n,n,2))$, $G$ induces a $DK_{n,n}$. Denote the parts of the $K_{n^\prime , n^\prime}$ as $A$ and $B$. We find stable sets of size $B(n,n,2)$ in both $A$ and $B$ again by the definition of the Ramsey number. After coloring all edges that point from $A$ to $B$ in the first color and all edges pointing from $B$ to $A$ in the second color, we obtain a monochromatic $K_{n,n}$ by definition of $B(n,n,2)$. Its vertices induce a $DK_{n,n}$ in $G$. 
+Second, note that if $G$ does not contain a clique of size $m^\prime$ but a $K_{n^\prime , n^\prime}$, where $n^\prime = R\big( m^\prime , B(n,n,2)\big)$, $G$ induces a $DK_{n,n}$. Denote the parts of the $K_{n^\prime , n^\prime}$ as $A$ and $B$. We find stable sets of size $B(n,n,2)$ in both $A$ and $B$ again by the definition of the Ramsey number. After coloring all edges that point from $A$ to $B$ in the first color and all edges pointing from $B$ to $A$ in the second color, we obtain a monochromatic $K_{n,n}$ by definition of $B(n,n,2)$. Its vertices induce a $DK_{n,n}$ in $G$. 
 
 Thus, it suffices to show, that $(\ast)$ there exists a function $g=g(m^\prime ,n^\prime ,T)$ such that every oriented graph $G$ with $\chi (G)\geq g(m^\prime ,n^\prime ,T)$ either has $\omega (G)\geq m^\prime$ or $G$ contains $K_{n^\prime ,n^\prime }$ or $G$ induces $T$. We prove this claim by induction on the number of vertices $v(T)$ of a tree $T$. 
 
 The base case for $v(T)=1$ is trivial since a tree on one vertex is induced in every graph that has at least one vertex. 
 
-Now suppose that $g(m^\prime ,n^\prime ,T^\prime )$ exists for all $m^\prime ,n^\prime \in\N$ and for all trees $T^\prime$ with $v(T^\prime )\leq s$. Let $T$ be a tree on $s+1$ vertices. We define a function $g(m^\prime ,n^\prime ,T)$ for all $m^\prime ,n^\prime\in\N$ so that $(\ast)$ holds as follows. Choose a leaf $l$ of $T$, which is adjacent to a vertex $u$ of $T$, and let $T^\prime = T- \{l\}$. Let $\sigma =$ \textit{in} if the edge between $l$ and $u$ points to $u$ and $\sigma = $ \textit{out} otherwise. Define $g(m^\prime ,n^\prime ,T) = 2(g(m^\prime ,n^\prime ,T^\prime )(s-1)+s)B$, where $B=B(n^\prime ,n^\prime ,s)$. We now show that $g(m^\prime ,n^\prime ,T)$ satisfies $(\ast)$. Let $G=(V,E)$ be a graph such that $\chi (G)\geq g(m^\prime ,n^\prime ,T)$, and suppose $G$ contains neither $K_{m^\prime}$ nor $K_{n^\prime ,n^\prime}$. We claim that $G$ induces $T$.
+Now suppose that $g(m^\prime ,n^\prime ,T^\prime )$ exists for all $m^\prime ,n^\prime \in\N$ and for all trees $T^\prime$ with $v(T^\prime )\leq s$. Let $T$ be a tree on $s+1$ vertices. We define a function $g(m^\prime ,n^\prime ,T)$ for all $m^\prime ,n^\prime\in\N$ so that $(\ast)$ holds as follows. Choose a leaf $l$ of $T$, which is adjacent to a vertex $u$ of $T$, and let $T^\prime = T- \{l\}$. Let $\sigma =$ \textit{in} if the edge between $l$ and $u$ points to $u$ and $\sigma = $ \textit{out} otherwise. Define $g(m^\prime ,n^\prime ,T) = 2\big( g(m^\prime ,n^\prime ,T^\prime )(s-1)+s\big) B$, where $B=B(n^\prime ,n^\prime ,s)$. We now show that $g(m^\prime ,n^\prime ,T)$ satisfies $(\ast)$. Let $G=(V,E)$ be a graph such that $\chi (G)\geq g(m^\prime ,n^\prime ,T)$, and suppose $G$ contains neither $K_{m^\prime}$ nor $K_{n^\prime ,n^\prime}$. We claim that $G$ induces $T$.
 
-Let $W=\{v\in V:\delta^\sigma (v) <sB\}$. Then, by Lemma \ref{l2cr}, $\chi (G[W]) < 2sB$. Let $G^\prime = G[V^\prime ]$, where $V^\prime = V-W$. Since $\chi (G)\geq 2(g(m^\prime ,n^\prime ,T^\prime )(s-1)+s)B$ we need at least $2g(m^\prime ,n^\prime ,T^\prime )(s-1)B + 1$ colors for the vertices in $V^\prime$ in every proper coloring of $G^\prime$, i.e. $(\ast\ast)$ $\chi (G^\prime )\geq 2g(m^\prime ,n^\prime ,T^\prime )(s-1)B + 1$.
+Let $W=\{v\in V:\delta^\sigma (v) <sB\}$. Then, by Lemma \ref{l2cr}, $\chi (G[W]) < 2sB$. Let $G^\prime = G[V^\prime ]$, where $V^\prime = V-W$. Since $\chi (G)\geq 2\big( g(m^\prime ,n^\prime ,T^\prime )(s-1)+s\big) B$ we need at least $2g(m^\prime ,n^\prime ,T^\prime )(s-1)B + 1$ colors for the vertices in $V^\prime$ in every proper coloring of $G^\prime$, i.e. $(\ast\ast)$ $\chi (G^\prime )\geq 2g(m^\prime ,n^\prime ,T^\prime )(s-1)B + 1$.
 
 Next, construct a rooted $s$-uniform hypergraph $H=(V^\prime ,F,r)$ with the same set of vertices as $G^\prime$. An $s$-subset $S$ of $V^\prime$ is an edge of $H$ if and only if $T^\prime\approx G[S]$. Let $\phi$ be an isomorphism from $T^\prime$ to $G[S]$ and let $r_S$ be the image of $u$ under $\phi$. Note that in a proper coloring $c$ of $H$ no color class induces $T$. Thus, we can apply the induction hypothesis to each subgraph $H_C$ in $G$ that is induced by the vertices of a color class $C\subseteq V^\prime$ in $H$. Then, $\chi (H_C)\leq g(m^\prime , n^\prime , T^\prime )$ for each color class $C$. The union of all color classes contains every vertex in $V^\prime$. Thus, by coloring the vertices of each color class with its own set of colors, we get $\chi (G^\prime )\leq \chi (H)g(m^\prime ,n^\prime ,T^\prime )$. Together with $(\ast\ast)$, this yields $2(s-1)B +1\leq \chi (H)$.
 
@@ -242,14 +268,14 @@ By the definition of $B$, we find sets $X^\prime\subseteq X$ and $Y^\prime\subse
 \end{figure}
 
 \begin{note}
-It is a direct implication of this theorem that the family $\textit{Forb}(T,K_{n,n})$ is $\chi$-bounded. This can be easily seen by replacing the directed graph $G$ by the underlying undirected graph $G^\prime$.
+It is a direct implication of this theorem that the family $\text{Forb}(T,K_{n,n})$ is $\chi$-bounded. This can be easily seen by replacing the directed graph $G$ by the underlying undirected graph $G^\prime$.
 \end{note}
 
-We finish this chapter with a motivation for considering an oriented version of the Gyárfás-Sumner conjecture even if that is not part of this thesis. An oriented graph $H$ is $\chi$-bounding if there exists a bounding function $f:\N\to\N$ such that any oriented graph $G$ that contains a subgraph isomorphic to $H$ has chromatic number $\chi (G)\leq f(\omega (G))$, where in this case $\omega (G)$ denotes the size of the largest oriented clique in $G$. Before looking at specific cases note that we are only considering trees for which we know Conjecture \ref{c1cr} to be true. There actually exist some results for oriented stars and oriented $P_4$. Aboulker et al. \cite{Ab16} conjectured that every oriented star is $\chi$-bounding and proved the cases for $S_{k,0}$, $S_{0,l}$ and $S_{1,1}$ where $S_{k,l}$ denotes an oriented star with $k$ outgoing edges and $l$ edges pointing to the center vertex. 
+We finish this chapter with a motivation for considering an oriented version of the Gyárfás-Sumner conjecture even. An oriented graph $H$ is $\chi$-bounding if there exists a bounding function $f:\N\to\N$ such that any oriented graph $G$ that contains a subgraph isomorphic to $H$ has chromatic number $\chi (G)\leq f\big(\omega (G)\big)$, where in this case $\omega (G)$ denotes the size of the largest oriented clique in $G$. Before looking at specific cases note that we are only considering trees for which we know Conjecture \ref{c1cr} to be true. There actually exist some results for oriented stars and oriented $P_4$. Aboulker et al. \cite{Ab16} conjectured that every oriented star is $\chi$-bounding and proved the cases for $S_{k,0}$, $S_{0,l}$ and $S_{1,1}$ where $S_{k,l}$ denotes an oriented star with $k$ outgoing edges and $l$ edges pointing to the center vertex. 
 
 Next, observe that all paths on less than four vertices are stars and therefore included in the previous case. Let $or(P_4)$ denote the set of all pairwise non-isomorphic oriented $P_4$. Then, $or(P_4)$ contains only four elements, which we denote as \[\rightarrow\rightarrow\rightarrow , \rightarrow\leftarrow\rightarrow , \rightarrow\rightarrow\leftarrow , \leftarrow\leftarrow\rightarrow\] where the arrows depict the orientations of the edges. For oriented $P_4$ Aboulker et al. \cite{Ab16} conjectured that only $\rightarrow\rightarrow\leftarrow$ and $\leftarrow\leftarrow\rightarrow$ are $\chi$-bounding. Chudnosky, Scott and Seymour \cite{CSS17b} extended these results and showed that both conjectures are indeed true, so we can state:
 
-\begin{thm}[Chudnovsky,Scott, Seymour \cite{CSS17b}]
+\begin{thm}[Chudnovsky, Scott, Seymour \cite{CSS17b}]
 The following oriented trees are $\chi$-bounding:
 \begin{itemize}
 \item oriented stars,

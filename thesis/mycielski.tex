@@ -1,4 +1,4 @@
-Finding a counterexample for the Gyárfás-Sumner conjecture implies constructing a family $\mathcal{F}$ of graphs such that $\mathcal{F}\subseteq\textit{Forb}(T)$ for some tree $T$ but there is no bounding function for $\mathcal{F}$. Mycielski's construction of triangle-free graphs with high chromatic number \cite{My55} may provide such a family. The goal of this chapter is to eliminate the family of graphs obtained by the Mycielskian construction as candidate for disproving the Gyárfás-Sumner conjecture by showing that in each of these families we find infinitly many graphs containing an induced copy of $T$ for all trees $T$.
+Finding a counterexample for the Gyárfás-Sumner conjecture implies constructing a family $\mathcal{F}$ of graphs such that $\mathcal{F}\subseteq\textit{Forb}(T)$ for some tree $T$ but there is no bounding function for $\mathcal{F}$. Mycielski's construction of triangle-free graphs with high chromatic number \cite{My55} may provide such a family. The goal of this chapter is to eliminate the family of graphs obtained by the Mycielskian construction as candidate for disproving the Gyárfás-Sumner conjecture by showing that in each of these families we find infinitely many graphs containing an induced copy of $T$ for all trees $T$.
 
 \begin{defn}
 Let $G=(V,E)$ be a graph. Its \textit{Mycielskian graph} $\mu(G)$ is defined as the graph $G^\prime=(V\cup U\cup\{w\}, E^\prime)$, where $G^\prime [V]$ is isomorphic to $G$, the set $U$ contains a vertex $u_i$ for every vertex $v_i\in V$, $i\in [\vert V\vert]$, such that $V\cap U=\emptyset$, and $w\notin V\cup U$ is an additional vertex. In addition to the edges of the subgraph isomorphic to $G$, for each $u_i\in U$, $i\in [\vert V\vert]$, $E^\prime$ contains edges from $u_i$ to every vertex in $N_G(v_i)$ and an edge $\lbrace u_i ,w\rbrace$. Figure \ref{f1my} shows an example for the construction of a Mycielskian graph for a graph $G$.
@@ -24,7 +24,7 @@ Mycielski's construction provides a sequence of graphs $G_0, G_1, G_2,\dots $ st
 
 First, we state some properties of a graph $G_k$. Let us denote the set of copies of the vertices in $V_{k-1}$ as $U_k$ and the one additional vertex as $w_k$. For each vertex $v\in V_{k-1}$ we refer to the vertex $u\in U_k$ that is adjacent to exactly the vertices in $N_{G_{k-1}}(v)$ as the copy of $v$ in $G_k$. By the construction, the set $U_k$ is a stable set. Thus, together with the vertex $w_k$ the vertices in $U_k$ induce a star $K_{1, \vert U_k\vert}$ in $G_k$. Furthermore, observe that the neighborhood of each vertex we add, is a stable set.
 
-With these facts in mind, we obtain the following two theorems which Myvielski proved as part of his construction.
+With these facts in mind, we obtain the following two theorems which Mycielski proved as part of his construction.
 
 \begin{thm}[Mycielski \cite{My55}]\label{t2my}
 All graphs in $\mathcal{M}=\{G_k:k\in\Z, k\geq 0\}$ are triangle-free.
@@ -59,7 +59,7 @@ Consider a graph $G_k\in\mathcal{M}$ such that $U_k$ has size at least $n$. Choo
 \label{f3my}
 \end{figure}
 
-As mentioned at the beginning of this chapter, our goal is to show that for each tree $T$, there exists a graph $G_k\in\mathcal{M}$ containing an induced subgraph isomorphic to $T$. Then, all graphs in $\mathcal{M}$ with a higher index contain an induced copy of $T$ as well and thus, it is not possible to use $\mathcal{M}$ aas counterexample for Conjecture \ref{c1cr}.
+As mentioned at the beginning of this chapter, our goal is to show that for each tree $T$, there exists a graph $G_k\in\mathcal{M}$ containing an induced subgraph isomorphic to $T$. Then, all graphs in $\mathcal{M}$ with a higher index contain an induced copy of $T$ as well and thus, it is not possible to use $\mathcal{M}$ as counterexample for Conjecture \ref{c1cr}.
 We start with two proofs by induction proving the existence of induced subgraphs isomorphic to paths and caterpillars in graphs of $\mathcal{M}$. For $k\in\N$ denote the copy of $w_k$ in $U_{k+1}$ as $w_k^1$ as in the proof of Lemma \ref{l1my} . Let $Q_n =(w_1^1 ,w_2^1 ,\dots ,w_n^1)$ be the path through the first $n$ such vertices. 
 \begin{thm}\label{t1my}
 For all $n\in\N$, $Q_n$ is an induced subgraph of $G_{n+1}$.
@@ -68,9 +68,9 @@ For all $n\in\N$, $Q_n$ is an induced subgraph of $G_{n+1}$.
 We prove this theorem by induction on $n$. To launch the induction let $n=1$. The vertex $w_1^1$ trivially is a path on one vertex in the graph $G_2$.
 
 Now let $n\geq 2$. By induction hypothesis, $Q_{n-1}$ is an induced subgraph of $G_n$. Then, the path $Q_{n-1}$ is also an induced subgraph of $G_{n+1}$. 
-Now consider $w_n$. It is adjacent to any vertex in $U_n$ - including $w^1_{n-1}$ - but no other vertex, in particular no $w^1_i$, $i\in [n-2]$. Thus, as the copy of $w_n$ in $U_{n+1}$, $w^1_n$ is only adjacent to $w^1_{n-1}$ and no other vertex of $Q_{n-1}$. Thus, $Q_n$ is an induced subgraph of $G_{n+1}$.\qed
+Now consider $w_n$. It is adjacent to any vertex in $U_n$, including $w^1_{n-1}$, but no other vertex, in particular no $w^1_i$, $i\in [n-2]$. Thus, as the copy of $w_n$ in $U_{n+1}$, $w^1_n$ is only adjacent to $w^1_{n-1}$ and no other vertex of $Q_{n-1}$. Thus, $Q_n$ is an induced subgraph of $G_{n+1}$.\qed
 \end{prf}
-
+\newpage
 \begin{cor}\label{c1my}
 The graph $G_{n+1}$ contains an induced subgraph isomorphic to $P_n$ for all $n\in\N$.
 \end{cor}
@@ -78,7 +78,7 @@ The graph $G_{n+1}$ contains an induced subgraph isomorphic to $P_n$ for all $n\
 As a path on $n$ vertices $Q_n$ is isomorphic to $P_n$ and $Q_n\subseteq_I G_{n+1}$ by Theorem \ref{t1my}.\qed
 \end{prf}
 
-In the next proof we will use certain subgraphs of $Q_n$ to construct an induced copy of a caterpillar in some $G\in\mathcal{M}$. A \textit{caterpillar} is a tree $T$ with a subgraph $P$ isomorphic to a path that contains all vertices in $T$ with degree at least two. Then, $T$ also contains a subgraph isomorphic to a path that contains exactly the vertices in $T$ of degree at least $T$. That is since a vertex of degree one can only be an endpoint of $P$ and considering the subpath of $P$ without the endpoints if they are leaves yields a path as wanted.
+In the next proof we will use certain subgraphs of $Q_n$ to construct an induced copy of a caterpillar in some $G\in\mathcal{M}$. A \textit{caterpillar} is a tree $T$ with a subgraph $P$ isomorphic to a path that contains exactly vertices in $T$ with degree at least two.
 
 Also, let $Q_{i,j}=(w_i^1 ,\dots , w_j^1 )$, $1\leq i\leq j\leq n$, denote the subpath of $Q_n$ with endpoints $w_i^\prime$ and $w_j^\prime$.
 
@@ -101,20 +101,20 @@ By mapping $p_j$ to the vertices of $w^1_{k+j}$ and the leaves adjacent to the v
 
 After stating the proofs for some special cases of trees, there is actually a slightly different approach that proves that for all trees $T$ we can find a graph $G\in\mathcal{M}$ containing an induced subgraph isomorphic to $T$. Therefore, we need to introduce the concept of a rooted tree first. A \textit{rooted} tree $T$ is a tree in which one vertex $r\in T$ is set to be the \textit{root} of $T$. Then, the \textit{parent} of a vertex $v\in T$ is the vertex adjacent to it in the path from $v$ to the root. All vertices of $T$ except the root have a unique parent. We call a vertex $u\in T$ a \textit{child} of $v$ if $v$ is its parent.
 
-Second, we want to order the vertices $v_1, v_2, \dots , v_n$ of a rooted tree on $n$ vertices in a certain way. An order of the vertices is called \textit{in-order} if it can be obtained by the following procedure. Let $v_1$ be the root of $T$ and for each $i\in [n-1]$ choose $v_{i+1}$ as a child of $v_i$ that has not been assigned yet. If there is no such child left, consider the previous vertices in decreasing order and choose a child of them if possible. Observe that each vertex except $v_1$ is a child of a vertex with a smaller index. An example of a rooted tree with an inorder vertex ordering is displayed in Figure \ref{f4my}.\\
+Second, we want to order the vertices $v_1, v_2, \dots , v_n$ of a rooted tree on $n$ vertices in a certain way. An order of the vertices is called \textit{in-order} if it can be obtained by the following procedure. Let $v_1$ be the root of $T$ and for each $i\in [n-1]$ choose $v_{i+1}$ as a child of $v_i$ that has not been assigned yet. If there is no such child left, consider the previous vertices in decreasing order and choose one of their children if possible. Observe that each vertex except $v_1$ is a child of a vertex with a smaller index. An example of a rooted tree with an in-order vertex ordering is displayed in Figure \ref{f4my}.\\
 
 
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[scale=1]{inorder}
 \end{center}
-\caption{Rooted tree $T$ on $11$ vertices with root $r$ and vertex order that is inorder}
+\caption{Rooted tree $T$ on $11$ vertices with root $r$ and vertex order that is in-order}
 \label{f4my}
 \end{figure}
 
 
 \begin{thm}
-Let $T$ be tree. Then, there exists a $G\in\mathcal{M}$ containing an induced subgraph isomorphic to $T$.
+Let $T$ be a tree. Then, there exists a $G\in\mathcal{M}$ containing an induced subgraph isomorphic to $T$.
 \end{thm}
 \begin{prf}
 Let $n$ be the number of vertices in $T$ and choose a vertex $r$ as the root of $T$. Denote the vertices as $r=v_1, v_2, \dots , v_n$ such they are in-order.
